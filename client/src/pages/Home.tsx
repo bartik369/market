@@ -2,9 +2,9 @@ import React, {FC} from 'react';
 
 const Home: FC = () => {
     return (
-        <div>
-            Home page
-        </div>
+       <div className="main">
+           home page
+       </div>
     );
 };
 

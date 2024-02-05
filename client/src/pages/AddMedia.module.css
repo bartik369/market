@@ -1,0 +1,6 @@
+.form {
+    width: 400px;
+    background-color: darkslateblue;
+    display: flex;
+    flex-direction: column;
+}

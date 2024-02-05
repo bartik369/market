@@ -18,4 +18,4 @@ const mediaSlice = createSlice({
     }
 });
 
-export default mediaSlice
+export default mediaSlice.reducer
