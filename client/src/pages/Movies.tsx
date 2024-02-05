@@ -1,11 +1,11 @@
 import React from 'react';
-import CategotyMovies from '../components/sort/CategotyMovies';
+import CategoryMovies from '../components/sort/CategoryMovies';
 
 const Movies = () => {
     return (
         <div>
             фильмы
-            <CategotyMovies />
+            <CategoryMovies />
         </div>
     );
 };

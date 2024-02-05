@@ -1,8 +1,17 @@
 export interface IMedia {
     name: string;
-    category: string,
-    description: string,
-    duration: string,
-    year: string,
-    rating: number,
+    category: string;
+    description: string;
+    duration: string;
+    year: number;
+    rating: number;
+}
+export interface IMovie {
+    id: string;
+    title: string;
+    category: string;
+    description: string;
+    year: string;
+    country: string;
+    media: string;
 }

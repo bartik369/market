@@ -1,18 +1,14 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
+import AddMovieForm from '../components/forms/AddMovieForm';
+import { IMovie } from '../types/media';
 import style from './AddMedia.module.css'
 
 const AddMedia: FC = () => {
+
+
     return (
-        <div>
-            <form className={style.form} action="" >
-                <label htmlFor="">Имя</label>
-                <input type="text" />
-                <label htmlFor="">Описание</label>
-                <input type="text" />
-                <label htmlFor="">Name</label>
-                <input type="text" />
-            </form>
-            
+        <div className={style.wrapper}>
+            <AddMovieForm />
         </div>
     );
 };

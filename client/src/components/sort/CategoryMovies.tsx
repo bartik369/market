@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CategotyMovies = () => {
+const CategoryMovies = () => {
     return (
         <div>
             ssort movie icons
@@ -8,4 +8,4 @@ const CategotyMovies = () => {
     );
 };
 
-export default CategotyMovies;
+export default CategoryMovies;

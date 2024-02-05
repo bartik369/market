@@ -9,6 +9,7 @@ import Series from "./pages/Series";
 import AddMedia from "./pages/AddMedia";
 
 const App: FC = () => {
+  console.log('render')
   return (
     <div className={style.wrapper}>
       <Header />

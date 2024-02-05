@@ -1,6 +1,5 @@
-.form {
-    width: 400px;
-    background-color: darkslateblue;
+.wrapper {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
