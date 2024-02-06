@@ -6,6 +6,7 @@ import style from "./App.module.css";
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 import AddMedia from "./pages/AddMedia";
+import Footer from "./components/footer/Footer";
 
 const App: FC = () => {
   console.log('render')
@@ -26,8 +27,10 @@ const App: FC = () => {
           </Routes>
         </div>
       </main>
-      <footer>
-
+      <footer className={style.footer}>
+      <div className={style.container}>
+        <Footer />
+        </div>
       </footer>
     </div>
   );

@@ -4,6 +4,14 @@ export const menuItemsData = [
     {id: 3, title: 'Сериалы', url: '/series'},
     {id: 4, title: 'Add Media', url: '/add-media'},
   ];
+
+  export const ageItemsData = [
+    {id: 1, age: '0+'},
+    {id: 2, age: '6+'},
+    {id: 3, age: '12+'},
+    {id: 4, age: '16+'},
+    {id: 6, age: '18+'},
+  ];
   export const categoryMovies = [
     {id: 1, name: 'Боевики', value: 'action' },
     {id: 2, name: 'Детективы', value: 'detective' },

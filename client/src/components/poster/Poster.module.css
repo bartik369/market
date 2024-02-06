@@ -1,0 +1,17 @@
+.poster {
+    background-color: rgb(37, 29, 37);
+    padding: 20px;
+}
+
+.prev-layer {
+    width: 50px;
+}
+
+.desc-layer {
+    width: 50px;
+}
+
+.title {
+    color: antiquewhite;
+    font-size: 30px;
+}
