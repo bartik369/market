@@ -7,4 +7,27 @@ body {
     background-color: rgb(7, 7, 7);
 }
 
-.wrapper {}
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header-wrap {
+    width: 100%;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+}
+
+.main-wrap {
+    width: 100%;
+    background-color: rgb(104, 43, 226);
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1300px;
+    background-color: darkcyan;
+}

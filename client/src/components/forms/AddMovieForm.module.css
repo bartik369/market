@@ -22,8 +22,32 @@ select {
     border: none;
 }
 
+textarea {
+    min-height: 150px;
+}
+
 label {
     color: rgb(212, 201, 222);
     margin: 15px 0 10px;
     font-size: 16px;
+}
+
+.separate {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.country,
+.year,
+.director {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.select-img {
+    background-color: darkslateblue;
+    color: #fff;
+    padding: 5px 10px;
+    width: fit-content;
 }

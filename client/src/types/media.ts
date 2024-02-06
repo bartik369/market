@@ -11,7 +11,8 @@ export interface IMovie {
     title: string;
     category: string;
     description: string;
+    director: string;
     year: string;
     country: string;
-    media: string;
+    media: FileList | null,
 }

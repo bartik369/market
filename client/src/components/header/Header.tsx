@@ -5,12 +5,12 @@ import style from './Header.module.css'
 
 const Header: FC = () => {
     return (
-        <header className={style['nav-area']}>
+        <div className={style['nav-area']}>
             <div className={style.logo}>
                 logo
             </div>
         <Navbar />
-        </header>
+        </div>
     );
 };
 

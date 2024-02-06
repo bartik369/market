@@ -1,5 +1,4 @@
-import React from "react";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/header/Header";
@@ -12,13 +11,24 @@ const App: FC = () => {
   console.log('render')
   return (
     <div className={style.wrapper}>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/series" element={<Series />} />
-        <Route path="/add-media" element={<AddMedia />} />
-      </Routes>
+      <header className={style['header-wrap']}>
+        <div className={style.container}>
+          <Header />
+        </div>
+      </header>
+      <main className={style['main-wrap']}>
+        <div className={style.container}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/series" element={<Series />} />
+            <Route path="/add-media" element={<AddMedia />} />
+          </Routes>
+        </div>
+      </main>
+      <footer>
+
+      </footer>
     </div>
   );
 };
