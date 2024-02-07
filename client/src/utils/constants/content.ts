@@ -15,4 +15,5 @@ export const movieSelectDirector = 'Выберите режиссера'
 export const select = 'Выбрать'
 export const selectMovieTitle = 'Введите название'
 export const selectMovieDescription = 'Краткое описание'
+export const selectPosterFile = 'Выбрать обложку'
 

@@ -1,6 +1,8 @@
 .poster {
     background-color: rgb(37, 29, 37);
     padding: 20px;
+    display: flex;
+    flex-direction: column
 }
 
 .prev-layer {

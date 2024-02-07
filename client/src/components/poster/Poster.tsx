@@ -10,10 +10,10 @@ const Poster: FC<IMovieProps> = ({movie}) => {
     return (
         <div className={style.poster}>
             <div className={style['prev-layer']}>
-              {m}  
+                
             </div>
             <div className={style['desc-layer']}>
-            <div className={style.title}>{movie.title}</div>
+            <div className={style.title}></div>
             </div>
         </div>
     );

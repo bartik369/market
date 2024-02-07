@@ -4,8 +4,8 @@
 }
 
 .form {
-    width: fit-content;
-    border-radius: 12px;
+    width: 100%;
+    border-radius: 10px;
     padding: 20px 30px;
     background-color: #16171a;
     display: flex;
@@ -15,7 +15,7 @@
 }
 
 .form:hover {
-    box-shadow: 0 4px 4px 0 rgba(77, 33, 135, 0.1), 0 8px 8px 0 rgba(77, 33, 135, 0.1), 0 16px 16px 0 rgba(77, 33, 135, 0.1), 0 32px 32px 0 rgba(77, 33, 135, 0.1), 0 64px 64px 0 rgba(77, 33, 135, 0.1), 0 128px 128px 0 rgba(77, 33, 135, 0.1);
+    box-shadow: 0 4px 4px 0 rgba(103, 33, 135, 0.1), 0 8px 8px 0 rgba(103, 33, 135, 0.1), 0 16px 16px 0 rgba(77, 33, 135, 0.1), 0 32px 32px 0 rgba(77, 33, 135, 0.1), 0 64px 64px 0 rgba(77, 33, 135, 0.1), 0 128px 128px 0 rgba(77, 33, 135, 0.1);
 }
 
 input[type='text'],
@@ -29,6 +29,7 @@ select {
     font-size: 11px;
     color: #8f8f8f;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 input[type='text']:focus,
@@ -59,21 +60,54 @@ label {
     font-weight: 300;
 }
 
-.separate {
-    display: flex;
-    flex-wrap: wrap;
+.bi-image {
+    color: #2421db;
+    font-size: 24px;
 }
 
-.block {
+
+/*  */
+
+.main-column {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column1 {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.column2 {
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
+    flex-grow: 2;
 }
 
+.column2:not(:last-child),
+.column3:not(:last-child) {
+    margin-right: 6px;
+}
+
+.column3 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+}
+
+
+/*  */
+
 .select-img {
-    background-color: darkslateblue;
-    color: #fff;
-    padding: 5px 10px;
+    background-color: #1e1f24;
+    border: 1px solid #2a2b2e;
+    font-family: "Roboto", sans-serif;
+    padding: 9px 6px;
+    outline: none;
+    font-size: 11px;
+    color: #8f8f8f;
+    border-radius: 4px;
     width: fit-content;
 }
 
@@ -81,9 +115,12 @@ label {
     width: 30%;
     padding: 20px;
     position: relative;
+    display: flex;
+    background-color: dimgrey;
 }
 
 .r-side {
+    background-color: mediumpurple;
     width: 60%;
     padding: 20px;
     position: relative;
