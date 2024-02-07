@@ -116,12 +116,11 @@ label {
     padding: 20px;
     position: relative;
     display: flex;
-    background-color: dimgrey;
 }
 
 .r-side {
-    background-color: mediumpurple;
     width: 60%;
     padding: 20px;
     position: relative;
+    flex-grow: 1;
 }

@@ -18,3 +18,10 @@ export interface IMovie {
     age: string;
     media: FileList | null;
 }
+export interface IActor {
+    id?: string;
+    name: string;
+    surname: string;
+    picture?:  FileList | null;
+    link?: string;
+}
