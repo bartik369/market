@@ -22,6 +22,6 @@ export interface IActor {
     id?: string;
     name: string;
     surname: string;
-    picture?:  FileList | null;
+    picture?: string;
     link?: string;
 }

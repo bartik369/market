@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import actorRoutes from './routes/actorRoutes'
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { createServer } from 'http';
@@ -17,6 +18,8 @@ app.use(cors({
     origin: process.env.CLIENT_URL,
 
 }));
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use('/api', actorRoutes)
 
 server.listen(PORT, () => {
     console.log(`Server ready on port ${PORT}`)

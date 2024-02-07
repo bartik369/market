@@ -1,8 +1,8 @@
-class Actors {
+class ActorController {
 
     async addActor(req, res, next) {
         try {
-            console.log('work')
+            console.log('work my controlle')
             
         } catch (error) {
             
@@ -10,4 +10,4 @@ class Actors {
     }
 }
 
-export default new Actors()
+export default new ActorController()

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios'
+import axios from 'axios';
+import ENV from "../env.config";
 import { IActor } from "../types/media";
 
 type ActorState = {
@@ -15,7 +16,7 @@ const initialState: ActorState = {
 
 export const fetchActors = createAsyncThunk<IActor[], undefined, {rejectValue: String}>('actors/fetchActors',
 async function(_, {rejectWithValue}) {
-    const response = await axios.get('api/actors')
+    const response = await axios.get(`${ENV.API_URL}api/actors`)
     
     if (!response.data) {
         return rejectWithValue('sever error')
@@ -24,16 +25,17 @@ async function(_, {rejectWithValue}) {
 }
 )
 
-export const addActor = createAsyncThunk<IActor, string, {rejectValue: string}>('actors/createActor',
-    async function(text, {rejectWithValue, dispatch}) {
+export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
+    'actors/createActor',
+    async function(data, {rejectWithValue}) {
         const actor = {
             id: '',
-            name: text,
-            surname: text,
-            picture: text,
-            link: text,
+            name: data.name,
+            surname: data.surname,
+            picture: data.picture,
+            link: data.link,
         };
-        const response = await axios.post('api/add-actor', {
+        const response = await axios.post(`${ENV.API_URL}api/add-actor`, {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -41,8 +43,9 @@ export const addActor = createAsyncThunk<IActor, string, {rejectValue: string}>(
         });
 
         if (!response) {
-            return 
+            return rejectWithValue('cant add task, there is some error')
         }
+        return await response.data
     }
 )
 
@@ -60,7 +63,13 @@ const actorSlice = createSlice({
         })
         .addCase(fetchActors.fulfilled, (state, action) => {
             state.list = action.payload;
-            state.loading = false
+            state.loading = false;
+        })
+        .addCase(addActor.pending, (state) => {
+            state.error = null;
+        })
+        .addCase(addActor.fulfilled, (state, action) => {
+            state.list.push(action.payload)
         })
     }
 });

@@ -1,21 +1,22 @@
 import React, {FC, useEffect, useState} from 'react';
+import { useAppDispatch } from '../hooks/reduxHook';
+import {addActor} from '../store/actorSlice'
 import { IActor } from '../types/media';
 import style from './AddActor.module.css'
 
 const AddActor: FC = () => {
+    const dispatch = useAppDispatch()
 
     const [actor, setActor] = useState<IActor>({
         id: '',
         name: '',
         surname: '',
-        picture: null,
+        picture: '',
         link: '',
     })
 
-    console.log(actor)
-
-    const addActor = () => {
-
+    const createActorHandle = () => {
+        dispatch(addActor(actor))
     }
 
     return (
@@ -42,7 +43,7 @@ const AddActor: FC = () => {
             <label>picture</label> 
             <input type="file" />
         </div>
-        {/* <button onClick={addActor(actor)}></button> */}
+        <button onClick={() => createActorHandle()}>Click me</button>
        </div>
         
     );
