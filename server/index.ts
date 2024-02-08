@@ -27,7 +27,7 @@ server.listen(PORT, () => {
 
 const start = async() => {
     try {
-        await mongoose.connect('mongodb+srv://bartik369:7DRf9R8HLRD2ro8C@cluster1.tuup8ip.mongodb.net/?retryWrites=true&w=majority');
+        await mongoose.connect(process.env.DB_URL);
 
     } catch (error) {
         console.log(error)

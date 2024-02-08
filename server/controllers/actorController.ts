@@ -1,9 +1,19 @@
+import { Request, Response } from "express";
+import Actor from "../models/media/actor";
+
 class ActorController {
 
-    async addActor(req, res, next) {
+    async addActor(req: Request, res: Response) {
         try {
-            console.log('work my controlle')
-            
+            const {name, surname, picture, link} = req['body'];
+            const actorData = new Actor({
+                name: name,
+                surname: surname,
+                picture: picture,
+                link: link
+            })
+            await actorData.save()
+            return actorData
         } catch (error) {
             
         }

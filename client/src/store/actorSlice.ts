@@ -25,7 +25,7 @@ async function(_, {rejectWithValue}) {
 }
 )
 
-export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
+export const addActor = createAsyncThunk<IActor, IActor, {rejectValue: string}>(
     'actors/createActor',
     async function(data, {rejectWithValue}) {
         const actor = {
@@ -35,11 +35,11 @@ export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
             picture: data.picture,
             link: data.link,
         };
-        const response = await axios.post(`${ENV.API_URL}api/add-actor`, {
+
+        const response = await axios.post(`${ENV.API_URL}api/add-actor`, actor, {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(actor)
         });
 
         if (!response) {
