@@ -6,8 +6,8 @@ class ActorController {
     async addActor(req: Request, res: Response) {
         try {
             const {name, surname, picture, link} = req.body;
-            console.log(req.file)
             console.log(req.body)
+            console.log(req.file)
             // const actorData = new Actor({
             //     name: name,
             //     surname: surname,

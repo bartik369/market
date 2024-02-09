@@ -28,18 +28,8 @@ async function(_, {rejectWithValue}) {
 export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
     'actors/createActor',
     async function(formData, {rejectWithValue}) {
-
-        // const actor = {
-        //     name: formData.name,
-        //     surname: formData.surname,
-        //     picture: formData.picture,
-        //     link: formData.link,
-        //     file: formData.files
-        // }
-
         const response = await axios.post(`${ENV.API_URL}api/add-actor`, formData, {
             headers: { 'Content-Type': 'multipart/form-data'},
-
         });
 
         if (!response) {

@@ -13,7 +13,7 @@ const AddActor: FC = () => {
         picture: '',
         link: '',
     });
-    const [file, setFile] = useState<string | Blob>(' ')
+    const [file, setFile] = useState<string | Blob>('')
 
     console.log(file)
 
