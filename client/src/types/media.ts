@@ -1,3 +1,5 @@
+import { url } from "inspector";
+
 export interface IMedia {
     name: string;
     category: string;
@@ -25,3 +27,19 @@ export interface IActor {
     picture?: string;
     link?: string;
 }
+export interface IActorData {
+    id?: string,
+    name: string;
+    surname: string;
+    picture?: string;
+    link?: string;
+    file?: File | null
+}
+// export interface IFile {
+//     lastModified: number;
+//     lastModifiedDate: Date;
+//     name: string;
+//     size: number;
+//     type: string;
+//     webkitRelativePath: string;
+// }

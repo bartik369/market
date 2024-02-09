@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import ENV from "../env.config";
-import { IActor } from "../types/media";
+import { IActor, IActorData} from "../types/media";
 
 type ActorState = {
     list: IActor[];
@@ -25,21 +25,21 @@ async function(_, {rejectWithValue}) {
 }
 )
 
-export const addActor = createAsyncThunk<IActor, IActor, {rejectValue: string}>(
+export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
     'actors/createActor',
-    async function(data, {rejectWithValue}) {
-        const actor = {
-            id: '',
-            name: data.name,
-            surname: data.surname,
-            picture: data.picture,
-            link: data.link,
-        };
+    async function(formData, {rejectWithValue}) {
 
-        const response = await axios.post(`${ENV.API_URL}api/add-actor`, actor, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        // const actor = {
+        //     name: formData.name,
+        //     surname: formData.surname,
+        //     picture: formData.picture,
+        //     link: formData.link,
+        //     file: formData.files
+        // }
+
+        const response = await axios.post(`${ENV.API_URL}api/add-actor`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data'},
+
         });
 
         if (!response) {
