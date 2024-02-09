@@ -22,15 +22,15 @@ export interface IMovie {
 }
 export interface IActor {
     id?: string;
-    name: string;
-    surname: string;
+    name_en: string;
+    name_ru: string;
     picture?: string;
     link?: string;
 }
 export interface IActorData {
     id?: string,
-    name: string;
-    surname: string;
+    name_en: string;
+    name_ru: string;
     picture?: string;
     link?: string;
     file?: File | null

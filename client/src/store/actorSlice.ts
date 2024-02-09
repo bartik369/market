@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import ENV from "../env.config";
-import { IActor, IActorData} from "../types/media";
+import { IActor} from "../types/media";
 
 type ActorState = {
     list: IActor[];
@@ -14,7 +14,7 @@ const initialState: ActorState = {
     error: null,
 };
 
-export const fetchActors = createAsyncThunk<IActor[], undefined, {rejectValue: String}>('actors/fetchActors',
+export const getActors = createAsyncThunk<IActor[], undefined, {rejectValue: String}>('actors/getActors',
 async function(_, {rejectWithValue}) {
     const response = await axios.get(`${ENV.API_URL}api/actors`)
     
@@ -47,11 +47,11 @@ const actorSlice = createSlice({
     }, 
     extraReducers: (builder) => {
         builder
-        .addCase(fetchActors.pending, (state) => {
+        .addCase(getActors.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(fetchActors.fulfilled, (state, action) => {
+        .addCase(getActors.fulfilled, (state, action) => {
             state.list = action.payload;
             state.loading = false;
         })

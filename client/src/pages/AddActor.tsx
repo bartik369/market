@@ -1,21 +1,28 @@
-import React, {FC, useState} from 'react';
-import { useAppDispatch } from '../hooks/reduxHook';
-import {addActor} from '../store/actorSlice'
+import React, {FC, useEffect, useState} from 'react';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
+import ENV from '../env.config';
+import {addActor, getActors} from '../store/actorSlice'
 import { IActor } from '../types/media';
 import style from './AddActor.module.css'
 
 const AddActor: FC = () => {
     const dispatch = useAppDispatch()
+    const actors = useAppSelector(state => state.actors.list)
     const [actor, setActor] = useState<IActor>({
         id: '',
-        name: '',
-        surname: '',
+        name_en: '',
+        name_ru: '',
         picture: '',
         link: '',
     });
-    const [file, setFile] = useState<string | Blob>('')
+    useEffect(() => {
+        dispatch(getActors())
+    }, [dispatch])
 
-    console.log(file)
+    console.log(actors)
+
+    const [file, setFile] = useState<string | Blob>('')
+    const [prevImg, setPrevImg] = useState<string>('')
 
     const createActorHandle = () => {
         const formData = new FormData()
@@ -31,17 +38,17 @@ const AddActor: FC = () => {
     return (
        <>
         <div className={style.block}>
-            <label>name</label> 
+            <label>name_en</label> 
             <input type="text"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                setActor({...actor, name: e.target.value})}
+                setActor({...actor, name_en: e.target.value})}
             />
         </div>
         <div className={style.block}>
-            <label>surname</label> 
+            <label>name_ru</label> 
             <input type="text" 
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                setActor({...actor, surname: e.target.value})}
+                setActor({...actor, name_ru: e.target.value})}
             />
         </div>
         <div className={style.block}>
@@ -62,6 +69,12 @@ const AddActor: FC = () => {
             />
         </div>
         <button  onClick={() => createActorHandle()}>Click me</button>
+        <div>
+            show picks
+           {actors.map((item) => 
+            <img key={item.id} src={`${ENV.API_URL_PICS_ACTORS}${item.picture}`} alt="" />
+           )}
+        </div>
        </>
         
     );

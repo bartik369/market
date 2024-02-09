@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import multer from "multer";
+import * as path from 'path'
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { createServer } from 'http';
 
-const upload = multer({ dest: 'uploads/' })
+
 const app: Express = express();
 const server = createServer(app)
 dotenv.config();
@@ -23,6 +23,7 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
 app.use('/api', actorRoutes)
+app.use('/uploads/actors/', express.static(path.join(__dirname, 'uploads/actors/')))
 
 server.listen(PORT, () => {
     console.log(`Server ready on port ${PORT}`)

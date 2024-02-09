@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const ActorScheme = new mongoose.Schema({
-    name: {
+    name_en: {
         type: String,
     },
-    surname: {
+    name_ru: {
         type: String,
     },
     picture: {

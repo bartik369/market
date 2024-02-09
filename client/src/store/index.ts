@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
 import mediaReducer from './mediaSlice';
+import actorReducer from './actorSlice';
 
 const store = configureStore({
     reducer: {
       media: mediaReducer,
+      actors: actorReducer,
     },
 })
 
