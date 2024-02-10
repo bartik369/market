@@ -23,7 +23,7 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
 app.use('/api', actorRoutes)
-app.use('/uploads/actors/', express.static(path.join(__dirname, 'uploads/actors/')))
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 server.listen(PORT, () => {
     console.log(`Server ready on port ${PORT}`)

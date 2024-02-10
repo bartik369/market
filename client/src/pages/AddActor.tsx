@@ -9,11 +9,17 @@ const AddActor: FC = () => {
     const dispatch = useAppDispatch()
     const actors = useAppSelector(state => state.actors.list)
     const [actor, setActor] = useState<IActor>({
-        id: '',
+        _id: '',
         name_en: '',
         name_ru: '',
         picture: '',
-        link: '',
+        extInfo: {
+            link:'',
+            birthday:'',
+            height: '',
+            genre: '',
+            totalFilms: '',
+        }
     });
     useEffect(() => {
         dispatch(getActors())
@@ -27,13 +33,39 @@ const AddActor: FC = () => {
     const createActorHandle = () => {
         const formData = new FormData()
         const keys = Object.keys(actor) as Array<keyof typeof actor>;
+        const subKey = Object.keys(keys) as Array<keyof typeof actor>;
+        const prevKey = Object.keys(subKey) as Array<keyof typeof actor>;
 
         keys.forEach((key) => {
-            formData.append(key, actor[key]!)
+            if (key === 'extInfo') {
+                subKey.forEach((prevKey) => {
+                    formData.append(prevKey, actor[key][prevKey])
+                })
+            } else {
+                formData.append(prevKey, actor[prewKey])
+            }
         })
+
+
+        // keys.forEach((key) => {
+        //     formData.append(key, actor[key]!)
+        // })
+
+        // for (let key in actor) {
+        //     if( key === 'extInfo') {
+        //         for (let prewKey in actor[key]) {
+        //             formData.append(`extInfo[${prewKey}]`, actor[key][prewKey])
+        //         }
+        //     } else {
+        //         formData(prewKey, actor[prewKey])
+        //     }
+        // }
         formData.append('file', file)
         dispatch(addActor(formData))
     }
+    actors.map((item) => {
+        console.log(`${ENV.API_URL_UPLOADS_ACTORS}${item.picture}`)
+    })
 
     return (
        <>
@@ -52,13 +84,6 @@ const AddActor: FC = () => {
             />
         </div>
         <div className={style.block}>
-            <label>link</label> 
-            <input type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                setActor({...actor, link: e.target.value})}
-            />
-        </div>
-        <div className={style.block}>
             <label>picture</label> 
             <input
             name='file' 
@@ -68,11 +93,79 @@ const AddActor: FC = () => {
             }}
             />
         </div>
+
+        <div className={style.block}>
+            <label>link</label> 
+            <input type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                setActor({
+                    ...actor, extInfo: {
+                     ...actor.extInfo,
+                    link: e.target.value
+                    }
+                })}
+            />
+        </div>
+
+        <div className={style.block}>
+            <label>birthday</label> 
+            <input type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                setActor({
+                    ...actor, extInfo: {
+                    ...actor.extInfo,
+                    birthday: e.target.value
+                    }
+                })}
+            />
+        </div>
+
+        <div className={style.block}>
+            <label>height</label> 
+            <input type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                setActor({
+                    ...actor, extInfo: {
+                    ...actor.extInfo,
+                    height: e.target.value
+                    }
+                })}
+            />
+        </div>
+
+        <div className={style.block}>
+            <label>genre</label> 
+            <input type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                setActor({
+                    ...actor, extInfo: {
+                    ...actor.extInfo,
+                    genre: e.target.value
+                    }
+                })}
+            />
+        </div>
+
+        <div className={style.block}>
+            <label>total films</label> 
+            <input type="text"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                setActor({
+                    ...actor, extInfo: {
+                    ...actor.extInfo,
+                    totalFilms: e.target.value
+                    }
+                })}
+            />
+        </div>
         <button  onClick={() => createActorHandle()}>Click me</button>
         <div>
             show picks
            {actors.map((item) => 
-            <img key={item.id} src={`${ENV.API_URL_PICS_ACTORS}${item.picture}`} alt="" />
+           <div key={item._id}>
+                {item.name_ru}
+                <img src={`${ENV.API_URL_UPLOADS_ACTORS}${item.picture}`} alt="" />
+           </div>
            )}
         </div>
        </>

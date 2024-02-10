@@ -21,14 +21,21 @@ export interface IMovie {
     media: FileList | null;
 }
 export interface IActor {
-    id?: string;
+    _id?: string;
     name_en: string;
     name_ru: string;
-    picture?: string;
-    link?: string;
+    picture: string;
+    extInfo: IActorExt;
+}
+export interface IActorExt {
+    link?:string;
+    birthday: string;
+    height: string;
+    genre: string;
+    totalFilms: string;
 }
 export interface IActorData {
-    id?: string,
+    _id?: string,
     name_en: string;
     name_ru: string;
     picture?: string;

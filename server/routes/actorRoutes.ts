@@ -1,24 +1,53 @@
-
 import express from 'express';
-import actorController from '../controllers/actorController';
+import {Request, Response} from 'express';
+import ActorModel from '../models/media/actor';
 import multer from 'multer';
 import path from 'path';
-const router = express.Router();
-// const uploadActor = multer({ dest: 'uploads/actors' })
-// router.use(bodyParser.text())
+import { v4 as uuidv4 } from 'uuid';
 
+const router = express.Router();
+const extLink = uuidv4()
 const actorPortrait = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads/actors/')
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+      cb(null, file.fieldname + '-' + extLink + path.extname(file.originalname))
     }
-  })
-  
-  const upload = multer({ storage: actorPortrait })
+})
 
-router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'), actorController.addActor);
-router.get('/actors/', actorController.getActors)
+  router.get('/actors/',
+  async(req: Request, res:Response) => {
+    try {
+      const actorData = await ActorModel.find({})
+
+      if (actorData) {
+           console.log(actorData)
+          return res.json(actorData)
+      }
+    } catch (error) {
+      
+    }
+  }
+  )
+  router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'),
+   async (req: Request, res:Response) => {
+     try {
+      // const {name_en, name_ru, link} = req.body;
+      // const actorData = new ActorModel({
+      //     name_en: name_en,
+      //     name_ru: name_ru,
+      //     picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
+      //     link: link
+      // })
+      // await actorData.save()
+     } catch (error) {
+       
+     }
+   }
+  )
+
+// router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'), actorController.addActor);
+// router.get('/actors/', actorController.getActors)
 
 export default router;
