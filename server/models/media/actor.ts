@@ -10,9 +10,21 @@ const ActorScheme = new mongoose.Schema({
     picture: {
         type: String,
     },
-    link: {
-        type: String,
-    },
+    extInfo: {
+        birthday: {
+            type: String,
+        },
+        country: {
+            type: String,
+        },
+        city: {
+            type: String,
+        },
+        height: {
+            type: String,
+        },
+        genre: [],
+    }
 });
 
 const Actor = mongoose.model("Actor", ActorScheme);

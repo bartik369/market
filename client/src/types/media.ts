@@ -28,20 +28,20 @@ export interface IActor {
     extInfo: IActorExt;
 }
 export interface IActorExt {
-    link?:string;
     birthday: string;
+    country: string;
+    city: string;
     height: string;
-    genre: string;
-    totalFilms: string;
+    genre: string[];
 }
-export interface IActorData {
-    _id?: string,
-    name_en: string;
-    name_ru: string;
-    picture?: string;
-    link?: string;
-    file?: File | null
-}
+// export interface IActorData {
+//     _id?: string,
+//     name_en: string;
+//     name_ru: string;
+//     picture?: string;
+//     link?: string;
+//     file?: File | null;
+// }
 // export interface IFile {
 //     lastModified: number;
 //     lastModifiedDate: Date;
