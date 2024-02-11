@@ -32,6 +32,10 @@ select {
     cursor: pointer;
 }
 
+input[type='text'] {
+    padding: 10px 6px;
+}
+
 input[type='text']:focus,
 textarea:focus,
 select:focus {
@@ -99,6 +103,29 @@ label {
     display: flex;
     flex-direction: column;
     flex-grow: 3;
+}
+
+.photo-layer {
+    padding: 9.2px;
+    margin: 0;
+    border-radius: 4px;
+    background-color: #2421db;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+}
+
+.photo-icon {
+    color: aliceblue;
+    margin-right: 5px;
+}
+
+.select-photo {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 11px;
+    color: aliceblue;
 }
 
 

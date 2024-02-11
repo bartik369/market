@@ -23,6 +23,7 @@ export const selectPosterFile = 'Выбрать обложку';
 export const actorNameEn = 'Имя, фамилия(англ)';
 export const actorNameRu = 'Имя, фамилия(рус)';
 export const actorPhoto = 'Фото';
+export const actorSelectPhoto = 'Загрузить';
 export const actorBirthday = 'Дата рождения';
 export const actorCountry = 'Страна';
 export const actorCity = 'Город';

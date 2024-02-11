@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark, faCamera } from '@fortawesome/free-solid-svg-icons'
 import { categoryMovies } from "../utils/data/data";
 import * as contentConst from "../utils/constants/content";
 import { coutryList } from "../utils/data/coutry";
@@ -121,7 +121,6 @@ const AddActor: FC = () => {
                 ))}
               </select>
           </div>
-
           <div className={style.column2}>
             <label>{contentConst.actorCity}</label>
             <input
@@ -139,7 +138,6 @@ const AddActor: FC = () => {
             />
           </div>
           </div>
-
           <div className={style["main-column"]}>
           <div className={style.column2}>
             <label>{contentConst.actorBirthday}</label>
@@ -156,13 +154,9 @@ const AddActor: FC = () => {
                 })
               }
             />
-            <div>
-                
+            <div>   
             </div>
           </div>
-
-          
-
           <div className={style.column2}>
             <label>{contentConst.actorHeight}</label>
             <input
@@ -181,7 +175,6 @@ const AddActor: FC = () => {
           </div>
           </div>
           <div className={style["main-column"]}>
-
           <div className={style.column2}>
             <label>{contentConst.actorGenre}</label>
             <select
@@ -198,19 +191,23 @@ const AddActor: FC = () => {
               ))}
             </select>
           </div>        
-
           <div className={style.column2}>
             <label>{contentConst.actorPhoto}</label>
+            <div className={style['photo-layer']}>
+            <FontAwesomeIcon className={style['photo-icon']} icon={faCamera} />
+            <label className={style['select-photo']} htmlFor="upload">{contentConst.actorSelectPhoto}</label>
+            </div>
             <input
               name="file"
+              id="upload"
               type="file"
+              hidden
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 e.target.files && setFile(e.target.files[0]);
               }}
             />
           </div>
           </div>
-
           <div className={style.genre}>
                 {actor.extInfo.genre.map((item) => 
                 <div className={style.item} >
@@ -222,9 +219,7 @@ const AddActor: FC = () => {
                  </div>
                 )}
             </div>
-
           <button onClick={() => createActorHandle()}>Click me</button>
-
         </form>
       </div>
 
