@@ -25,41 +25,24 @@ const AddActor: FC = () => {
         dispatch(getActors())
     }, [dispatch])
 
-    console.log(actors)
-
     const [file, setFile] = useState<string | Blob>('')
     const [prevImg, setPrevImg] = useState<string>('')
 
     const createActorHandle = () => {
         const formData = new FormData()
-        const keys = Object.keys(actor) as Array<keyof typeof actor>;
-        const subKey = Object.keys(keys) as Array<keyof typeof actor>;
-        const prevKey = Object.keys(subKey) as Array<keyof typeof actor>;
+        type actorKey = keyof typeof actor._id;
+        type actorSubKey = keyof typeof actor._id;
 
-        keys.forEach((key) => {
+        Object.keys(actor).forEach((key) => {
+    
             if (key === 'extInfo') {
-                subKey.forEach((prevKey) => {
-                    formData.append(prevKey, actor[key][prevKey])
+                Object.keys(actor[key]).forEach((subKey) => {
+                   formData.append(subKey, actor[key][subKey as actorSubKey])
                 })
             } else {
-                formData.append(prevKey, actor[prewKey])
+                formData.append(key, actor[key as actorKey])
             }
         })
-
-
-        // keys.forEach((key) => {
-        //     formData.append(key, actor[key]!)
-        // })
-
-        // for (let key in actor) {
-        //     if( key === 'extInfo') {
-        //         for (let prewKey in actor[key]) {
-        //             formData.append(`extInfo[${prewKey}]`, actor[key][prewKey])
-        //         }
-        //     } else {
-        //         formData(prewKey, actor[prewKey])
-        //     }
-        // }
         formData.append('file', file)
         dispatch(addActor(formData))
     }

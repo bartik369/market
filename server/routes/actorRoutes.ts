@@ -33,14 +33,16 @@ const actorPortrait = multer.diskStorage({
   router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'),
    async (req: Request, res:Response) => {
      try {
-      // const {name_en, name_ru, link} = req.body;
-      // const actorData = new ActorModel({
-      //     name_en: name_en,
-      //     name_ru: name_ru,
-      //     picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
-      //     link: link
-      // })
-      // await actorData.save()
+       console.log(req.body)
+       console.log(req.file)
+      const {name_en, name_ru, link} = req.body;
+      const actorData = new ActorModel({
+          name_en: name_en,
+          name_ru: name_ru,
+          picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
+          link: link
+      })
+      await actorData.save()
      } catch (error) {
        
      }
