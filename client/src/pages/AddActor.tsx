@@ -1,8 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import ENV from "../env.config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { categoryMovies } from "../utils/data/data";
 import * as contentConst from "../utils/constants/content";
+import { coutryList } from "../utils/data/coutry";
 import { addActor, getActors } from "../store/actorSlice";
 import { IActor } from "../types/media";
 import style from "./AddActor.module.css";
@@ -23,6 +25,7 @@ const AddActor: FC = () => {
       genre: [],
     },
   });
+
   useEffect(() => {
     dispatch(getActors());
   }, [dispatch]);
@@ -58,14 +61,23 @@ const AddActor: FC = () => {
     });
   };
 
+  const deleteGenre = (e: React.MouseEvent, item: string) => {
+      e.preventDefault()
+      setActor({
+        ...actor,
+        extInfo: {
+          ...actor.extInfo,
+          genre: actor.extInfo.genre.filter((elem) => elem !== item)
+        },
+      });
+  }
+
   return (
     <div className={style.wrapper}>
-
       <div className={style["l-side"]}>
-
         <form className={style.form}>
-
-          <div className={style.block}>
+        <div className={style["main-column"]}>
+        <div className={style.column2}>
             <label>{contentConst.actorNameEn}</label>
             <input
               type="text"
@@ -75,8 +87,7 @@ const AddActor: FC = () => {
               }
             />
           </div>
-
-          <div className={style.block}>
+          <div className={style.column2}>
             <label>{contentConst.actorNameRu}</label>
             <input
               type="text"
@@ -86,53 +97,32 @@ const AddActor: FC = () => {
               }
             />
           </div>
-
-          <div className={style.block}>
-            <label>{contentConst.actorPhoto}</label>
-            <input
-              name="file"
-              type="file"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                e.target.files && setFile(e.target.files[0]);
-              }}
-            />
           </div>
-
-          <div className={style.block}>
-            <label>{contentConst.actorBirthday}</label>
-            <input
-              placeholder={contentConst.fill}
-              type="text"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setActor({
-                  ...actor,
-                  extInfo: {
-                    ...actor.extInfo,
-                    birthday: e.target.value,
-                  },
-                })
-              }
-            />
-          </div>
-
-          <div className={style.block}>
+          <div className={style["main-column"]}>
+         <div className={style.column2}>
             <label>{contentConst.actorCountry}</label>
-            <input
-              type="text"
-              placeholder={contentConst.fill}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setActor({
-                  ...actor,
-                  extInfo: {
-                    ...actor.extInfo,
-                    country: e.target.value,
-                  },
-                })
-              }
-            />
+              <select
+                defaultValue=""
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setActor({
+                      ...actor,
+                      extInfo: {
+                        ...actor.extInfo,
+                        country: e.target.value,
+                      },
+                    })
+                  }
+              >
+                <option value="" disabled>
+                  {contentConst.select}
+                </option>
+                {coutryList.map((item) => (
+                  <option key={item.id}>{item.name}</option>
+                ))}
+              </select>
           </div>
 
-          <div className={style.block}>
+          <div className={style.column2}>
             <label>{contentConst.actorCity}</label>
             <input
               type="text"
@@ -148,8 +138,32 @@ const AddActor: FC = () => {
               }
             />
           </div>
+          </div>
 
-          <div className={style.block}>
+          <div className={style["main-column"]}>
+          <div className={style.column2}>
+            <label>{contentConst.actorBirthday}</label>
+            <input
+              placeholder={contentConst.fill}
+              type="text"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setActor({
+                  ...actor,
+                  extInfo: {
+                    ...actor.extInfo,
+                    birthday: e.target.value,
+                  },
+                })
+              }
+            />
+            <div>
+                
+            </div>
+          </div>
+
+          
+
+          <div className={style.column2}>
             <label>{contentConst.actorHeight}</label>
             <input
               type="text"
@@ -165,8 +179,10 @@ const AddActor: FC = () => {
               }
             />
           </div>
+          </div>
+          <div className={style["main-column"]}>
 
-          <div className={style.block}>
+          <div className={style.column2}>
             <label>{contentConst.actorGenre}</label>
             <select
               defaultValue=""
@@ -181,7 +197,31 @@ const AddActor: FC = () => {
                 <option key={item.id}>{item.name}</option>
               ))}
             </select>
+          </div>        
+
+          <div className={style.column2}>
+            <label>{contentConst.actorPhoto}</label>
+            <input
+              name="file"
+              type="file"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                e.target.files && setFile(e.target.files[0]);
+              }}
+            />
           </div>
+          </div>
+
+          <div className={style.genre}>
+                {actor.extInfo.genre.map((item) => 
+                <div className={style.item} >
+                    {item}
+                    <FontAwesomeIcon 
+                    className={style['close-btn']}
+                    onClick={(e:React.MouseEvent) => deleteGenre(e, item)} 
+                    icon={faCircleXmark} />
+                 </div>
+                )}
+            </div>
 
           <button onClick={() => createActorHandle()}>Click me</button>
 

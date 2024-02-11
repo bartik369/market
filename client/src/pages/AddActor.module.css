@@ -68,6 +68,11 @@ label {
 
 /*  */
 
+.block {
+    display: flex;
+    flex-direction: column;
+}
+
 .main-column {
     display: flex;
     justify-content: space-evenly;
@@ -123,4 +128,33 @@ label {
     padding: 20px;
     position: relative;
     flex-grow: 1;
+}
+
+.genre {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 7px;
+}
+
+.genre .item {
+    position: relative;
+    width: fit-content;
+    color: #8f8f8f;
+    font-family: "Roboto", sans-serif;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    border: 1px solid #2a2b2e;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.close-btn {
+    color: rgb(206, 55, 165);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 17px;
+    margin-left: 4px;
 }
