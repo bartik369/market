@@ -28,9 +28,10 @@ export interface IActor {
     extInfo: IActorExt;
 }
 export interface IActorExt {
-    birthday: string;
+    birthday: number;
     country: string;
     city: string;
+    gender: string;
     height: string;
     genre: string[];
 }

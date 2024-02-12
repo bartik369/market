@@ -20,6 +20,9 @@ const ActorScheme = new mongoose.Schema({
         city: {
             type: String,
         },
+        gender: {
+            type: String,
+        },
         height: {
             type: String,
         },

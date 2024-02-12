@@ -1,0 +1,15 @@
+.wrapper {
+    background-color: darkslateblue;
+    width: 100%;
+    display: flex;
+}
+
+.portrait {
+    background-color: darkgoldenrod;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+}

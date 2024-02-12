@@ -28,6 +28,7 @@ export const actorBirthday = 'Дата рождения';
 export const actorCountry = 'Страна';
 export const actorCity = 'Город';
 export const actorHeight = 'Рост';
+export const actorGender = 'Пол';
 export const actorGenre = 'Жанры';
 
 

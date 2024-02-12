@@ -15,13 +15,16 @@ const AddActor: FC = () => {
     name_ru: "",
     picture: "",
     extInfo: {
-      birthday: "",
+      birthday: 0,
       country: "",
       city: "",
       height: "",
+      gender: "",
       genre: [],
     },
   });
+
+  console.log(actor)
 
   useEffect(() => {
     dispatch(getActors());
@@ -73,16 +76,18 @@ const AddActor: FC = () => {
     <div className={style.wrapper}>
       <div className={style["l-side"]}>
           <ActorForm 
-          actor={actor} 
+          actor={actor}
           setActor={setActor} 
           deleteGenre={deleteGenre}
           addGenre={addGenre}
           setFile={setFile}
-          createActorHandler={createActorHandler}
           />
       </div>
       <div className={style["r-side"]}>
-        <PreviewActor createActorHandler={createActorHandler} /> 
+        <PreviewActor
+        prevImg={prevImg}
+        actor={actor} 
+        createActorHandler={createActorHandler} /> 
       </div>
     </div>
   );

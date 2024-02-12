@@ -13,6 +13,10 @@ export const menuItemsData = [
     {id: 4, age: '16+'},
     {id: 6, age: '18+'},
   ];
+  export const genderItemsData = [
+    {id: 1, name: 'мужчина', value: 'male'},
+    {id: 2, name: 'женщина', value: 'female'},
+  ];
   export const categoryMovies = [
     {id: 1, name: 'Боевики', value: 'action' },
     {id: 2, name: 'Детективы', value: 'detective' },
