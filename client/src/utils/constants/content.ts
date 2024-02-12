@@ -25,10 +25,16 @@ export const actorNameRu = 'Имя, фамилия(рус)';
 export const actorPhoto = 'Фото';
 export const actorSelectPhoto = 'Загрузить';
 export const actorBirthday = 'Дата рождения';
+export const actorAge = 'Возраст';
 export const actorCountry = 'Страна';
 export const actorCity = 'Город';
 export const actorHeight = 'Рост';
 export const actorGender = 'Пол';
 export const actorGenre = 'Жанры';
+export const bornPlace = 'Место рождения'
+
+//buttons
+
+export const addBtn = 'Добавить'
 
 

@@ -10,7 +10,7 @@
 }
 
 .form:hover {
-    box-shadow: 0 4px 4px 0 rgba(103, 33, 135, 0.1), 0 8px 8px 0 rgba(103, 33, 135, 0.1), 0 16px 16px 0 rgba(77, 33, 135, 0.1), 0 32px 32px 0 rgba(77, 33, 135, 0.1), 0 64px 64px 0 rgba(77, 33, 135, 0.1), 0 128px 128px 0 rgba(77, 33, 135, 0.1);
+    box-shadow: 0 4px 4px 0 rgba(124, 35, 213, 0.06), 0 8px 8px 0 rgba(124, 35, 213, 0.06), 0 16px 16px 0 rgba(124, 35, 213, 0.06), 0 32px 32px 0 rgba(124, 35, 213, 0.06), 0 64px 64px 0 rgba(124, 35, 213, 0.06), 0 128px 128px 0 rgba(124, 35, 213, 0.06);
 }
 
 input[type='text'],
@@ -104,11 +104,16 @@ label {
     padding: 9.2px;
     margin: 0;
     border-radius: 4px;
-    background-color: #2421db;
+    background-color: #3e29bf;
     display: flex;
     width: fit-content;
     align-items: center;
     cursor: pointer;
+    transition: all .6s ease-in-out;
+}
+
+.photo-layer:hover {
+    background-color: #7c23d5;
 }
 
 .photo-icon {

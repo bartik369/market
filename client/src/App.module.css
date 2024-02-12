@@ -6,6 +6,7 @@
 body,
 html {
     background-color: rgb(18, 18, 18);
+    font-family: "Roboto", sans-serif;
 }
 
 .wrapper {
@@ -15,7 +16,6 @@ html {
 
 .header-wrap {
     width: 100%;
-    background-color: blueviolet;
     display: flex;
     justify-content: center;
 }
@@ -39,5 +39,4 @@ html {
     justify-content: center;
     bottom: 0;
     height: 100px;
-    background-color: midnightblue;
 }

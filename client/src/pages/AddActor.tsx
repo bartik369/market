@@ -30,8 +30,8 @@ const AddActor: FC = () => {
     dispatch(getActors());
   }, [dispatch]);
 
-  const [file, setFile] = useState<string | Blob>("");
-  const [prevImg, setPrevImg] = useState<string>("");
+  const [file, setFile] = useState<string | Blob>('');
+  const [prevImg, setPrevImg] = useState<string | null>('');
 
   const createActorHandler = () => {
     const formData = new FormData();
@@ -71,13 +71,18 @@ const AddActor: FC = () => {
         },
       });
   }
+  const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
+    e.target.files && setFile(e.target.files[0]);
+    e.target.files && setPrevImg(URL.createObjectURL(e.target.files[0]))
+  }
 
   return (
     <div className={style.wrapper}>
       <div className={style["l-side"]}>
           <ActorForm 
           actor={actor}
-          setActor={setActor} 
+          setActor={setActor}
+          imgAction={imgAction}
           deleteGenre={deleteGenre}
           addGenre={addGenre}
           setFile={setFile}
@@ -87,7 +92,8 @@ const AddActor: FC = () => {
         <PreviewActor
         prevImg={prevImg}
         actor={actor} 
-        createActorHandler={createActorHandler} /> 
+        createActorHandler={createActorHandler}
+         /> 
       </div>
     </div>
   );

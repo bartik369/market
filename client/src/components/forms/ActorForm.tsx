@@ -12,6 +12,7 @@ import { IActor } from "../../types/media";
 interface IActorProps {
   actor: IActor;
   setActor: (actor: IActor) => void;
+  imgAction: (e: React.ChangeEvent<HTMLInputElement>) => void;
   deleteGenre: (e: React.MouseEvent, item: string) => void;
   setFile: (file: string | Blob) => void;
   addGenre: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -20,22 +21,12 @@ interface IActorProps {
 const ActorForm: FC<IActorProps> = ({
   actor,
   setActor,
+  imgAction,
   deleteGenre,
   addGenre,
-  setFile,
-}) => {
+  }) => {
   return (
     <form className={style.form}>
-      <div className={style.block}>
-        <label>{contentConst.actorNameEn}</label>
-        <input
-          type="text"
-          placeholder={contentConst.fill}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setActor({ ...actor, name_en: e.target.value })
-          }
-        />
-      </div>
       <div className={style.block}>
         <label>{contentConst.actorNameRu}</label>
         <input
@@ -43,6 +34,16 @@ const ActorForm: FC<IActorProps> = ({
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setActor({ ...actor, name_ru: e.target.value })
+          }
+        />
+      </div>
+      <div className={style.block}>
+        <label>{contentConst.actorNameEn}</label>
+        <input
+          type="text"
+          placeholder={contentConst.fill}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setActor({ ...actor, name_en: e.target.value })
           }
         />
       </div>
@@ -189,7 +190,7 @@ const ActorForm: FC<IActorProps> = ({
             type="file"
             hidden
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              e.target.files && setFile(e.target.files[0]);
+              imgAction(e)
             }}
           />
         </div>
