@@ -34,20 +34,22 @@ const actorPortrait = multer.diskStorage({
    async (req: Request, res:Response) => {
      try {
       const {name_en, name_ru, link, birthday, country, city, height, genre} = req.body;
-      const actorData = new ActorModel({
-          name_en: name_en,
-          name_ru: name_ru,
-          picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
-          extInfo: {
-            link: link,
-            birthday: birthday,
-            country: country,
-            city: city,
-            height: height,
-            genre: genre.split(','),
-          }
-      })
-      await actorData.save()
+      console.log(req.body)
+      console.log(req.file)
+      // const actorData = new ActorModel({
+      //     name_en: name_en,
+      //     name_ru: name_ru,
+      //     picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
+      //     extInfo: {
+      //       link: link,
+      //       birthday: birthday,
+      //       country: country,
+      //       city: city,
+      //       height: height,
+      //       genre: genre.split(','),
+      //     }
+      // })
+      // await actorData.save()
      } catch (error) {
        
      }
