@@ -25,7 +25,6 @@ const ActorForm: FC<IActorProps> = ({
   createActorHandler,
 }) => {
   return (
-    <>
       <form className={style.form}>
         
           <div className={style.block}>
@@ -175,9 +174,7 @@ const ActorForm: FC<IActorProps> = ({
             </div>
           ))}
         </div>
-        <button onClick={() => createActorHandler()}>Click me</button>
       </form>
-    </>
   );
 };
 

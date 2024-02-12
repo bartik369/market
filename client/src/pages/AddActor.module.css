@@ -2,3 +2,17 @@
     display: flex;
     justify-content: center;
 }
+
+.l-side {
+    width: 30%;
+    padding: 20px;
+    position: relative;
+    display: flex;
+}
+
+.r-side {
+    width: 60%;
+    padding: 20px;
+    position: relative;
+    flex-grow: 1;
+}

@@ -34,19 +34,3 @@ export interface IActorExt {
     height: string;
     genre: string[];
 }
-// export interface IActorData {
-//     _id?: string,
-//     name_en: string;
-//     name_ru: string;
-//     picture?: string;
-//     link?: string;
-//     file?: File | null;
-// }
-// export interface IFile {
-//     lastModified: number;
-//     lastModifiedDate: Date;
-//     name: string;
-//     size: number;
-//     type: string;
-//     webkitRelativePath: string;
-// }

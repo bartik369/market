@@ -1,14 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faCamera } from '@fortawesome/free-solid-svg-icons'
-import { categoryMovies } from "../utils/data/data";
-import * as contentConst from "../utils/constants/content";
-import { coutryList } from "../utils/data/coutry";
 import { addActor, getActors } from "../store/actorSlice";
 import { IActor } from "../types/media";
 import style from "./AddActor.module.css";
 import ActorForm from "../components/forms/ActorForm";
+import PreviewActor from "../components/preview/PreviewActor";
 
 const AddActor: FC = () => {
   const dispatch = useAppDispatch();
@@ -86,9 +82,8 @@ const AddActor: FC = () => {
           />
       </div>
       <div className={style["r-side"]}>
-          
+        <PreviewActor createActorHandler={createActorHandler} /> 
       </div>
-
     </div>
   );
 };
