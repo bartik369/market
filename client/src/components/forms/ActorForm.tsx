@@ -29,7 +29,7 @@ const ActorForm: FC<IActorProps> = ({
   return (
     <form className={style.form}>
       <div className={style.block}>
-        <span>{contentConst.actorNameRu}</span>
+        <span className={style['input-info']}>{contentConst.actorNameRu}</span>
         <input
           type="text"
           placeholder={contentConst.fill}
@@ -39,7 +39,7 @@ const ActorForm: FC<IActorProps> = ({
         />
       </div>
       <div className={style.block}>
-        <span>{contentConst.actorNameEn}</span>
+        <span className={style['input-info']}>{contentConst.actorNameEn}</span>
         <input
           type="text"
           placeholder={contentConst.fill}
@@ -50,7 +50,7 @@ const ActorForm: FC<IActorProps> = ({
       </div>
       <div className={style["main-column"]}>
         <div className={style.column2}>
-          <span>{contentConst.actorCountry}</span>
+          <span className={style['input-info']}>{contentConst.actorCountry}</span>
           <select
             defaultValue=""
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -72,7 +72,7 @@ const ActorForm: FC<IActorProps> = ({
           </select>
         </div>
         <div className={style.column2}>
-          <span>{contentConst.actorCity}</span>
+          <span className={style['input-info']}>{contentConst.actorCity}</span>
           <input
             type="text"
             placeholder={contentConst.fill}
@@ -91,7 +91,7 @@ const ActorForm: FC<IActorProps> = ({
       <div className={style["main-column"]}>
 
         <div className={style.column3}>
-          <span>{contentConst.actorBirthday}</span>
+          <span className={style['input-info']}>{contentConst.actorBirthday}</span>
           <DatePicker
             selected={new Date(actor.extInfo.birthday)}
             // onSelect={handleDateSelect} //when day is clicked
@@ -108,23 +108,10 @@ const ActorForm: FC<IActorProps> = ({
             }
             }
           />
-          {/* <input
-            placeholder={contentConst.fill}
-            type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setActor({
-                ...actor,
-                extInfo: {
-                  ...actor.extInfo,
-                  birthday: e.target.value,
-                },
-              })
-            }
-          /> */}
         </div>
         
         <div className={style.column3}>
-          <span>{contentConst.actorHeight}</span>
+          <span className={style['input-info']}>{contentConst.actorHeight}</span>
           <input
             type="text"
             placeholder={contentConst.fill}
@@ -140,7 +127,7 @@ const ActorForm: FC<IActorProps> = ({
           />
         </div>
         <div className={style.column2}>
-          <span>{contentConst.actorGender}</span>
+          <span className={style['input-info']}>{contentConst.actorGender}</span>
           <select
             defaultValue=""
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -164,7 +151,7 @@ const ActorForm: FC<IActorProps> = ({
       </div>
       <div className={style["main-column"]}>
         <div className={style.column2}>
-          <span>{contentConst.actorGenre}</span>
+          <span className={style['input-info']}>{contentConst.actorGenre}</span>
           <select
             defaultValue=""
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => addGenre(e)}
@@ -178,7 +165,7 @@ const ActorForm: FC<IActorProps> = ({
           </select>
         </div>
         <div className={style.column2}>
-          <span>{contentConst.actorPhoto}</span>
+          <span className={style['input-info']}>{contentConst.actorPhoto}</span>
           <label className={style["photo-layer"]} htmlFor={'upload'}>
             <FontAwesomeIcon className={style["photo-icon"]} icon={faCamera} />
             <label className={style["select-photo"]}>

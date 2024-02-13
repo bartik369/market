@@ -1,8 +1,9 @@
 // forms
-
+export const notFilled = 'Не заполнено'
 export const movieCategory = 'Категория';
 export const movieSelectCategory = 'Выберите категорию';
-export const movieName = 'Название фильма';
+export const movieNameEn = 'Название фильма - англ';
+export const movieNameRu = 'Название фильма - рус';
 export const movieDescription = 'Описание фильма';
 export const movieSelectYear = 'Выберите год';
 export const movieYear = 'Год';
@@ -20,8 +21,8 @@ export const selectMovieTitle = 'Введите название';
 export const selectMovieDescription = 'Краткое описание';
 export const selectPosterFile = 'Выбрать обложку';
 
-export const actorNameEn = 'Имя, фамилия(англ)';
-export const actorNameRu = 'Имя, фамилия(рус)';
+export const actorNameEn = 'Имя, фамилия - англ';
+export const actorNameRu = 'Имя, фамилия - рус';
 export const actorPhoto = 'Фото';
 export const actorSelectPhoto = 'Выбрать';
 export const actorBirthday = 'Дата рождения';

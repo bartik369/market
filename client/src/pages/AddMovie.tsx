@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import {createMovie, getMovies} from '../store/movieSlice'
-import Poster from "../components/poster/Poster";
+import PreviewPoster from "../components/poster/PreviewPoster";
 import { IMovie } from "../types/media";
 import style from "./AddMovie.module.css";
 import MovieForm from "../components/forms/MovieForm";
@@ -11,9 +11,10 @@ const AddMovie: FC = () => {
   const actors = useAppSelector((state) => state.movies.list);
   const [movie, setMovie] = useState<IMovie>({
     _id: '',
-    title: '',
+    title_en: '',
+    title_ru: '',
     genre: [],
-    year: 0,
+    year: '',
     country: '',
     description: '',
     director: '',
@@ -30,12 +31,13 @@ useEffect(() => {
 const [file, setFile] = useState<string | Blob>('');
 const [prevImg, setPrevImg] = useState<string | null>('');
 
-const createActorHandler = () => {
+const createMovieHandler = () => {
   dispatch(createMovie(movie));
 };
 
 const addGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setMovie({ ...movie, genre:[...movie.genre, e.target.value] });
+  setMovie({ 
+    ...movie, genre:[...movie.genre, e.target.value] });
 };
 
 const deleteGenre = (e: React.MouseEvent, item: string) => {
@@ -46,13 +48,14 @@ const deleteGenre = (e: React.MouseEvent, item: string) => {
 }
 
 const addActor = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setMovie({...movie, genre:[...movie.genre, e.target.value] });
+  setMovie({
+    ...movie, actors:[...movie.actors, e.target.value] });
 };
 
 const deleteActor = (e: React.MouseEvent, item: string) => {
   e.preventDefault()
   setMovie({
-    ...movie, genre: movie.genre.filter((elem) => elem !== item)
+    ...movie, actors: movie.actors.filter((elem) => elem !== item)
   });
 }
 
@@ -81,7 +84,11 @@ const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
       </div>
 
       <div className={style["r-side"]}>
-        <Poster movie={movie} />
+        <PreviewPoster
+        prevImg={prevImg}
+        movie={movie} 
+        createMovieHandler={createMovieHandler}
+        />
       </div>
     </div>
   );

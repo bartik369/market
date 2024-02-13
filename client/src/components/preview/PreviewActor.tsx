@@ -3,15 +3,14 @@ import { IActor } from "../../types/media";
 import * as contentConst from "../../utils/constants/content";
 import style from "./PreviewActor.module.css";
 import BlankAvatar from "../../assets/pics/blank_avatar.jpg";
-import { spawn } from "child_process";
 
-interface PreviewActorProps {
+interface IPreviewActorProps {
   prevImg: string | null;
   actor: IActor;
   createActorHandler: () => void;
 }
 
-const PreviewActor: FC<PreviewActorProps> = ({
+const PreviewActor: FC<IPreviewActorProps> = ({
   prevImg,
   actor,
   createActorHandler,
@@ -56,7 +55,8 @@ const PreviewActor: FC<PreviewActorProps> = ({
         <div className={style['genre-list']}>
             {actor?.extInfo.genre.map((item) => 
             <div>{item}</div>
-            )}</div>
+            )}
+        </div>
         <button className={style['btn-submit']} onClick={() => createActorHandler()}>{contentConst.addBtn}</button>
       </div>
     </div>

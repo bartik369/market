@@ -10,9 +10,10 @@ export interface IMedia {
 }
 export interface IMovie {
     _id?: string;
-    title: string;
+    title_en: string;
+    title_ru: string;
     genre: string[];
-    year: number;
+    year: string;
     country: string;
     description: string;
     director: string;
