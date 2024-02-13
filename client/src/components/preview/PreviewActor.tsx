@@ -27,12 +27,12 @@ const PreviewActor: FC<PreviewActorProps> = ({
       </div>
       <div className={style.info}>
         <div className={style.name}>
-          <div className={style.ru}>{actor?.name_ru}</div>
-          <div className={style.en}>{actor?.name_en}</div>
+          <span className={style.ru}>{actor?.name_ru}</span>
+          <span className={style.en}>{actor?.name_en}</span>
         </div>
         <div className={style.result}>
           <span className={style.prevText}>{contentConst.bornPlace}</span>
-          {`${actor?.extInfo.country} - ${actor?.extInfo.city}`}
+          {`${actor?.extInfo.country}  ${actor?.extInfo.city}`}
         </div>
         <div className={style.result}>
           <span className={style.prevText}>{contentConst.actorBirthday}</span>

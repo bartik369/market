@@ -9,16 +9,15 @@ export interface IMedia {
     rating: number;
 }
 export interface IMovie {
-    id: string;
+    _id?: string;
     title: string;
-    category: string;
+    genre: string;
+    year: number;
+    country: string;
     description: string;
     director: string;
-    year: string;
-    country: string;
     time: number;
-    age: string;
-    media: FileList | null;
+    actors: string[];
 }
 export interface IActor {
     _id?: string;

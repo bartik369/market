@@ -1,8 +1,3 @@
-.wrapper {
-    display: flex;
-    justify-content: center;
-}
-
 .form {
     width: 100%;
     border-radius: 10px;
@@ -15,7 +10,7 @@
 }
 
 .form:hover {
-    box-shadow: 0 4px 4px 0 rgba(103, 33, 135, 0.1), 0 8px 8px 0 rgba(103, 33, 135, 0.1), 0 16px 16px 0 rgba(77, 33, 135, 0.1), 0 32px 32px 0 rgba(77, 33, 135, 0.1), 0 64px 64px 0 rgba(77, 33, 135, 0.1), 0 128px 128px 0 rgba(77, 33, 135, 0.1);
+    box-shadow: 0 4px 4px 0 rgba(124, 35, 213, 0.06), 0 8px 8px 0 rgba(124, 35, 213, 0.06), 0 16px 16px 0 rgba(124, 35, 213, 0.06), 0 32px 32px 0 rgba(124, 35, 213, 0.06), 0 64px 64px 0 rgba(124, 35, 213, 0.06), 0 128px 128px 0 rgba(124, 35, 213, 0.06);
 }
 
 input[type='text'],
@@ -30,6 +25,10 @@ select {
     color: #8f8f8f;
     border-radius: 4px;
     cursor: pointer;
+}
+
+input[type='text'] {
+    padding: 10px 6px;
 }
 
 input[type='text']:focus,
@@ -52,7 +51,7 @@ textarea {
     min-height: 150px;
 }
 
-label {
+span {
     color: #ededed;
     margin: 15px 0 5px;
     font-size: 13px;
@@ -60,7 +59,6 @@ label {
     font-weight: 300;
 }
 
-background-color: #7c23d5;
 .bi-image {
     color: #2421db;
     font-size: 24px;
@@ -68,6 +66,11 @@ background-color: #7c23d5;
 
 
 /*  */
+
+.block {
+    display: flex;
+    flex-direction: column;
+}
 
 .main-column {
     display: flex;
@@ -97,6 +100,34 @@ background-color: #7c23d5;
     flex-grow: 3;
 }
 
+.photo-layer {
+    padding: 9.2px;
+    margin: 0;
+    border-radius: 4px;
+    background-color: #3e29bf;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    cursor: pointer;
+    transition: all .6s ease-in-out;
+}
+
+.photo-layer:hover {
+    background-color: #7c23d5;
+}
+
+.photo-icon {
+    color: aliceblue;
+    margin-right: 5px;
+}
+
+.select-photo {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 11px;
+    color: aliceblue;
+}
+
 
 /*  */
 
@@ -112,16 +143,32 @@ background-color: #7c23d5;
     width: fit-content;
 }
 
-.l-side {
-    width: 30%;
-    padding: 20px;
-    position: relative;
+.genre {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 7px;
 }
 
-.r-side {
-    width: 60%;
-    padding: 20px;
+.genre .item {
     position: relative;
-    flex-grow: 1;
+    width: fit-content;
+    color: #8f8f8f;
+    font-family: "Roboto", sans-serif;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    border: 1px solid #2a2b2e;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.close-btn {
+    color: #e94560;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 4px;
 }

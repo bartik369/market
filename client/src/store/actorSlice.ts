@@ -7,7 +7,7 @@ type ActorState = {
     list: IActor[];
     loading: boolean;
     error: null | string;
-}
+};
 const initialState: ActorState = {
     list: [],
     loading: false,
@@ -28,7 +28,6 @@ async function(_, {rejectWithValue}) {
 export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
     'actors/createActor',
     async function(formData, {rejectWithValue}) {
-        console.log(...formData)
         const response = await axios.post(`${ENV.API_URL}api/add-actor`, formData, {
             headers: { 'Content-Type': 'multipart/form-data'},
         });

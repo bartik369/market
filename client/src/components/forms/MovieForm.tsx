@@ -1,65 +1,66 @@
-import React, { FC } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { RecordWithTtl } from 'dns';
+import React, {FC} from 'react';
+import {IMovie} from '../../types/media'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
-import { categoryMovies, genderItemsData } from "../../utils/data/data";
-import * as contentConst from "../../utils/constants/content";
+import { ageItemsData, categoryMovies, yearMedia } from "../../utils/data/data";
 import { coutryList } from "../../utils/data/coutry";
+import { directorsList } from "../../utils/data/directors";
+import * as contentConst from "../../utils/constants/content";
 import style from "./AddItemForm.module.css";
-import { IActor } from "../../types/media";
 
-interface IActorProps {
-  actor: IActor;
-  setActor: (actor: IActor) => void;
-  imgAction: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  deleteGenre: (e: React.MouseEvent, item: string) => void;
-  setFile: (file: string | Blob) => void;
-  addGenre: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+interface IMovieProps {
+    movie: IMovie;
+    setMovie: (movie: IMovie) => void;
+    imgAction: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    addGenre: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    deleteGenre: (e:React.MouseEvent, item: string) => void;
+    addActor: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    deleteActors: (e:React.MouseEvent, item: string) => void;
+    setFile: (file: string | Blob) => void;
 }
 
-const ActorForm: FC<IActorProps> = ({
-  actor,
-  setActor,
-  imgAction,
-  deleteGenre,
-  addGenre,
-  }) => {
-  return (
-    <form className={style.form}>
+const MovieForm:FC<IMovieProps> = ({
+    movie, 
+    setMovie, 
+    imgAction, 
+    addGenre, 
+    deleteGenre, 
+    addActor, 
+    deleteActors,
+}) => {
+    return (
+     <form className={style.form}>
       <div className={style.block}>
         <span>{contentConst.actorNameRu}</span>
         <input
           type="text"
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setActor({ ...actor, name_ru: e.target.value })
+            setMovie({ ...movie, title: e.target.value })
           }
         />
       </div>
+
       <div className={style.block}>
         <span>{contentConst.actorNameEn}</span>
         <input
           type="text"
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setActor({ ...actor, name_en: e.target.value })
+            setMovie({ ...movie, : e.target.value })
           }
         />
       </div>
+
       <div className={style["main-column"]}>
-        <div className={style.column2}>
+
+         <div className={style.block}>
           <span>{contentConst.actorCountry}</span>
           <select
             defaultValue=""
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setActor({
-                ...actor,
-                extInfo: {
-                  ...actor.extInfo,
-                  country: e.target.value,
-                },
-              })
+              setMovie({...movie, country: e.target.value})
             }
           >
             <option value="" disabled>
@@ -70,16 +71,16 @@ const ActorForm: FC<IActorProps> = ({
             ))}
           </select>
         </div>
-        <div className={style.column2}>
+        <div className={style.block}>
           <span>{contentConst.actorCity}</span>
           <input
             type="text"
             placeholder={contentConst.fill}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setActor({
-                ...actor,
+              setMovie({
+                ...movie,
                 extInfo: {
-                  ...actor.extInfo,
+                  ...movie.extInfo,
                   city: e.target.value,
                 },
               })
@@ -91,35 +92,7 @@ const ActorForm: FC<IActorProps> = ({
 
         <div className={style.column3}>
           <span>{contentConst.actorBirthday}</span>
-          <DatePicker
-            selected={new Date(actor.extInfo.birthday)}
-            // onSelect={handleDateSelect} //when day is clicked
-            onChange={(date: Date) => {
-              if (date !== null) {
-                setActor({
-                  ...actor,
-                  extInfo: {
-                    ...actor.extInfo,
-                    birthday: date.getTime()
-                  },
-                })
-              }
-            }
-            }
-          />
-          {/* <input
-            placeholder={contentConst.fill}
-            type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setActor({
-                ...actor,
-                extInfo: {
-                  ...actor.extInfo,
-                  birthday: e.target.value,
-                },
-              })
-            }
-          /> */}
+          block
         </div>
         
         <div className={style.column3}>
@@ -128,10 +101,10 @@ const ActorForm: FC<IActorProps> = ({
             type="text"
             placeholder={contentConst.fill}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setActor({
-                ...actor,
+              setMovie({
+                ...movie,
                 extInfo: {
-                  ...actor.extInfo,
+                  ...movie.extInfo,
                   height: e.target.value,
                 },
               })
@@ -143,10 +116,10 @@ const ActorForm: FC<IActorProps> = ({
           <select
             defaultValue=""
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setActor({
-                ...actor,
+              setMovie({
+                ...movie,
                 extInfo: {
-                  ...actor.extInfo,
+                  ...movie.extInfo,
                   gender: e.target.value,
                 },
               })
@@ -196,7 +169,7 @@ const ActorForm: FC<IActorProps> = ({
         </div>
       </div>
       <div className={style.genre}>
-        {actor.extInfo.genre.map((item) => (
+        {movie.genre.map((item) => (
           <div className={style.item}>
             {item}
             <FontAwesomeIcon
@@ -208,7 +181,7 @@ const ActorForm: FC<IActorProps> = ({
         ))}
       </div>
     </form>
-  );
+    );
 };
 
-export default ActorForm;
+export default MovieForm;
