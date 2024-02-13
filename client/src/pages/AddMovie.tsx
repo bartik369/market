@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import {createMovie, getMovies} from '../store/movieSlice'
 import Poster from "../components/poster/Poster";
 import { IMovie } from "../types/media";
-import style from "./AddMedia.module.css";
+import style from "./AddMovie.module.css";
 import MovieForm from "../components/forms/MovieForm";
 
 const AddMovie: FC = () => {
@@ -12,12 +12,12 @@ const AddMovie: FC = () => {
   const [movie, setMovie] = useState<IMovie>({
     _id: '',
     title: '',
-    genre: '',
+    genre: [],
     year: 0,
     country: '',
     description: '',
     director: '',
-    time: 0,
+    time: '',
     actors: [],
   });
 
@@ -35,17 +35,28 @@ const createActorHandler = () => {
 };
 
 const addGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setMovie({
-    ...movie, movie:[...movie.genre, e.target.value],
-
-  });
+  setMovie({ ...movie, genre:[...movie.genre, e.target.value] });
 };
+
 const deleteGenre = (e: React.MouseEvent, item: string) => {
   e.preventDefault()
   setMovie({
     ...movie, genre: movie.genre.filter((elem) => elem !== item)
   });
 }
+
+const addActor = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  setMovie({...movie, genre:[...movie.genre, e.target.value] });
+};
+
+const deleteActor = (e: React.MouseEvent, item: string) => {
+  e.preventDefault()
+  setMovie({
+    ...movie, genre: movie.genre.filter((elem) => elem !== item)
+  });
+}
+
+
 const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
   e.target.files && setFile(e.target.files[0]);
   e.target.files && setPrevImg(URL.createObjectURL(e.target.files[0]))
@@ -64,7 +75,8 @@ const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
         addGenre={addGenre}
         deleteGenre={deleteGenre}
         addActor={addActor}
-        deleteActors={deleteActors}
+        deleteActor={deleteActor}
+        setFile={setFile}
         />
       </div>
 

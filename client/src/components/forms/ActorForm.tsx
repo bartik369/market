@@ -6,6 +6,7 @@ import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { categoryMovies, genderItemsData } from "../../utils/data/data";
 import * as contentConst from "../../utils/constants/content";
 import { coutryList } from "../../utils/data/coutry";
+import { actorsList } from "../../utils/data/actors";
 import style from "./AddItemForm.module.css";
 import { IActor } from "../../types/media";
 
@@ -180,9 +181,9 @@ const ActorForm: FC<IActorProps> = ({
           <span>{contentConst.actorPhoto}</span>
           <label className={style["photo-layer"]} htmlFor={'upload'}>
             <FontAwesomeIcon className={style["photo-icon"]} icon={faCamera} />
-            <span className={style["select-photo"]}>
+            <label className={style["select-photo"]}>
               {contentConst.actorSelectPhoto}
-            </span>
+            </label>
           </label>
           <input
             name="file"

@@ -2,7 +2,7 @@ export const menuItemsData = [
     {id: 1, title: 'Главная', url: '/'},
     {id: 2, title: 'Фильмы', url: '/movies'},
     {id: 3, title: 'Сериалы', url: '/series'},
-    {id: 4, title: 'Add Media', url: '/add-media'},
+    {id: 4, title: 'Add Media', url: '/add-movie'},
     {id: 5, title: 'Add Actor', url: '/add-actor'},
   ];
 

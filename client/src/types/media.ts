@@ -11,12 +11,12 @@ export interface IMedia {
 export interface IMovie {
     _id?: string;
     title: string;
-    genre: string;
+    genre: string[];
     year: number;
     country: string;
     description: string;
     director: string;
-    time: number;
+    time: string;
     actors: string[];
 }
 export interface IActor {
