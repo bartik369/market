@@ -16,8 +16,10 @@
 }
 
 span.nf {
-    color: #e94560;
-    font-size: 12px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 15px;
+    color: #838383;
 }
 
 .info {
@@ -27,6 +29,11 @@ span.nf {
     flex-direction: column;
     flex-grow: 1;
     background-color: #16171a;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
 }
 
 .name {
@@ -49,11 +56,46 @@ span.nf {
     font-weight: 300;
 }
 
-.result {
+.prevText {
+    color: #826099;
+    font-size: 12px;
+    font-family: inherit;
+    font-weight: 300;
+    margin-right: 7px;
+    margin-bottom: 2px;
+}
+
+.result,
+.list-item {
     color: #ededed;
     font-family: inherit;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
+    display: flex;
+    margin-right: 5px;
+    margin-bottom: 7px;
+}
+
+.list-item:not(:first-child)::before {
+    content: '|';
+    color: #ededed;
+    font-family: inherit;
+    font-weight: 300;
+    margin-right: 4px;
+}
+
+
+/* .result:nth-child(n+2):before {
+    content: '|';
+    color: rgb(54, 63, 246);
+    position: absolute;
+} */
+
+.cast {
+    color: #ededed;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
     display: flex;
     align-items: center;
     margin-bottom: 2px;
@@ -81,12 +123,16 @@ span.nf {
     align-items: center;
 }
 
-.prevText {
-    color: #7d7d7d;
-    font-size: 12px;
+.desc-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    color: #c9c8c8;
     font-family: inherit;
-    font-weight: 300;
-    margin-right: 7px;
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
 .btn-submit {
