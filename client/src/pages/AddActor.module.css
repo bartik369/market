@@ -14,5 +14,5 @@
     width: 60%;
     padding: 20px;
     position: relative;
-    flex-grow: 1;
+    display: flex;
 }

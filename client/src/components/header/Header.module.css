@@ -18,16 +18,15 @@
 }
 
 .logo img {
-    width: 28px;
+    width: 33px;
 }
 
 .logo span {
     color: #f6f6f6;
-    height: 16px;
     text-transform: uppercase;
     font-family: inherit;
     font-weight: 500;
     margin-left: 3px;
-    font-size: 17px;
+    font-size: 14px;
     top: 50px;
 }
