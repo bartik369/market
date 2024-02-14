@@ -87,7 +87,7 @@ span.input-info {
 .column2 {
     display: flex;
     flex-direction: column;
-    flex-grow: 2;
+    width: 50%;
 }
 
 .column2:not(:last-child),
@@ -98,7 +98,7 @@ span.input-info {
 .column3 {
     display: flex;
     flex-direction: column;
-    flex-grow: 3;
+    width: 33%;
 }
 
 .photo-layer {
@@ -172,4 +172,22 @@ span.input-info {
     cursor: pointer;
     font-size: 15px;
     margin-left: 4px;
+}
+
+.datepick {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 960px) {
+    .column2 {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    .column3 {
+        display: flex;
+        flex-direction: column;
+        width: 33%;
+    }
 }

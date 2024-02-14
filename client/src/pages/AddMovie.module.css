@@ -4,17 +4,19 @@
     justify-content: space-evenly;
 }
 
-
-/* .form {
-    width: 100%;
-    border-radius: 10px;
-    padding: 20px 30px;
-    background-color: #16171a;
+.l-side {
+    width: 33%;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    transition: all 1s;
-    box-shadow: 0 4px 4px 0 rgba(29, 24, 44, 0.1), 0 8px 8px 0 rgba(29, 24, 44, 0.1), 0 16px 16px 0 rgba(29, 24, 44, 0.1), 0 32px 32px 0 rgba(29, 24, 44, 0.1), 0 64px 64px 0 rgba(29, 24, 44, 0.1), 0 128px 128px 0 rgba(29, 24, 44, 0.1);
-} */
+}
+
+.r-side {
+    width: 66%;
+    box-sizing: border-box;
+    position: relative;
+}
 
 .form:hover {
     box-shadow: 0 4px 4px 0 rgba(103, 33, 135, 0.1), 0 8px 8px 0 rgba(103, 33, 135, 0.1), 0 16px 16px 0 rgba(77, 33, 135, 0.1), 0 32px 32px 0 rgba(77, 33, 135, 0.1), 0 64px 64px 0 rgba(77, 33, 135, 0.1), 0 128px 128px 0 rgba(77, 33, 135, 0.1);
@@ -67,40 +69,6 @@ label {
     font-size: 24px;
 }
 
-
-/*  */
-
-.main-column {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.column1 {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-}
-
-.column2 {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
-}
-
-.column2:not(:last-child),
-.column3:not(:last-child) {
-    margin-right: 6px;
-}
-
-.column3 {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 3;
-}
-
-
-/*  */
-
 .select-img {
     background-color: #1e1f24;
     border: 1px solid #2a2b2e;
@@ -113,27 +81,16 @@ label {
     width: fit-content;
 }
 
-.l-side {
-    width: 33%;
-    box-sizing: border-box;
-    padding: 20px;
-    position: relative;
-    display: flex;
-    background-color: darkslategray;
-}
-
-.r-side {
-    width: 66%;
-    box-sizing: border-box;
-    position: relative;
-    background-color: forestgreen;
-}
-
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 960px) {
     .l-side {
         width: 100%;
         padding: 20px;
         position: relative;
         display: flex;
+    }
+    .r-side {
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
     }
 }

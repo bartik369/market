@@ -6,7 +6,6 @@ import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { categoryMovies, genderItemsData } from "../../utils/data/data";
 import * as contentConst from "../../utils/constants/content";
 import { coutryList } from "../../utils/data/coutry";
-import { actorsList } from "../../utils/data/actors";
 import style from "./AddItemForm.module.css";
 import { IActor } from "../../types/media";
 
@@ -93,6 +92,7 @@ const ActorForm: FC<IActorProps> = ({
         <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.actorBirthday}</span>
           <DatePicker
+          className={style.datepick}
             selected={new Date(actor.extInfo.birthday)}
             // onSelect={handleDateSelect} //when day is clicked
             onChange={(date: Date) => {
@@ -126,7 +126,7 @@ const ActorForm: FC<IActorProps> = ({
             }
           />
         </div>
-        <div className={style.column2}>
+        <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.actorGender}</span>
           <select
             defaultValue=""

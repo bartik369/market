@@ -6,7 +6,6 @@
 .portrait {
     display: flex;
     width: 50%;
-    padding: 20px;
     box-sizing: border-box;
 }
 

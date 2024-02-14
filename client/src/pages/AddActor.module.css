@@ -1,18 +1,33 @@
 .wrapper {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .l-side {
-    width: 30%;
-    padding: 20px;
+    width: 33%;
+    box-sizing: border-box;
+    padding: 10px;
     position: relative;
     display: flex;
 }
 
 .r-side {
-    width: 60%;
-    padding: 20px;
+    width: 66%;
+    box-sizing: border-box;
     position: relative;
-    display: flex;
+}
+
+@media screen and (max-width: 960px) {
+    .l-side {
+        width: 100%;
+        padding: 20px;
+        position: relative;
+        display: flex;
+    }
+    .r-side {
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+    }
 }
