@@ -1,5 +1,4 @@
-import express from 'express';
-import {Request, Response} from 'express';
+import express, {Request, Response} from 'express';
 import ActorModel from '../models/media/actor';
 import multer from 'multer';
 import path from 'path';
@@ -14,7 +13,7 @@ const actorPortrait = multer.diskStorage({
     filename: function (req, file, cb) {
       cb(null, file.fieldname + '-' + extLink + path.extname(file.originalname))
     }
-})
+});
 
   router.get('/actors/',
   async(req: Request, res:Response) => {
@@ -22,23 +21,21 @@ const actorPortrait = multer.diskStorage({
       const actorData = await ActorModel.find({})
 
       if (actorData) {
-           console.log(actorData)
           return res.json(actorData)
       }
     } catch (error) {
-      
+      return error
     }
   }
   )
   router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'),
    async (req: Request, res:Response) => {
      try {
-      const {name_en, name_ru, link, birthday, country, city, height, gender, genre} = req.body;
-      console.log(req.body)
-      console.log(req.file)
+       console.log(req.body)
+      const {nameEn, nameRu, link, birthday, country, city, height, gender, genre} = req.body;
       const actorData = new ActorModel({
-          name_en: name_en,
-          name_ru: name_ru,
+          nameEn: nameEn,
+          nameRu: nameRu,
           picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
           extInfo: {
             link: link,
@@ -52,7 +49,7 @@ const actorPortrait = multer.diskStorage({
       })
       await actorData.save()
      } catch (error) {
-       
+       return error
      }
    }
   )

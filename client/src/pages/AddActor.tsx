@@ -11,8 +11,8 @@ const AddActor: FC = () => {
   const actors = useAppSelector((state) => state.actors.list);
   const [actor, setActor] = useState<IActor>({
     _id: "",
-    name_en: "",
-    name_ru: "",
+    nameEn: "",
+    nameRu: "",
     picture: "",
     extInfo: {
       birthday: 0,
@@ -47,7 +47,7 @@ const AddActor: FC = () => {
         formData.append(key, actor[key as actorKey]);
       }
     });
-    formData.append("file", file);
+    formData.append('file', file);
     dispatch(addActor(formData));
   };
 

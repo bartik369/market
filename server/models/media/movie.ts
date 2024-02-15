@@ -4,14 +4,20 @@ const   MovieScheme = new mongoose.Schema({
     id: {
         type: String,
     },
-    title: {
+    titleEn: {
+        type: String,
+    },
+    titleRu: {
+        type: String,
+    },
+    picture: {
         type: String,
     },
     genre: {
-        type: String,
+        type: [],
     },
     year: {
-        type: Number,
+        type: String,
     },
     country: {
         type: String,
@@ -23,7 +29,7 @@ const   MovieScheme = new mongoose.Schema({
         type: String,
     },
     time: {
-        type: Number,
+        type: String,
     },
     actors: {
         type: [],

@@ -23,8 +23,8 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
 
       <div className={style.info}>
         <div className={style.name}>
-          <span className={style.ru}>{movie?.title_ru}</span>
-          <span className={style.en}>{movie?.title_en}</span>
+          <span className={style.ru}>{movie?.titleRu}</span>
+          <span className={style.en}>{movie?.titleEn}</span>
         </div>
 
         {movie?.year && 
@@ -86,7 +86,7 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
         :''
         }
         
-        {(movie.title_en && movie.title_ru) &&
+        {(movie.titleEn && movie.titleRu) &&
         <button className={style["btn-submit"]} onClick={() => createMovieHandler()}>
         {contentConst.addBtn}
         </button>

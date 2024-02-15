@@ -28,8 +28,8 @@ const PreviewActor: FC<IPreviewActorProps> = ({
       <div className={style.info}>
 
         <div className={style.name}>
-          <span className={style.ru}>{actor?.name_ru}</span>
-          <span className={style.en}>{actor?.name_en}</span>
+          <span className={style.ru}>{actor?.nameRu}</span>
+          <span className={style.en}>{actor?.nameEn}</span>
         </div>
 
         {(actor?.extInfo.country || actor.extInfo.city) &&
@@ -70,7 +70,7 @@ const PreviewActor: FC<IPreviewActorProps> = ({
         </div>
         :''
         }
-        {(actor.name_ru && actor.name_en) &&
+        {(actor.nameRu && actor.nameEn) &&
         <button className={style['btn-submit']} onClick={() => createActorHandler()}>{contentConst.addBtn}</button>
         }
       </div>

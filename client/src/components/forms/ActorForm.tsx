@@ -33,7 +33,7 @@ const ActorForm: FC<IActorProps> = ({
           type="text"
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setActor({ ...actor, name_ru: e.target.value })
+            setActor({ ...actor, nameRu: e.target.value })
           }
         />
       </div>
@@ -43,7 +43,7 @@ const ActorForm: FC<IActorProps> = ({
           type="text"
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setActor({ ...actor, name_en: e.target.value })
+            setActor({ ...actor, nameEn: e.target.value })
           }
         />
       </div>

@@ -27,10 +27,12 @@ async function(_, {rejectWithValue}) {
 }
 )
 
-export const createMovie = createAsyncThunk<IMovie, any, {rejectValue: String}>('movie/createMovie',
+export const createMovie = createAsyncThunk<IMovie, any, {rejectValue: String}>(
+'movie/createMovie',
 async function(movieData, {rejectWithValue}) {
-    const response = await axios.post(`${ENV.API_URL}api/add-actor`, movieData, {
-        headers: {'Content-Type': 'application/json'},
+    console.log(movieData)
+    const response = await axios.post(`${ENV.API_URL}api/add-movie`, movieData, {
+        headers: { 'Content-Type': 'multipart/form-data'},
     });
     
     if (!response.data) {

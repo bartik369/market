@@ -39,7 +39,7 @@ const MovieForm: FC<IMovieProps> = ({
           type="text"
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setMovie({ ...movie, title_ru: e.target.value })
+            setMovie({ ...movie, titleRu: e.target.value })
           }
         />
       </div>
@@ -50,7 +50,7 @@ const MovieForm: FC<IMovieProps> = ({
           type="text"
           placeholder={contentConst.fill}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setMovie({ ...movie, title_en: e.target.value })
+            setMovie({ ...movie, titleEn: e.target.value })
           }
         />
       </div>

@@ -10,8 +10,8 @@ export interface IMedia {
 }
 export interface IMovie {
     _id?: string;
-    title_en: string;
-    title_ru: string;
+    titleEn: string;
+    titleRu: string;
     genre: string[];
     year: string;
     country: string;
@@ -22,8 +22,8 @@ export interface IMovie {
 }
 export interface IActor {
     _id?: string;
-    name_en: string;
-    name_ru: string;
+    nameEn: string;
+    nameRu: string;
     picture: string;
     extInfo: IActorExt;
 }

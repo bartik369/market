@@ -11,8 +11,8 @@ const AddMovie: FC = () => {
   const actors = useAppSelector((state) => state.movies.list);
   const [movie, setMovie] = useState<IMovie>({
     _id: '',
-    title_en: '',
-    title_ru: '',
+    titleEn: '',
+    titleRu: '',
     genre: [],
     year: '',
     country: '',
@@ -32,7 +32,13 @@ const [file, setFile] = useState<string | Blob>('');
 const [prevImg, setPrevImg] = useState<string | null>('');
 
 const createMovieHandler = () => {
-  dispatch(createMovie(movie));
+  const formData = new FormData();
+  type movieKey = keyof typeof movie._id;
+  Object.keys(movie).forEach((key) => {
+    formData.append(key, movie[key as movieKey]);
+  });
+  formData.append('file', file)
+  dispatch(createMovie(formData));
 };
 
 const addGenre = (e: React.ChangeEvent<HTMLSelectElement>) => {
