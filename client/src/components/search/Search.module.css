@@ -1,0 +1,9 @@
+.search {
+    margin-left: 30px;
+}
+
+.search input {
+    background-color: transparent;
+    border: 1px solid rgb(54, 36, 46);
+    width: 280px;
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../navigation/Navbar';
 import style from './Header.module.css'
 import Glasses from '../../assets/pics/cinema.svg'
+import Search from '../search/Search';
 
 const Header: FC = () => {
     return (
@@ -14,6 +15,7 @@ const Header: FC = () => {
                 </Link>
             </div>
         <Navbar />
+        <Search />
         </div>
     );
 };

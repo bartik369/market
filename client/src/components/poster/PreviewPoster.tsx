@@ -86,12 +86,11 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
         :''
         }
         
-        <button
-          className={style["btn-submit"]}
-          onClick={() => createMovieHandler()}
-        >
-          {contentConst.addBtn}
+        {(movie.title_en && movie.title_ru) &&
+        <button className={style["btn-submit"]} onClick={() => createMovieHandler()}>
+        {contentConst.addBtn}
         </button>
+        }
       </div>
     </div>
   );

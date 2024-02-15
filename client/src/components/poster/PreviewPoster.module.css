@@ -1,25 +1,29 @@
 .wrapper {
     width: 100%;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .portrait {
     display: flex;
-    width: 50%;
+    width: 48%;
     box-sizing: border-box;
 }
 
 .info {
     box-sizing: border-box;
     word-wrap: break-word;
-    width: 50%;
+    width: 48%;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #16171a;
+    background-color: #101018;
+    border: 1px solid #141621;
+    border-radius: 10px;
 }
 
 .portrait img {
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -58,7 +62,7 @@ span.nf {
 }
 
 .prevText {
-    color: #826099;
+    color: #698b87;
     font-size: 12px;
     font-family: inherit;
     font-weight: 300;
@@ -130,7 +134,7 @@ span.nf {
 }
 
 .description {
-    color: #c9c8c8;
+    color: #8a93a3;
     font-family: inherit;
     font-size: 12px;
     margin-bottom: 5px;
