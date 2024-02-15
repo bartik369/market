@@ -1,8 +1,7 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { Action } from '@remix-run/router';
+import { IMovie } from './../types/media';
+import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
-import { IMovie } from "../types/media";
 
 type MovieState = {
     list: IMovie[];
@@ -16,8 +15,19 @@ const initialState:MovieState = {
     error: null,
 };
 
-export const getMovies = createAsyncThunk <IMovie[], undefined,{rejectValue: String}>('movie/getMovie',
-async function(_, {rejectWithValue}) {
+export const getMovie = createAsyncThunk<IMovie, string>('movie/getMovie', 
+async function(id,{rejectWithValue}) {
+    const response = await axios.get(`${ENV.API_URL}api/movie/${id}`)
+
+    if (!response.data) {
+        return rejectWithValue('server error')
+    }
+    return response.data
+}
+)
+
+export const getMovies = createAsyncThunk <IMovie[], undefined,{rejectValue: String}>('movie/getMovies',
+async function(_, {rejectWithValue, dispatch}) {
     const response = await axios.get(`${ENV.API_URL}api/movies`);
     
     if (!response.data) {
@@ -30,7 +40,6 @@ async function(_, {rejectWithValue}) {
 export const createMovie = createAsyncThunk<IMovie, any, {rejectValue: String}>(
 'movie/createMovie',
 async function(movieData, {rejectWithValue}) {
-    console.log(movieData)
     const response = await axios.post(`${ENV.API_URL}api/add-movie`, movieData, {
         headers: { 'Content-Type': 'multipart/form-data'},
     });
@@ -38,32 +47,38 @@ async function(movieData, {rejectWithValue}) {
     if (!response.data) {
         return rejectWithValue('server error')
     }
-    return await response.data
+    return response.data
 }
 )
 
 const movieSlice = createSlice({
     name: 'movie',
     initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
         .addCase(getMovies.pending, (state) => {
-            state.loading = true
-            state.error = null
+            state.loading = true;
+            state.error = null;
         })
         .addCase(getMovies.fulfilled, (state, action) => {
             state.list = action.payload;
             state.loading = false;
         })
         .addCase(createMovie.pending, (state) => {
-            state.error = null
+            state.error = null;
         })
         .addCase(createMovie.fulfilled, (state, action) => {
             state.list.push(action.payload)
         })
+        .addMatcher(isError, (state, action: PayloadAction<string>) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
     }
 })
-export default movieSlice.reducer
+export default movieSlice.reducer;
+
+const isError = (action:AnyAction) => {
+    return action.type.endsWith('rejected')
+}

@@ -8,6 +8,7 @@ import Series from "./pages/Series";
 import AddMovie from "./pages/AddMovie";
 import Footer from "./components/footer/Footer";
 import AddActor from "./pages/AddActor";
+import Movie from "./pages/Movie";
 
 const App: FC = () => {
   console.log('render')
@@ -23,6 +24,7 @@ const App: FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/:id" element={<Movie />} />
             <Route path="/series" element={<Series />} />
             <Route path="/add-movie" element={<AddMovie />} />
             <Route path="/add-actor" element={<AddActor />} />

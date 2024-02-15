@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IMovie } from "../../types/media";
 import * as contentConst from "../../utils/constants/content";
-import BlankAvatar from "../../assets/pics/blank_avatar.jpg";
+import BlankMovie from "../../assets/pics/blank_movie.jpg";
 import style from "./PreviewPoster.module.css";
 
 interface IPreviewPosterProps {
@@ -18,7 +18,7 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
   return (
     <div className={style.wrapper}>
       <div className={style.portrait}>
-        {prevImg ? <img src={prevImg} alt="" /> : <img src={BlankAvatar} />}
+        {prevImg ? <img src={prevImg} alt="" /> : <img src={BlankMovie} />}
       </div>
 
       <div className={style.info}>

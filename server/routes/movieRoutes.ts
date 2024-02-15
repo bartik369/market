@@ -18,6 +18,7 @@ const moviePoster = multer.diskStorage({
 router.get('/movies/',
 async(req:Request, res:Response) => {
     try {
+        console.log('get movies work')
         const movieData = await MovieModel.find({})
 
         if (movieData) {

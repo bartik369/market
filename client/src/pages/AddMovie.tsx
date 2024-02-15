@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import {createMovie, getMovies} from '../store/movieSlice'
+import {createMovie} from '../store/movieSlice'
 import PreviewPoster from "../components/poster/PreviewPoster";
 import { IMovie } from "../types/media";
 import style from "./AddMovie.module.css";
@@ -8,7 +8,6 @@ import MovieForm from "../components/forms/MovieForm";
 
 const AddMovie: FC = () => {
   const dispatch = useAppDispatch();
-  const actors = useAppSelector((state) => state.movies.list);
   const [movie, setMovie] = useState<IMovie>({
     _id: '',
     titleEn: '',
@@ -22,11 +21,6 @@ const AddMovie: FC = () => {
     actors: [],
   });
 
-console.log(movie)
-
-useEffect(() => {
-  dispatch(getMovies());
-}, [dispatch]);
 
 const [file, setFile] = useState<string | Blob>('');
 const [prevImg, setPrevImg] = useState<string | null>('');
