@@ -12,11 +12,13 @@ export interface IMovie {
     _id?: string;
     titleEn: string;
     titleRu: string;
+    picture: string;
     genre: string[];
     year: string;
     country: string;
     description: string;
     director: string;
+    ageCategory: string;
     time: string;
     actors: string[];
 }

@@ -48,8 +48,8 @@ span.nf {
 }
 
 .ru {
-    color: #ededed;
-    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+    font-family: inherit;
     font-size: 35px;
     font-weight: 500;
     display: block;
@@ -57,14 +57,14 @@ span.nf {
 
 .en {
     display: block;
-    color: #838383;
-    font-family: "Roboto", sans-serif;
+    color: #a4aec1;
+    font-family: inherit;
     font-size: 15px;
     font-weight: 300;
 }
 
 .prevText {
-    color: #698b87;
+    color: #9b7bb2;
     font-size: 12px;
     font-family: inherit;
     font-weight: 300;

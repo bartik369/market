@@ -1,5 +1,6 @@
-.item {
-    width: 150px;
-    height: fit-content;
-    background-color: cadetblue;
+.movies {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }

@@ -159,7 +159,7 @@ const MovieForm: FC<IMovieProps> = ({
       </div>
 
       <div className={style["main-column"]}>
-        <div className={style.column2}>
+        <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.movieCast}</span>
           <select
             defaultValue=""
@@ -174,7 +174,22 @@ const MovieForm: FC<IMovieProps> = ({
           </select>
         </div>
 
-        <div className={style.column2}>
+        <div className={style.column3}>
+          <span className={style['input-info']}>{contentConst.movieAge}</span>
+          <select
+            defaultValue=""
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setMovie({ ...movie, ageCategory: e.target.value })}
+          >
+            <option value="" disabled>
+              {contentConst.select}
+            </option>
+            {ageItemsData.map((item) => (
+              <option key={item.id}>{item.age}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.actorPhoto}</span>
           <label className={style["photo-layer"]} htmlFor={"upload"}>
             <FontAwesomeIcon className={style["photo-icon"]} icon={faCamera} />

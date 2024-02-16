@@ -28,6 +28,9 @@ const   MovieScheme = new mongoose.Schema({
     director: {
         type: String,
     },
+    ageCategory: {
+        type: String,
+    },
     time: {
         type: String,
     },
