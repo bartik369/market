@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
 import ENV from "../../env.config";
 import { IMovie } from "../../types/media";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar} from "@fortawesome/free-solid-svg-icons";
 import style from "./MovieItem.module.css";
 
 interface MOvieItemProps {
@@ -24,7 +26,7 @@ const MovieItem: FC<MOvieItemProps> = ({ movie }) => {
         <img src={`${ENV.API_URL_UPLOADS_MOVIES}/${movie.picture}`} alt="" />
         <div className={visible ? style["item-info"] : style.hidden}>
             <div className={style['right-info']}>
-                right
+            <FontAwesomeIcon icon={faStar} className={style.icon} />
             </div>
             <div className={style['bottom-info']}>
                 <div>{movie.ageCategory}</div>

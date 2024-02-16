@@ -1,6 +1,36 @@
 .movies {
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    /* background-color: blueviolet; */
+}
+
+@media (max-width: 1140px) {
+    .movies {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 960px) {
+    .movies {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .movies {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .movies {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .movies {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

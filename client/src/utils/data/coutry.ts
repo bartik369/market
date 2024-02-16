@@ -38,7 +38,7 @@ export const coutryList = [
     {id: 37, name: 'Россия', value: 'Russian Federation'},
     {id: 38, name: 'Румыния', value: 'Romania'},
     {id: 39, name: 'Сербия', value: 'Serbia'},
-    {id: 40, name: 'Соединенные Штаты', value: 'United Kingdom'},
+    {id: 40, name: 'США', value: 'USA'},
     {id: 41, name: 'Таджикистан', value: 'Tajikistan'},
     {id: 42, name: 'Таиланд', value: 'Thailand'},
     {id: 43, name: 'Турция', value: 'Turkey'},
