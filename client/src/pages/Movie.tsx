@@ -1,17 +1,32 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../hooks/reduxHook';
+import { getMovie } from '../store/movieSlice';
 import { IMovie } from '../types/media';
 
 
 
 const Movie:FC = () => {
     const params = useParams()
-    console.log('params', params)
+    const {id} = params
+    const dispatch = useAppDispatch();
+    const [movie, setMovie] = useState<IMovie>()
+
+    useEffect(() => {
+        
+        if (id) {
+            dispatch(getMovie(id)).then((res) => {
+                setMovie((res.payload) as IMovie)
+            })
+        }
+    }, [dispatch])
+
 
     return (
         <div>
-         movie inf
+            {movie &&
+            <div>{movie.country}</div>
+            }
         </div>
     );
 };

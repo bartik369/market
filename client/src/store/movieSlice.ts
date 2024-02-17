@@ -22,7 +22,8 @@ async function(id,{rejectWithValue}) {
     if (!response.data) {
         return rejectWithValue('server error')
     }
-    return response.data
+    // return response.data
+    return (await response.data) as IMovie
 }
 )
 
@@ -36,6 +37,7 @@ async function(_, {rejectWithValue, dispatch}) {
     return response.data
 }
 )
+
 
 export const createMovie = createAsyncThunk<IMovie, any, {rejectValue: String}>(
 'movie/createMovie',

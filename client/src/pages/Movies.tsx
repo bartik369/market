@@ -19,9 +19,11 @@ const Movies = () => {
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
             {movies.map((movie) =>
+            <div key={movie._id}>
             <Link to={`/movies/${movie._id}`}>
                 <MovieItem movie={movie} />
             </Link>
+            </div>
             )}
         </div>
     );

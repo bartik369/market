@@ -1,11 +1,8 @@
 import express, {Request, Response} from 'express';
 import MovieModel from '../models/media/movie';
 import multer from 'multer';
-import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
-const extLink =  uuidv4();
 const moviePoster = multer.diskStorage({
     destination: function(req, res, cb) {
         cb(null, './uploads/movies/')
@@ -18,7 +15,6 @@ const moviePoster = multer.diskStorage({
 router.get('/movies/',
 async(req:Request, res:Response) => {
     try {
-        console.log('get movies work')
         const movieData = await MovieModel.find({})
 
         if (movieData) {
@@ -26,6 +22,23 @@ async(req:Request, res:Response) => {
         }
     } catch (error) {
         return error
+    }
+}
+)
+
+router.get('/movie/:id',
+async (req: Request, res: Response) => {
+    try {
+        const {id} = req.params
+        const movieData = await MovieModel.findOne({_id: id})
+        console.log(movieData)
+
+        if (movieData) {
+            return res.json(movieData)
+        }
+        
+    } catch (error) {
+        
     }
 }
 )
