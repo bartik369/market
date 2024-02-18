@@ -1,9 +1,10 @@
 import React, {FC} from 'react';
+import style from './Footer.module.css'
 
 const Footer:FC  = () => {
     return (
-        <div>
-            grgrgrgrgrg
+        <div className={style.container}>
+            footer
         </div>
     );
 };

@@ -13,6 +13,7 @@ export const movieCountry = 'Страна';
 export const movieSelectCoutry = 'Выберите страну';
 export const movieDirector = 'Режиссер';
 export const movieSelectDirector = 'Выберите режиссера';
+export const movieTrailer = 'Трейлер';
 export const select = 'Выбрать';
 export const fill = 'Указать';
 export const selectCast = 'Выбрать актера';

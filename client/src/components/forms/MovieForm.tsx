@@ -14,6 +14,7 @@ interface IMovieProps {
   movie: IMovie;
   setMovie: (movie: IMovie) => void;
   imgAction: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  videoAction: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addGenre: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   deleteGenre: (e: React.MouseEvent, item: string) => void;
   addActor: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -25,6 +26,7 @@ const MovieForm: FC<IMovieProps> = ({
   movie,
   setMovie,
   imgAction,
+  videoAction,
   addGenre,
   deleteGenre,
   addActor,
@@ -204,6 +206,24 @@ const MovieForm: FC<IMovieProps> = ({
             hidden
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               imgAction(e);
+            }}
+          />
+        </div>
+        <div className={style.column3}>
+          <span className={style['input-info']}>{contentConst.movieTrailer}</span>
+          <label className={style["photo-layer"]} htmlFor={"upload-video"}>
+            <FontAwesomeIcon className={style["photo-icon"]} icon={faCamera} />
+            <span className={style["select-photo"]}>
+              {contentConst.actorSelectPhoto}
+            </span>
+          </label>
+          <input
+            name="file"
+            id="upload-video"
+            type="file"
+            hidden
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              videoAction(e);
             }}
           />
         </div>

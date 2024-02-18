@@ -14,7 +14,8 @@ html {
     margin: 0 auto;
 }
 
-.header-wrap {
+
+/* .header-wrap {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -24,7 +25,8 @@ html {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px 0 40px;
+    padding: 0px 20px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -39,4 +41,4 @@ html {
     justify-content: center;
     bottom: 0;
     height: 100px;
-}
+} */

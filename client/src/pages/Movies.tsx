@@ -16,6 +16,7 @@ const Movies = () => {
     }, [dispatch]);
 
     return (
+        <div className={style.container}>
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
             {movies.map((movie) =>
@@ -25,6 +26,7 @@ const Movies = () => {
             </Link>
             </div>
             )}
+        </div>
         </div>
     );
 };

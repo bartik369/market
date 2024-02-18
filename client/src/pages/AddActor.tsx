@@ -77,7 +77,7 @@ const AddActor: FC = () => {
   }
 
   return (
-    <div className={style.wrapper}>
+    <div className={style.container}>
       <div className={style["l-side"]}>
           <ActorForm 
           actor={actor}

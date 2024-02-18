@@ -14,6 +14,7 @@ const AddMovie: FC = () => {
     titleRu: '',
     genre: [],
     picture: '',
+    trailer: '',
     year: '',
     country: '',
     ageCategory: '',
@@ -25,6 +26,7 @@ const AddMovie: FC = () => {
 
 
 const [file, setFile] = useState<string | Blob>('');
+const [trailer, setTrailer] = useState<string | Blob>()
 const [prevImg, setPrevImg] = useState<string | null>('');
 
 const createMovieHandler = () => {
@@ -33,7 +35,8 @@ const createMovieHandler = () => {
   Object.keys(movie).forEach((key) => {
     formData.append(key, movie[key as movieKey]);
   });
-  formData.append('file', file)
+  file && formData.append('file', file)
+  trailer && formData.append('trailer', trailer )
   dispatch(createMovie(formData));
 };
 
@@ -66,17 +69,20 @@ const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
   e.target.files && setFile(e.target.files[0]);
   e.target.files && setPrevImg(URL.createObjectURL(e.target.files[0]))
 }
-
-
+const videoAction = (e:React.ChangeEvent<HTMLInputElement>) => {
+  e.target.files && console.log(e.target.files)
+  e.target.files && setTrailer(e.target.files[0]);
+}
 
   //
   return (
-    <div className={style.wrapper}>
+    <div className={style.container}>
       <div className={style["l-side"]}>
         <MovieForm
         movie={movie}
         setMovie={setMovie}
         imgAction={imgAction}
+        videoAction={videoAction}
         addGenre={addGenre}
         deleteGenre={deleteGenre}
         addActor={addActor}
@@ -92,7 +98,7 @@ const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
         createMovieHandler={createMovieHandler}
         />
       </div>
-    </div>
+      </div>
   );
 };
 

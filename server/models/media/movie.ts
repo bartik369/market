@@ -13,6 +13,9 @@ const   MovieScheme = new mongoose.Schema({
     picture: {
         type: String,
     },
+    trailer: {
+        type: String,
+    },
     genre: {
         type: [],
     },
