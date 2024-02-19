@@ -5,12 +5,14 @@ import ENV from "../env.config";
 
 type MovieState = {
     list: IMovie[];
+    search: IMovie[];
     loading: boolean;
     error: null | string;
 };
 
 const initialState:MovieState = {
     list: [],
+    search: [],
     loading: false,
     error: null,
 };
@@ -55,7 +57,6 @@ async function(movieData, {rejectWithValue}) {
 export const searchMovie = createAsyncThunk<IMovie[], ISearch, {rejectValue: String}>(
     'movie/searchMovi',
     async function(searchRequest, {rejectWithValue}) {
-        console.log(searchRequest)
         const response = await axios.post(`${ENV.API_URL}api/search-movie`, searchRequest, {
             headers: { 'Content-Type': 'application/json'},
         });
@@ -70,7 +71,9 @@ export const searchMovie = createAsyncThunk<IMovie[], ISearch, {rejectValue: Str
 const movieSlice = createSlice({
     name: 'movie',
     initialState,
-    reducers: {},
+    reducers: {
+        
+    },
     extraReducers: (builder) => {
         builder
         .addCase(getMovies.pending, (state) => {
@@ -86,6 +89,14 @@ const movieSlice = createSlice({
         })
         .addCase(createMovie.fulfilled, (state, action) => {
             state.list.push(action.payload)
+        })
+        .addCase(searchMovie.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(searchMovie.fulfilled, (state, action) => {
+            state.search = action.payload;
+            state.loading = false;
         })
         .addMatcher(isError, (state, action: PayloadAction<string>) => {
             state.loading = false;

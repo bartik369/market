@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import { ISearch } from '../../types/media';
-import { useAppDispatch } from '../../hooks/reduxHook';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
 import { searchMovie } from '../../store/movieSlice';
 import style from './Search.module.css'
 
@@ -16,12 +17,14 @@ const Search:FC<IVisibleProps> = ({visible, visibleHandler}) => {
         search: '',
     });
     const dispatch = useAppDispatch();
+    const searchResult = useAppSelector((state) => state.movies.search)
+    console.log(searchResult)
 
     useEffect(() => {
-        dispatch(searchMovie(text));
-    }, [text.search.length])
-
-    console.log('tezt')
+        if (text.search.length) {
+            dispatch(searchMovie(text));
+        }
+    }, [text.search])
     
     return (
         <div className={style.search}>
@@ -32,7 +35,9 @@ const Search:FC<IVisibleProps> = ({visible, visibleHandler}) => {
                  type="text" />
             </div>
             <div className={style.result}>
-                result
+                {searchResult.map((item) =>
+                <a href={`/movies/${item._id}`}>{item.titleRu}</a>
+                )}
             </div>
             <button onClick={visibleHandler}>close</button>
         </div>

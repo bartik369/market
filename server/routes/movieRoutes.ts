@@ -49,7 +49,7 @@ async (req: Request, res:Response) => {
         console.log(req.body.search)
         const movieData = await MovieModel.find(
             {'titleRu': {$options: 'i', $regex: search}})
-        console.log(movieData)
+        return res.json(movieData)
     } catch (error) {
         
     }

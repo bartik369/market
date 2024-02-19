@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../navigation/Navbar";
 import style from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
 import Glasses from "../../assets/pics/cinema.svg";
 import Search from "../search/Search";
 
@@ -25,8 +25,14 @@ const Header: FC = () => {
           </Link>
         </div>
         <Navbar />
+        <div className={style.right}>
         <div onClick={() => setVisible(true)} className={style.search}>
-           <FontAwesomeIcon icon={faSearch} />
+           <FontAwesomeIcon className={style['search-icon']} icon={faSearch} />
+        </div>
+        <div className={style.auth}>
+          <FontAwesomeIcon className={style['auth-icon']} icon={faUser} />
+          <span>Войти</span>
+        </div>
         </div>
         {visible && <Search  visible={visible} visibleHandler={visibleHandler}/>}
       </div>

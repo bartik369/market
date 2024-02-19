@@ -7,6 +7,7 @@ import { IMovie } from "../types/media";
 import ENV from "../env.config";
 import nonePoster from "../assets/pics/blank_movie.jpg";
 import vignette from "../assets/pics/vignette.png";
+import cinema from "../assets/pics/cinema.jpg"
 import style from "./Movies.module.css";
 
 const Movie: FC = () => {
@@ -38,10 +39,10 @@ const Movie: FC = () => {
 
         <div className={style.movie}>
           <div className={style["video-layer"]}>
-            {movie.trailer && (
+            {movie.trailer ? (
               <video className={style.video} src={`${ENV.API_URL_UPLOADS_MOVIES}${movie.trailer}`}
               autoPlay muted loop></video>
-            )}
+            ) : <img className={style.cinema} src={cinema} />}
 
             <div className={style.inner}>
 
