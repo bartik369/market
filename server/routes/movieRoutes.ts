@@ -41,6 +41,21 @@ async (req: Request, res: Response) => {
     }
 }
 )
+
+router.post('/search-movie/',
+async (req: Request, res:Response) => {
+    try {
+        const {search} = req.body
+        console.log(req.body.search)
+        const movieData = await MovieModel.find(
+            {'titleRu': {$options: 'i', $regex: search}})
+        console.log(movieData)
+    } catch (error) {
+        
+    }
+}
+)
+
 router.post('/add-movie/', multer({storage: moviePoster}).any(),
     async (req: Request, res: Response) => {
         try {

@@ -1,4 +1,4 @@
-import { IMovie } from './../types/media';
+import { IMovie, ISearch } from './../types/media';
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
@@ -51,6 +51,20 @@ async function(movieData, {rejectWithValue}) {
     }
     return response.data
 }
+)
+export const searchMovie = createAsyncThunk<IMovie[], ISearch, {rejectValue: String}>(
+    'movie/searchMovi',
+    async function(searchRequest, {rejectWithValue}) {
+        console.log(searchRequest)
+        const response = await axios.post(`${ENV.API_URL}api/search-movie`, searchRequest, {
+            headers: { 'Content-Type': 'application/json'},
+        });
+        
+        if (!response) {
+            return rejectWithValue('server error')
+        }
+        return response.data
+    }
 )
 
 const movieSlice = createSlice({

@@ -1,9 +1,20 @@
 .search {
-    margin-left: 30px;
+    position: absolute;
+    display: flex;
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: #161622;
+    width: 100%;
+    height: fit-content;
+    opacity: .9;
 }
 
 .search input {
     background-color: transparent;
-    border: 1px solid rgb(54, 36, 46);
+    border: 1px solid rgb(120, 120, 120);
     width: 280px;
 }

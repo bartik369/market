@@ -1,12 +1,40 @@
-import React, {FC} from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import React, {FC, useEffect, useState} from 'react';
+import { ISearch } from '../../types/media';
+import { useAppDispatch } from '../../hooks/reduxHook';
+import { searchMovie } from '../../store/movieSlice';
 import style from './Search.module.css'
 
-const Search:FC = () => {
+interface IVisibleProps {
+    visible: boolean;
+    visibleHandler:() => void;
+}
+
+
+const Search:FC<IVisibleProps> = ({visible, visibleHandler}) => {
+
+    const [text, setText] = useState<ISearch>({
+        search: '',
+    });
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(searchMovie(text));
+    }, [text.search.length])
+
+    console.log('tezt')
+    
     return (
         <div className={style.search}>
-           <FontAwesomeIcon icon={faSearch} />
+            <div className={style.input}>
+                <input
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                    setText({...text, search:e.target.value})}
+                 type="text" />
+            </div>
+            <div className={style.result}>
+                result
+            </div>
+            <button onClick={visibleHandler}>close</button>
         </div>
     );
 };

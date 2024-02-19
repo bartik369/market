@@ -38,3 +38,6 @@ export interface IActorExt {
     height: string;
     genre: string[];
 }
+export interface ISearch {
+    search: string;
+}

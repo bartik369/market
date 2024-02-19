@@ -81,7 +81,7 @@ const Movie: FC = () => {
 
                 <div className={style.cast}>
                   {actors.map((item) =>
-                  <div className={style.item}>
+                  <div className={style.item2}>
                     <div className={style.portrait}>
                     <img src={`${ENV.API_URL_UPLOADS_ACTORS}${item.picture}`} alt="" />
                     </div>
