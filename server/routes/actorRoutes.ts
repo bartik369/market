@@ -1,11 +1,9 @@
 import express, {Request, Response} from 'express';
 import ActorModel from '../models/media/actor';
 import multer from 'multer';
-import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
-const extLink = uuidv4()
 const actorPortrait = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads/actors/')

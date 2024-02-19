@@ -5,6 +5,23 @@ export const menuItemsData = [
     {id: 4, title: 'Add Actor', url: '/add-actor'},
   ];
 
+  export const footerMenu1 = [
+    {id: 1, title: 'Регистрация и оплата', url: '#'},
+    {id: 2, title: 'Политика приватности', url: '#'},
+    {id: 3, title: 'Пользовательское соглашение', url: '/#'},
+    {id: 4, title: 'Сообщить об ошибке', url: '/#'},
+    {id: 5, title: 'Вопросы и ответы', url: '/#'},
+    {id: 6, title: 'Служба поддержки', url: '/#'},
+  ];
+  export const footerMenu2 = [
+    {id: 1, title: 'О нас', url: '#'},
+    {id: 2, title: 'Контакты', url: '#'},
+    {id: 3, title: 'Партнерам', url: '/#'},
+    {id: 4, title: 'Размещение рекламы', url: '/#'},
+    {id: 5, title: 'Акции', url: '/#'},
+    {id: 6, title: 'Сертификаты', url: '/#'},
+  ];
+
   export const ageItemsData = [
     {id: 1, age: '0+'},
     {id: 2, age: '6+'},

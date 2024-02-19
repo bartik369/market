@@ -2,7 +2,31 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    padding-top: 80px;
+    padding-top: 100px;
     max-width: 1320px;
     margin: 0 auto;
+}
+
+.inner {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+ul li {
+    list-style: none;
+    padding: 4px 0;
+}
+
+.menu a {
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 14px;
+    color: #a4aec1;
+}
+
+.info {}
+
+.menu {
+    padding: 20px;
 }
