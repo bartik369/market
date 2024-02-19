@@ -187,6 +187,10 @@ span.input-info {
     box-sizing: border-box;
 }
 
+span.hide {
+    display: none;
+}
+
 @media screen and (max-width: 960px) {
     .column2 {
         display: flex;

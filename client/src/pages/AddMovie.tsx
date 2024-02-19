@@ -1,5 +1,5 @@
-import React, { FC, useState, useEffect} from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import React, { FC, useState} from "react";
+import { useAppDispatch} from "../hooks/reduxHook";
 import {createMovie} from '../store/movieSlice'
 import PreviewPoster from "../components/poster/PreviewPoster";
 import { IMovie } from "../types/media";

@@ -15,7 +15,7 @@ const moviePoster = multer.diskStorage({
 router.get('/movies/',
 async(req:Request, res:Response) => {
     try {
-        const movieData = await MovieModel.find({})
+        const movieData = await MovieModel.find({});
 
         if (movieData) {
             return res.json(movieData)
@@ -29,9 +29,8 @@ async(req:Request, res:Response) => {
 router.get('/movie/:id',
 async (req: Request, res: Response) => {
     try {
-        const {id} = req.params
-        const movieData = await MovieModel.findOne({_id: id})
-        console.log(movieData)
+        const {id} = req.params;
+        const movieData = await MovieModel.findOne({_id: id});
 
         if (movieData) {
             return res.json(movieData)
@@ -62,8 +61,8 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
                 ageCategory: ageCategory,
                 time: time,
                 actors: actors.split(','),
-            })
-            await movieData.save();
+            });
+            await movieData.save()
 
         } catch (error) {
             return error

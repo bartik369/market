@@ -24,8 +24,6 @@ const AddActor: FC = () => {
     },
   });
 
-  console.log(actor)
-
   useEffect(() => {
     dispatch(getActors());
   }, [dispatch]);

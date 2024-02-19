@@ -11,7 +11,7 @@ const actorPortrait = multer.diskStorage({
       cb(null, './uploads/actors/')
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + extLink + path.extname(file.originalname))
+      cb(null, file.originalname)
     }
 });
 
@@ -28,6 +28,21 @@ const actorPortrait = multer.diskStorage({
     }
   }
   )
+
+  router.post('/movie_actors/',
+  async(req: Request, res:Response) => {
+    try {
+      const actorsData = await ActorModel.aggregate([{
+        $match: { "nameRu": { $in: req.body } }
+      }]);
+      return res.json(actorsData)
+
+    } catch (error) {
+      return error
+    }
+  }
+  )
+
   router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'),
    async (req: Request, res:Response) => {
      try {
@@ -35,7 +50,7 @@ const actorPortrait = multer.diskStorage({
       const actorData = new ActorModel({
           nameEn: nameEn,
           nameRu: nameRu,
-          picture: req.file.fieldname + '-' + extLink + path.extname(req.file.originalname),
+          picture: req.file.originalname,
           extInfo: {
             link: link,
             birthday: birthday,
@@ -52,8 +67,5 @@ const actorPortrait = multer.diskStorage({
      }
    }
   )
-
-// router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'), actorController.addActor);
-// router.get('/actors/', actorController.getActors)
 
 export default router;

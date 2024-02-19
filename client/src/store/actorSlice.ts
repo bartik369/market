@@ -25,6 +25,17 @@ async function(_, {rejectWithValue}) {
 }
 )
 
+export const getMovieActors = createAsyncThunk<IActor[], string[], {rejectValue: String}>('actors/getMovieActors',
+async function(data, {rejectWithValue}) {
+    const response = await axios.post(`${ENV.API_URL}api/movie_actors`, data)
+
+    if (!response.data) {
+        return rejectWithValue('server error')
+    }
+    return response.data
+}
+)
+
 export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
     'actors/createActor',
     async function(formData, {rejectWithValue}) {
@@ -60,6 +71,14 @@ const actorSlice = createSlice({
         })
         .addCase(addActor.fulfilled, (state, action) => {
             state.list.push(action.payload)
+        })
+        .addCase(getMovieActors.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getMovieActors.fulfilled, (state, action) => {
+            state.list = action.payload;
+            state.loading = false;
         })
     }
 });

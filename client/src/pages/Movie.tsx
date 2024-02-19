@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch } from "../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getMovie } from "../store/movieSlice";
+import { getMovieActors } from "../store/actorSlice";
 import { IMovie } from "../types/media";
 import ENV from "../env.config";
 import nonePoster from "../assets/pics/blank_movie.jpg";
@@ -12,6 +13,7 @@ const Movie: FC = () => {
   const params = useParams();
   const { id } = params;
   const dispatch = useAppDispatch();
+  const actors = useAppSelector((state) => state.actors.list)
   const [movie, setMovie] = useState<IMovie>();
 
   useEffect(() => {
@@ -21,6 +23,14 @@ const Movie: FC = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (movie) {
+      dispatch(getMovieActors(movie.actors))
+    }
+  }, [movie])
+
+  console.log(actors)
 
   return (
     <>
@@ -34,6 +44,7 @@ const Movie: FC = () => {
             )}
 
             <div className={style.inner}>
+
               <div className={style.poster}>
                 <img
                   src={
@@ -44,10 +55,10 @@ const Movie: FC = () => {
                   alt=""
                 />
               </div>
+
               <div className={style.info}>
                 <div className={style["title-ru"]}>{movie.titleRu}</div>
                 <div className={style["title-en"]}>{movie.titleEn}</div>
-                <div className={style.description}>{movie.description}</div>
                 <div className={style["ext-info"]}>
 
                   <div className={style.sub}>{movie.year}</div>
@@ -62,16 +73,28 @@ const Movie: FC = () => {
                   </div>
                   </div>
                   <div className={style.age}>{movie.ageCategory}</div>
+                  <div className={style.description}>{movie.description}</div>
 
                 <div className={style.action}>
                   <button className={style.watch}>Смотреть</button>
                 </div>
+
                 <div className={style.cast}>
-                  {movie.actors.map((item) => 
-                  <div>{item}</div>
+                  {actors.map((item) =>
+                  <div className={style.item}>
+                    <div className={style.portrait}>
+                    <img src={`${ENV.API_URL_UPLOADS_ACTORS}${item.picture}`} alt="" />
+                    </div>
+                    <div className={style.name}>
+                    <div>{item.nameRu}</div>
+                    </div>
+                  </div>
                   )}
-                </div>
               </div>
+
+              </div>
+
+      
             </div>
             <img className={style.vignette} src={vignette} alt="" />
           </div>

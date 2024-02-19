@@ -1,5 +1,5 @@
 import { RecordWithTtl } from "dns";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { IMovie } from "../../types/media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,8 @@ import { ageItemsData, categoryMovies, yearMedia } from "../../utils/data/data";
 import { coutryList } from "../../utils/data/coutry";
 import { actorsList } from "../../utils/data/actors";
 import { directorsList } from "../../utils/data/directors";
+import {getActors} from '../../store/actorSlice';
+import {useAppDispatch, useAppSelector} from '../../hooks/reduxHook'
 import * as contentConst from "../../utils/constants/content";
 import style from "./AddItemForm.module.css";
 
@@ -32,6 +34,14 @@ const MovieForm: FC<IMovieProps> = ({
   addActor,
   deleteActor,
 }) => {
+  const dispatch = useAppDispatch();
+  const actors = useAppSelector((state) => state.actors.list)
+
+
+  useEffect(() => {
+    dispatch(getActors())
+  }, [])
+
   return (
     <form className={style.form}>
        <div className={style["main-column"]}>
@@ -161,7 +171,24 @@ const MovieForm: FC<IMovieProps> = ({
       </div>
 
       <div className={style["main-column"]}>
+
         <div className={style.column3}>
+          <span className={style['input-info']}>{contentConst.movieCast}</span>
+          <select
+            defaultValue=""
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => addActor(e)}
+          >
+            <option value="" disabled>
+              {contentConst.select}
+            </option>
+            {actors.map((item) => (
+              <option key={item._id}>{item.nameRu}</option>
+            ))}
+          </select>
+        </div>
+
+
+        {/* <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.movieCast}</span>
           <select
             defaultValue=""
@@ -174,7 +201,8 @@ const MovieForm: FC<IMovieProps> = ({
               <option key={item.id}>{item.name}</option>
             ))}
           </select>
-        </div>
+        </div> */}
+
 
         <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.movieAge}</span>

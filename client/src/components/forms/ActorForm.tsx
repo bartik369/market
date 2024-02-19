@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,6 +25,7 @@ const ActorForm: FC<IActorProps> = ({
   deleteGenre,
   addGenre,
   }) => {
+
   return (
     <form className={style.form}>
       <div className={style.block}>
