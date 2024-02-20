@@ -20,6 +20,18 @@ const Header: FC = () => {
   const visibleHandler = () => {
     setVisible(!visible)
   }
+  const signinHandler = () => {
+    setVisibleSignin(true)
+    setVisibleSignup(false)
+  }
+  const signupHandler = () => {
+    setVisibleSignup(true)
+    setVisibleSignin(false)
+  }
+  const closeFormHandler = () => {
+    setVisibleSignup(false)
+    setVisibleSignin(false)
+  }
 
   return (
     <>
@@ -44,8 +56,9 @@ const Header: FC = () => {
       </div>
     </div>
     {visible && <Search  visible={visible} visibleHandler={visibleHandler}/>}
-    {visibleSignin && <Signin />}
-    {visibleSignup && <Signup />}
+    {visibleSignin && <Signin signupHandler={signupHandler} closeFormHandler={closeFormHandler}/>}
+    {visibleSignup && <Signup signinHandler={signinHandler} closeFormHandler={closeFormHandler}/>}
+
     </>
   );
 };
