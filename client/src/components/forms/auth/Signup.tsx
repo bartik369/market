@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
+import style from './Auth.module.css'
 
-const Profile: FC = () => {
+const Signup: FC = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const Profile: FC = () => {
     );
 };
 
-export default Profile;
+export default Signup;
