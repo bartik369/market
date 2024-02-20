@@ -72,7 +72,10 @@ const movieSlice = createSlice({
     name: 'movie',
     initialState,
     reducers: {
-        
+        deleteSearch: (state, action) => {
+            state.search = action.payload;
+            state.loading = false;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -105,6 +108,7 @@ const movieSlice = createSlice({
     }
 })
 export default movieSlice.reducer;
+export const {deleteSearch} = movieSlice.actions
 
 const isError = (action:AnyAction) => {
     return action.type.endsWith('rejected')

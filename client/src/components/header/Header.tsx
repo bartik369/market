@@ -16,6 +16,7 @@ const Header: FC = () => {
   }
 
   return (
+    <>
     <div className={style["nav-area"]}>
       <div className={style.container}>
         <div className={style.logo}>
@@ -34,9 +35,10 @@ const Header: FC = () => {
           <span>Войти</span>
         </div>
         </div>
-        {visible && <Search  visible={visible} visibleHandler={visibleHandler}/>}
       </div>
     </div>
+    {visible && <Search  visible={visible} visibleHandler={visibleHandler}/>}
+    </>
   );
 };
 
