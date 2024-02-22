@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ActorScheme = new mongoose.Schema({
+const ActorSchema = new mongoose.Schema({
     nameEn: {
         type: String,
     },
@@ -30,6 +30,6 @@ const ActorScheme = new mongoose.Schema({
     }
 });
 
-const Actor = mongoose.model("Actor", ActorScheme);
+const Actor = mongoose.model("Actor", ActorSchema);
 
 export default Actor;

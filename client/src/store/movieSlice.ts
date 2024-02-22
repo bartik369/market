@@ -19,24 +19,24 @@ const initialState:MovieState = {
 
 export const getMovie = createAsyncThunk<IMovie, string>('movie/getMovie', 
 async function(id,{rejectWithValue}) {
-    const response = await axios.get(`${ENV.API_URL}api/movie/${id}`)
+    const res = await axios.get(`${ENV.API_URL}api/movie/${id}`)
 
-    if (!response.data) {
+    if (!res.data) {
         return rejectWithValue('server error')
     }
     // return response.data
-    return (await response.data) as IMovie
+    return (await res.data) as IMovie
 }
 )
 
 export const getMovies = createAsyncThunk <IMovie[], undefined,{rejectValue: String}>('movie/getMovies',
 async function(_, {rejectWithValue, dispatch}) {
-    const response = await axios.get(`${ENV.API_URL}api/movies`);
+    const res = await axios.get(`${ENV.API_URL}api/movies`);
     
-    if (!response.data) {
+    if (!res.data) {
         return rejectWithValue('server error')
     }
-    return response.data
+    return res.data
 }
 )
 
@@ -44,27 +44,27 @@ async function(_, {rejectWithValue, dispatch}) {
 export const createMovie = createAsyncThunk<IMovie, any, {rejectValue: String}>(
 'movie/createMovie',
 async function(movieData, {rejectWithValue}) {
-    const response = await axios.post(`${ENV.API_URL}api/add-movie`, movieData, {
+    const res = await axios.post(`${ENV.API_URL}api/add-movie`, movieData, {
         headers: { 'Content-Type': 'multipart/form-data'},
     });
     
-    if (!response.data) {
+    if (!res.data) {
         return rejectWithValue('server error')
     }
-    return response.data
+    return res.data
 }
 )
 export const searchMovie = createAsyncThunk<IMovie[], ISearch, {rejectValue: String}>(
     'movie/searchMovi',
     async function(searchRequest, {rejectWithValue}) {
-        const response = await axios.post(`${ENV.API_URL}api/search-movie`, searchRequest, {
+        const res = await axios.post(`${ENV.API_URL}api/search-movie`, searchRequest, {
             headers: { 'Content-Type': 'application/json'},
         });
         
-        if (!response) {
+        if (!res) {
             return rejectWithValue('server error')
         }
-        return response.data
+        return res.data
     }
 )
 

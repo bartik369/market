@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const   MovieScheme = new mongoose.Schema({
+const   MovieSchema = new mongoose.Schema({
     id: {
         type: String,
     },
@@ -42,6 +42,6 @@ const   MovieScheme = new mongoose.Schema({
     },
 });
 
-const Movie = mongoose.model("Movie", MovieScheme);
+const Movie = mongoose.model("Movie", MovieSchema);
 
 export default Movie;

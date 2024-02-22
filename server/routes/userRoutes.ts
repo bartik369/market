@@ -12,7 +12,7 @@ router.post('/create-user/', async(req: Request, res:Response) => {
         const dublicate = await User.findOne({email: email});
 
         if (dublicate) {
-            return res.status(400).json({message: 'User already exist'})
+            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные данные'})
         }
         const hashPassword = await bcrypt.hash(password, 7); 
         const user = new User({

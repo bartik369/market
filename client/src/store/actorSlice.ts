@@ -28,7 +28,7 @@ async function(_, {rejectWithValue}) {
 export const getMovieActors = createAsyncThunk<IActor[], string[], {rejectValue: String}>('actors/getMovieActors',
 async function(data, {rejectWithValue}) {
     const response = await axios.post(`${ENV.API_URL}api/movie_actors`, data)
-
+ 
     if (!response.data) {
         return rejectWithValue('server error')
     }
