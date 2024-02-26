@@ -2,37 +2,36 @@ import { RootState } from './index';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError} from '@reduxjs/toolkit/query'
 import { setCredentials, logOut } from "./authSlice";
+import { useAppDispatch } from '../hooks/reduxHook';
+import axios from 'axios';
 import ENV from "../env.config";
+import { redirect } from 'react-router-dom';
 
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: ENV.API_URL,
-    credentials: 'include',
-    prepareHeaders: (headers, { getState }) => {
-        const token = (getState() as RootState).auth.token
-        console.log(token)
+  baseUrl: ENV.API_URL,
+  credentials: 'include',
+  prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
+      if (token) {
+          headers.set("authorization", `Bearer ${token}`)
+      }
+      return headers
+  }
+})
 
-        if (token) {
-            headers.set("authorization", `Bearer ${token}`);
-        } else {
-        }
-        return headers;
-    },
-});
-
-const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError
+const baseQueryWithReauth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions)
 
-  if (result.error && result.error.status === 401) {
+  if (result.error && result.error.status === 403) {
+    const refreshResult = await baseQuery('/api/refresh-token/', api, extraOptions);
 
-    // try to get a new token
-    const refreshResult = await baseQuery('/refreshToken', api, extraOptions)
-
-    if (refreshResult .data) {
-      // store the new token
+    if (refreshResult.data) {
       api.dispatch(setCredentials(refreshResult.data))
-      // retry the initial query
       result = await baseQuery(args, api, extraOptions)
     } else {
       api.dispatch(logOut(null))
@@ -41,9 +40,47 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
   return result
 }
 
+export const useValidateAccessToken = () => {
+  const dispatch = useAppDispatch()
+
+  const validateAccessToken = async() => {
+      try {
+          const response = await axios.get(`${ENV.API_URL}api/verify-token/`, {
+              withCredentials: true,
+          });
+
+          if (response.data) {
+              try {
+                console.log(response.data)
+                dispatch(setCredentials(response.data))
+
+              } catch (error) {
+
+              }
+          }
+      } catch (error: any) {
+          if (error.response.status === 403) {
+            console.log('a vot i 403 podkatila')
+              const response = await axios.get(`${ENV.API_URL}api/refresh-token`, {
+                  withCredentials: true,
+              });
+
+              if (response.data) {
+                dispatch(setCredentials(response.data))
+              } else {
+
+              }
+          }
+      }
+
+  }
+  return validateAccessToken;
+};
+
+
 export const apiSlice = createApi({
     baseQuery: baseQueryWithReauth,
     endpoints: builder => ({
-      
+
     })
 });

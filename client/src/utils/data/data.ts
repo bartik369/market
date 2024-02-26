@@ -3,6 +3,7 @@ export const menuItemsData = [
     {id: 2, title: 'Фильмы', url: '/movies'},
     {id: 3, title: 'Add Media', url: '/add-movie'},
     {id: 4, title: 'Add Actor', url: '/add-actor'},
+    {id: 5, title: 'Profile', url: '/profile'},
   ];
 
   export const footerMenu1 = [

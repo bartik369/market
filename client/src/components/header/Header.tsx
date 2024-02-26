@@ -1,19 +1,22 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../navigation/Navbar';
-import style from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
 import Glasses from '../../assets/pics/cinema.svg';
 import Search from '../search/Search';
 import Signin from '../forms/auth/Signin';
 import Signup from '../forms/auth/Signup';
+import { useAppSelector } from '../../hooks/reduxHook';
+import style from './Header.module.css';
 
 const Header: FC = () => {
 
   const [visible, setVisible] = useState<boolean>(false)
   const [visibleSignin, setVisibleSignin] = useState<boolean>(false)
   const [visibleSignup, setVisibleSignup] = useState<boolean>(false)
+  const token = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector((state) => state.auth.user);
 
   const visibleHandler = () => {
     setVisible(!visible)
@@ -46,10 +49,13 @@ const Header: FC = () => {
         <div onClick={() => setVisible(true)} className={style.search}>
            <FontAwesomeIcon className={style['search-icon']} icon={faSearch} />
         </div>
-        <div onClick={() => setVisibleSignin(true)} className={style.auth}>
-          <FontAwesomeIcon className={style['auth-icon']} icon={faUser} />
-          <span>Войти</span>
-        </div>
+        {(user && token) ? 
+        <div>fsfsfsd</div>
+        : <div onClick={() => setVisibleSignin(true)} className={style.auth}>
+        <FontAwesomeIcon className={style['auth-icon']} icon={faUser} />
+        <span>Войти</span>
+         </div>
+        }
         </div>
       </div>
     </div>

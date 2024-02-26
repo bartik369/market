@@ -1,17 +1,16 @@
+import { IAccessToken } from './../types/types';
 import express, {Request, Response} from 'express';
 import User from '../models/user/User';
 import Token from '../models/user/Token';
 import Password from '../models/user/Password';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { env } from 'process';
+import jwt, {Secret, JwtPayload} from 'jsonwebtoken';
 
 const router = express.Router();
 
 router.post('/auth/', async(req: Request, res:Response) => {
     try {
         const {email, password} = req.body;
-        console.log(req.body)
         const user = await User.findOne({email: email});
 
         if (!user) {
@@ -24,12 +23,12 @@ router.post('/auth/', async(req: Request, res:Response) => {
             return res.status(400).json({message: 'Проверьте пароль'})
         }
         const accessToken = jwt.sign(
-            {'username': user.email}, 
+            {'user': user}, 
             process.env.JWT_ACCESS_SECRET,
-            {expiresIn: '30s'}
+            {expiresIn: '20s'}
         );
         const refreshToken = jwt.sign(
-            {'username': user.email}, 
+            {'user': user}, 
             process.env.JWT_REFRESH_SECRET,
             {expiresIn: '1d'}
         );
@@ -50,41 +49,89 @@ router.post('/auth/', async(req: Request, res:Response) => {
             secure: true, 
             maxAge: 24 * 60 * 60 * 1000 
         });
+        res.cookie('accessToken', accessToken, {
+            maxAge: 1 * 20 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+        });
         return res.json({token: accessToken, user: user})
     } catch (error) {
         
     }
 });
 
-// router.post('/refresh/', async(req: Request, res:Response) => {
-//     try {
-//         const cookies = req.cookies;
-//         if (cookies?.jwt) return res.status(401)
-//         const user = await User.findOne({email: email});
-
-//         if (!user) {
-//             return res.status(400).json({message: 'Проверьте, пожалуйста, указанные данные'})
-//         }
-//         const candidat = await Password.findOne({userId: user._id});
-//         const comparePassword = bcrypt.compare(password, candidat.password);
-
-//         if (!comparePassword) {
-//             return res.status(400).json({message: 'Проверьте пароль'})
-//         }
-//         const accessToken = jwt.sign(
-//             {'username': user.email}, 
-//             process.env.JWT_ACCESS_SECRET,
-//             {expiresIn: '30s'}
-//         );
-//         const refrefhToken = jwt.sign(
-//             {'username': user.email}, 
-//             process.env.JWT_REFRESH_SECRET,
-//             {expiresIn: '1d'}
-//         );
-//     } catch (error) {
+router.get('/refresh-token/', async(req: Request, res:Response) => {
+    try {
+        const token = req.cookies.refreshToken;
         
-//     }
-// });
+        if (!token) return res.status(401).json({message: 'net avtorizacii'});
+        const verifyData = jwt.verify(token, process.env.JWT_REFRESH_SECRET as string);
+
+        if (!verifyData) return res.status(401).json({message: 'net avtorizacii'});
+
+        const user = await User.findById(verifyData['user']['_id']);
+
+        if (!user) return res.status(401).json({message: 'net avtorizacii'});
+
+        const accessToken = jwt.sign(
+            {'user': user}, 
+            process.env.JWT_ACCESS_SECRET,
+            {expiresIn: '20s'}
+        );
+        const refreshToken = jwt.sign(
+            {'user': user}, 
+            process.env.JWT_REFRESH_SECRET,
+            {expiresIn: '1d'}
+        );
+        
+        const existToken = await Token.findOne({user: user._id});
+
+        if (existToken) {
+            console.log(existToken)
+            const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {
+                refreshToken: refreshToken,
+            });
+            await updateTokenData.save()
+        }
+        const tokenData = await Token.create({
+            user: user._id,
+            refreshToken: refreshToken,
+        });
+        await tokenData.save()
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true, 
+            sameSite: 'none',
+            secure: true, 
+            maxAge: 24 * 60 * 60 * 1000 
+        });
+        res.cookie('accessToken', accessToken, {
+            maxAge: 1 * 20 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+        });
+        return res.json({token: accessToken, user: user})
+    } catch (error) {
+        
+    }
+});
+
+router.get('/verify-token/', async(req: Request, res: Response) => {
+    try {
+        const accessToken = req.cookies.accessToken;
+
+        if (!accessToken) return res.status(403).json({message: 'В доступе отказано'})
+        const verifyData = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET as string);
+
+        if (!verifyData) return res.status(403).json({message: 'В доступе отказано'})
+        return res.json({token: accessToken, user: verifyData})
+
+    } catch (error) {
+        
+    }
+})
 
 router.post('/create-user/', async(req: Request, res:Response) => {
     try {

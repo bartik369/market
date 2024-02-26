@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHook';
-import { createUser } from '../../../store/authSlice';
+import { useSignupUserMutation } from '../../../store/authApi';
 import style from './Auth.module.css'
 
 interface ISignupProps  {
@@ -11,13 +11,13 @@ interface ISignupProps  {
 const Signup: FC<ISignupProps> = ({signinHandler, closeFormHandler}) => {
 
     const dispatch = useAppDispatch()
-    const signupError = useAppSelector((state) => state.auth.error)
     const [passwordType, setPasswordType] = useState(false);
     const [authData, setAuthData] = useState({
         email: '',
         password: '',
         repeatPassword: '',
-    })
+    });
+    const [signupUser, {isLoading}] = useSignupUserMutation()
     const showPassword = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         setPasswordType(passwordType ? false : true);
@@ -30,11 +30,7 @@ const Signup: FC<ISignupProps> = ({signinHandler, closeFormHandler}) => {
                  email: authData.email,
                  password: authData.password
              }
-            await dispatch(createUser(userData))
-
-            if (!signupError) {
-                console.log('gooooood')
-            }
+            await signupUser(userData).unwrap()
          }
     }
 
@@ -42,7 +38,6 @@ const Signup: FC<ISignupProps> = ({signinHandler, closeFormHandler}) => {
         <div className={style.auth}>
             <form className={style.form} action='' onSubmit={create}>
                 <div>ваша почта</div>
-                <div>{signupError && signupError }</div>
                 <input type='text'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                     setAuthData({...authData, email: e.target.value})

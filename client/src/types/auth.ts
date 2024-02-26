@@ -3,7 +3,22 @@ export interface IAuthData {
     password: string;
 }
 
+export interface IUserSignin {
+    token: string;
+    user: {
+        _id: string;
+        email: string;
+        roles: string[];
+        member: string[];
+    }
+}
 export interface IUser {
+        _id: string;
+        email: string;
+        roles: string[];
+        member: string[];
+}
+export interface IUserAuth {
     email: string;
     password: string;
 }

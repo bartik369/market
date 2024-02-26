@@ -15,6 +15,7 @@ const Movie: FC = () => {
   const { id } = params;
   const dispatch = useAppDispatch();
   const actors = useAppSelector((state) => state.actors.list)
+  const loading = useAppSelector((state) => state.movies.loading)
   const [movie, setMovie] = useState<IMovie>();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Movie: FC = () => {
 
   return (
     <>
-      {movie && (
+      {movie ? (
 
         <div className={style.movie}>
           <div className={style["video-layer"]}>
@@ -102,7 +103,7 @@ const Movie: FC = () => {
          
         </div>
 
-      )}
+      ) : <span className={style.loading}>Loading.....</span>}
     </>
   );
 };

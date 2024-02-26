@@ -181,6 +181,15 @@
     }
 }
 
+.loading {
+    position: absolute;
+    color: #d5dbf9;
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @media (max-width: 960px) {
     .movies {
         grid-template-columns: repeat(4, 1fr);

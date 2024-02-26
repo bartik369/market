@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const TokenSchema = new mongoose.Schema({
     user: {
-        // type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
     },
     refreshToken: {

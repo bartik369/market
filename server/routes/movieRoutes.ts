@@ -3,6 +3,7 @@ import MovieModel from '../models/media/movie';
 import multer from 'multer';
 
 const router = express.Router();
+
 const moviePoster = multer.diskStorage({
     destination: function(req, res, cb) {
         cb(null, './uploads/movies/')
