@@ -84,21 +84,20 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
             process.env.JWT_REFRESH_SECRET,
             {expiresIn: '1d'}
         );
-        
+    
         const existToken = await Token.findOne({user: user._id});
 
         if (existToken) {
             console.log(existToken)
-            const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {
+            const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {$set:{'refreshToken': refreshToken}})
+            await updateTokenData.save()
+        } else {
+            const tokenData = await Token.create({
+                user: user._id,
                 refreshToken: refreshToken,
             });
-            await updateTokenData.save()
+            await tokenData.save()
         }
-        const tokenData = await Token.create({
-            user: user._id,
-            refreshToken: refreshToken,
-        });
-        await tokenData.save()
 
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true, 
