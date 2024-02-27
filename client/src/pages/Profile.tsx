@@ -6,7 +6,7 @@ const Profile: FC = () => {
     const user = useAppSelector(state => state.auth.user);
     const {data: profile} = useProfileUserQuery(user._id)
 
-    console.log(user)
+    console.log('render profile')
 
     return (
         <div>

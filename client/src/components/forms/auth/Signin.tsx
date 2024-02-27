@@ -19,7 +19,7 @@ const Signin:FC<ISigninProps> = ({signupHandler, closeFormHandler}) => {
         email: '',
         password: '',
     });
-    const [signinUser, { isLoading }] = useSigninUserMutation()
+    const [signinUser, { isLoading, error }] = useSigninUserMutation()
 
     const showPassword = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -28,9 +28,14 @@ const Signin:FC<ISigninProps> = ({signupHandler, closeFormHandler}) => {
 
     const login = async (e: {preventDefault: () => void; }) => {
         e.preventDefault()
-        if (authData) {
-              const userData = await signinUser(authData).unwrap()
-              dispatch(setCredentials(userData))
+        try {
+            if (authData) {
+                const userData = await signinUser(authData).unwrap()
+                dispatch(setCredentials(userData))
+                closeFormHandler()
+          }
+        } catch (error) {
+            console.log(error)
         }
     };
 

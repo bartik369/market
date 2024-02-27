@@ -1,5 +1,6 @@
 import { IUser } from '../types/auth';
 import { apiSlice } from "./apiSlice";
+import { createApi } from '@reduxjs/toolkit/query';
 import { setCredentials } from './authSlice';
 
 export const authApi = apiSlice.injectEndpoints({
@@ -10,8 +11,6 @@ export const authApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: {...credentials}
             }),
-            transformResponse:(result: {data: {user: IUser}}) => 
-            result.data.user
         }),
         signinUser:builder.mutation({
             query: credentials => ({

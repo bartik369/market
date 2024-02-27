@@ -5,8 +5,6 @@ import { setCredentials, logOut } from "./authSlice";
 import { useAppDispatch } from '../hooks/reduxHook';
 import axios from 'axios';
 import ENV from "../env.config";
-import { redirect } from 'react-router-dom';
-
 
 const baseQuery = fetchBaseQuery({
   baseUrl: ENV.API_URL,

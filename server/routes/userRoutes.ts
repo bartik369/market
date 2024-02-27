@@ -108,7 +108,9 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
         const existToken = await Token.findOne({user: user._id});
 
         if (existToken) {
-            const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {$set:{'refreshToken': refreshToken}})
+            const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {
+                refreshToken: refreshToken
+            })
             await updateTokenData.save()
         } else {
             const tokenData = await Token.create({
@@ -139,12 +141,9 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
 router.get('/verify-token/', async(req: Request, res: Response) => {
     try {
         const accessToken = req.cookies.accessToken;
-
-        if (!accessToken) return res.status(403).json({message: 'В доступе отказано'})
-        const verifyData = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET as string);
+        const verifyData = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
 
         if (!verifyData) return res.status(403).json({message: 'В доступе отказано'})
-        console.log(verifyData)
         return res.json({token: accessToken, user: verifyData})
 
     } catch (error) {

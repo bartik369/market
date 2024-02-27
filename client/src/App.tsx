@@ -16,11 +16,8 @@ import Profile from "./pages/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
 import Admin from "./pages/Admin";
 
-
 const App: FC = () => {
-  const user = useAppSelector((state) => state.auth.user);
-  const token = useAppSelector((state) => state.auth.token);
-  const validateAccessToken = useValidateAccessToken()
+  const validateAccessToken = useValidateAccessToken();
 
   useEffect(() => {
     const verifyAccessToken = async () => {
@@ -30,8 +27,11 @@ const App: FC = () => {
       
       } 
     }
-    !token && verifyAccessToken()
-  }, [token])
+    verifyAccessToken()
+  }, [])
+
+  console.log("App")
+  
   
   return (
     <div className={style.wrapper}>
