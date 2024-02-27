@@ -23,14 +23,24 @@ router.post('/auth/', async(req: Request, res:Response) => {
             return res.status(400).json({message: 'Проверьте пароль'})
         }
         const accessToken = jwt.sign(
-            {'user': user}, 
+            {
+                _id: user._id,
+                email: user.email,
+                roles: user.roles,
+                member: user.member,
+            },  
             process.env.JWT_ACCESS_SECRET,
-            {expiresIn: '20s'}
+            {expiresIn: '30m'}
         );
         const refreshToken = jwt.sign(
-            {'user': user}, 
+            {
+                _id: user._id,
+                email: user.email,
+                roles: user.roles,
+                member: user.member,
+            }, 
             process.env.JWT_REFRESH_SECRET,
-            {expiresIn: '1d'}
+            {expiresIn: '18d'}
         );
         const token = await Token.findOne({user: user._id});
 
@@ -47,10 +57,10 @@ router.post('/auth/', async(req: Request, res:Response) => {
             httpOnly: true, 
             sameSite: 'none',
             secure: true, 
-            maxAge: 24 * 60 * 60 * 1000 
+            maxAge: 18 * 24 * 60 * 60 * 1000 
         });
         res.cookie('accessToken', accessToken, {
-            maxAge: 1 * 20 * 1000,
+            maxAge: 30 * 60 * 1000,
             httpOnly: true,
             secure: true,
             sameSite: 'none',
@@ -75,20 +85,29 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
         if (!user) return res.status(401).json({message: 'net avtorizacii'});
 
         const accessToken = jwt.sign(
-            {'user': user}, 
+            {
+                _id: user._id,
+                email: user.email,
+                roles: user.roles,
+                member: user.member,
+            }, 
             process.env.JWT_ACCESS_SECRET,
-            {expiresIn: '20s'}
+            {expiresIn: '30m'}
         );
         const refreshToken = jwt.sign(
-            {'user': user}, 
+            {
+                _id: user._id,
+                email: user.email,
+                roles: user.roles,
+                member: user.member,
+            }, 
             process.env.JWT_REFRESH_SECRET,
-            {expiresIn: '1d'}
+            {expiresIn: '18d'}
         );
     
         const existToken = await Token.findOne({user: user._id});
 
         if (existToken) {
-            console.log(existToken)
             const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {$set:{'refreshToken': refreshToken}})
             await updateTokenData.save()
         } else {
@@ -103,10 +122,10 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
             httpOnly: true, 
             sameSite: 'none',
             secure: true, 
-            maxAge: 24 * 60 * 60 * 1000 
+            maxAge: 18 * 24 * 60 * 60 * 1000 
         });
         res.cookie('accessToken', accessToken, {
-            maxAge: 1 * 20 * 1000,
+            maxAge: 30 * 60 * 1000,
             httpOnly: true,
             secure: true,
             sameSite: 'none',
@@ -125,6 +144,7 @@ router.get('/verify-token/', async(req: Request, res: Response) => {
         const verifyData = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET as string);
 
         if (!verifyData) return res.status(403).json({message: 'В доступе отказано'})
+        console.log(verifyData)
         return res.json({token: accessToken, user: verifyData})
 
     } catch (error) {
@@ -158,14 +178,6 @@ router.post('/create-user/', async(req: Request, res:Response) => {
             return res.status(400).json({message: 'Invalid user data received'})
         }
     } catch (error) {
-    }
-});
-
-router.post('/user/:id', async(req: Request, res:Response) => {
-    try {
-        
-    } catch (error) {
-        
     }
 });
 

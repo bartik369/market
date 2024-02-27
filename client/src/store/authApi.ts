@@ -43,10 +43,10 @@ export const authApi = apiSlice.injectEndpoints({
                 }
             }
         }),
-        profileUser: builder.query<IUser, string>({
+        profileUser: builder.query({
             query: (id) => ({
                 url: `api/profile/${id}`,
-                credentials: 'include',
+                method: 'GET'
             }),
         }),
         

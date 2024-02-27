@@ -39,4 +39,10 @@ export const bornPlace = 'Место рождения'
 
 export const addBtn = 'Добавить'
 
+// roles
+
+export const USER = 'USER';
+export const ADMIN = 'ADMIN';
+export const EDITOR = 'EDITOR';
+
 

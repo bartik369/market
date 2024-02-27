@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "./hooks/reduxHook";
+import { useAppSelector } from "./hooks/reduxHook";
 import { logOut } from "./store/authSlice";
+import * as contentConst from '../src/utils/constants/content';
+import PrivateRoutes from "./routes/PrivateRoutes";
 import Home from "./pages/Home";
 import Header from "./components/header/Header";
 import style from "./App.module.css";
@@ -12,6 +14,7 @@ import AddActor from "./pages/AddActor";
 import Movie from "./pages/Movie";
 import Profile from "./pages/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
+import Admin from "./pages/Admin";
 
 
 const App: FC = () => {
@@ -39,7 +42,12 @@ const App: FC = () => {
             <Route path="/movies/:id" element={<Movie />} />
             <Route path="/add-movie" element={<AddMovie />} />
             <Route path="/add-actor" element={<AddActor />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route element={<PrivateRoutes allowedRoles={[contentConst.USER]} />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+            <Route element={<PrivateRoutes allowedRoles={[contentConst.ADMIN]} />}>
+              <Route path="/admin" element={<Admin />} />
+            </Route>
           </Routes>
         <Footer />
     </div>
