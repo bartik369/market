@@ -35,6 +35,11 @@ export const actorGender = 'Пол';
 export const actorGenre = 'Жанры';
 export const bornPlace = 'Место рождения'
 
+export const signinTitle = 'Войти в кабинет';
+export const signupTitle = 'Регистрация';
+export const email = 'почта';
+export const password = 'пароль';
+
 //buttons
 
 export const addBtn = 'Добавить'

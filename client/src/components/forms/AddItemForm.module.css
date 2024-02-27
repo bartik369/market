@@ -20,7 +20,7 @@
 
 /* before */
 
-input[type='text'],
+input,
 textarea,
 select {
     /* background-color: #1e1f24;
@@ -36,11 +36,11 @@ select {
     cursor: pointer;
 }
 
-input[type='text'] {
+input {
     padding: 10px 6px;
 }
 
-input[type='text']:focus,
+input:focus,
 textarea:focus,
 select:focus {
     outline: none;
