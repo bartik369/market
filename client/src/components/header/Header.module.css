@@ -47,8 +47,9 @@
 }
 
 .search-icon {
-    color: rgb(236, 236, 236);
+    color: rgb(255, 255, 255);
     cursor: pointer;
+    font-size: 18px;
 }
 
 .search-icon:hover {
@@ -79,4 +80,6 @@
 .bars {
     color: #ffffff;
     margin-left: 20px;
+    cursor: pointer;
+    font-size: 18px;
 }

@@ -8,7 +8,8 @@ export const menuItemsData = [
 
   export const profileMenuData = [
     {id: 1, title: 'Профиль', url: '/profile'},
-    {id: 2, title: 'Админка', url: '/admin'},
+    {id: 2, title: 'Избранное', url: ''},
+    {id: 3, title: 'Админка', url: '/admin'},
   ];
 
   export const footerMenu1 = [

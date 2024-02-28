@@ -1,11 +1,10 @@
-import { email } from './../../client/src/utils/constants/content';
-import { IAccessToken, IUserDecoded } from './../types/types';
+import { IUserDecoded } from './../types/types';
 import express, {Request, Response} from 'express';
 import User from '../models/user/User';
 import Token from '../models/user/Token';
 import Password from '../models/user/Password';
 import bcrypt from 'bcrypt';
-import jwt, {Secret, JwtPayload} from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -31,7 +30,7 @@ router.post('/auth/', async(req: Request, res:Response) => {
                 member: user.member,
             },  
             process.env.JWT_ACCESS_SECRET,
-            {expiresIn: '25m'}
+            {expiresIn: '30m'}
         );
         const refreshToken = jwt.sign(
             {
@@ -143,7 +142,7 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
                 member: user.member,
             }, 
             process.env.JWT_ACCESS_SECRET,
-            {expiresIn: '25m'}
+            {expiresIn: '30m'}
         );
         const refreshToken = jwt.sign(
             {

@@ -35,6 +35,10 @@ const Header: FC = () => {
     setVisibleSignin(false);
   };
 
+  window.onclick = function() {
+    profileMenu && setProfileMenu(!profileMenu)
+  }
+
   return (
     <>
       <div className={style["nav-area"]}>
@@ -46,7 +50,7 @@ const Header: FC = () => {
             </Link>
           </div>
           <Navbar />
-          <div className={style.right}>
+          <div className={style.right} onClick={e => e.stopPropagation()}>
             <div onClick={() => setVisible(true)} className={style.search}>
               <FontAwesomeIcon
                 className={style["search-icon"]}

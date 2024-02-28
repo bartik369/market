@@ -11,6 +11,7 @@ interface IProfileMenuProps {
     setProfileMenu: (profileMenu: boolean) => void;
     profileMenu: boolean;
 }
+  
 
 const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
   const user = useAppSelector((state) => state.auth.user);
@@ -32,8 +33,8 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
   }
 
   return (
-    <div className={style["profile-menu"]}>
-        <ul>
+    <div className={style['profile-menu']}>
+        <ul className={style.items}>
           {profileMenuData.map((item, index) =>
             !isAdmin && item.url === "/admin" ? null : (
               <li key={index}>
@@ -43,9 +44,10 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
             // icon={item.iconClassName}
           )}
         </ul>
-      <div className={style.logout}>
+      
+      <div className={style.logout} onClick={() => logoutHandler()}>
       <FontAwesomeIcon className={style['logout-icon']} icon={faArrowRightFromBracket} />
-      <button onClick={() => logoutHandler()} className={style['logout-btn']}>выйти</button>
+      <span>выйти</span>
       </div>
     </div>
   );
