@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark} from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
 import { searchMovie, deleteSearch } from '../../store/movieSlice';
-import ENV from '../../env.config';
 import style from './Search.module.css'
 
 interface IVisibleProps {

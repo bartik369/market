@@ -1,3 +1,4 @@
+
 // forms
 export const notFilled = 'Не заполнено'
 export const movieCategory = 'Категория';
@@ -37,12 +38,14 @@ export const bornPlace = 'Место рождения'
 
 export const signinTitle = 'Войти в кабинет';
 export const signupTitle = 'Регистрация';
-export const email = 'почта';
-export const password = 'пароль';
+export const email = 'Почта';
+export const password = 'Пароль';
+export const repeatPassword = 'Повторите пароль';
 
 //buttons
 
 export const addBtn = 'Добавить'
+export const enterBtn = 'Войти'
 
 // roles
 
@@ -50,4 +53,10 @@ export const USER = 'USER';
 export const ADMIN = 'ADMIN';
 export const EDITOR = 'EDITOR';
 
+
+export const havenotAccount = 'Еще нет аккаунта?'
+export const haveAccount = 'Уже есть аккаунт?'
+export const registetText = 'Зарегистрироваться'
+export const login = 'Войти'
+export const register = 'Отправить'
 
