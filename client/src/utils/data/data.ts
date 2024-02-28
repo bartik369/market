@@ -6,6 +6,11 @@ export const menuItemsData = [
     {id: 5, title: 'Profile', url: '/profile'},
   ];
 
+  export const profileMenuData = [
+    {id: 1, title: 'Профиль', url: '/profile'},
+    {id: 2, title: 'Админка', url: '/admin'},
+  ];
+
   export const footerMenu1 = [
     {id: 1, title: 'Регистрация и оплата', url: '#'},
     {id: 2, title: 'Политика приватности', url: '#'},

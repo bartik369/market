@@ -75,3 +75,8 @@
     font-size: 12px;
     cursor: pointer;
 }
+
+.bars {
+    color: #ffffff;
+    margin-left: 20px;
+}

@@ -1,7 +1,7 @@
 import { IUser } from '../types/auth';
 import { apiSlice } from "./apiSlice";
 import { createApi } from '@reduxjs/toolkit/query';
-import { setCredentials } from './authSlice';
+import { logOut, setCredentials } from './authSlice';
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: builder =>({
@@ -22,9 +22,18 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         logoutUser: builder.mutation<void, void>({
             query: () => ({
-                url: 'api/logout',
+                url: 'api/logout/',
+                method: 'POST',
                 credentials: 'include',
-            })
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled
+                    dispatch(logOut(null))
+                } catch (err) {
+                    console.log(err)
+                }
+            }
         }),
         refresh: builder.mutation({
             query:() => ({

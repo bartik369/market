@@ -180,5 +180,18 @@ router.post('/create-user/', async(req: Request, res:Response) => {
     }
 });
 
+router.post('/logout/', async(req: Request, res: Response) => {
+    try {
+        const {cookie} = req.headers;
+        const refreshToken = cookie.split("refreshToken=")[1].split(";")[0];
+        const tokenData = await Token.deleteOne({refreshToken: refreshToken })
+        res.clearCookie('accessToken');
+        res.clearCookie('refreshToken');
+        return res.status(200).json({ message: "Logout success" })
+    } catch (error) {
+        
+    }
+})
+
 
 export default router;

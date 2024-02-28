@@ -1,0 +1,42 @@
+.profile-menu {
+    position: absolute;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #1d1e30;
+    padding: 20px;
+    width: 100px;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background-color: blueviolet;
+    padding: 5px 11px;
+    margin-top: 20px;
+}
+
+.logout span,
+.logout-icon {
+    color: #fff;
+    font-family: inherit;
+    font-size: 11px;
+}
+
+.logout span {
+    margin-left: 5px;
+}
+
+.logout-btn {}
+
+.profile-menu .profile-menu ul li {
+    border-bottom: 1px solid #30354f;
+}
+
+li a {
+    color: #a4aec1;
+    font-family: inherit;
+    font-size: 12px;
+}
