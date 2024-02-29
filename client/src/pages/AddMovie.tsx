@@ -22,7 +22,7 @@ const AddMovie: FC = () => {
     director: '',
     time: '',
     actors: [],
-    raiting: null,
+    rating: null,
   });
 
 

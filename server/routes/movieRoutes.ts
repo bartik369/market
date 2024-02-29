@@ -75,7 +75,7 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
                 director: director,
                 ageCategory: ageCategory,
                 time: time,
-                raiting: 0,
+                rating: 0,
                 actors: actors.split(','),
             });
             await movieData.save()
@@ -85,34 +85,15 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
         }
     }
 )
+router.post('/set-rating', async(req:Request, res:Response) => {
+    try {
+        const {value, id} = req.body;
+        console.log(value)
+        console.log(id)
+    } catch (error) {
+        
+    }
+});
 
-// router.post('/add-movie/', multer({storage: moviePoster}).single('file'),
-//     async (req: Request, res: Response) => {
-//         try {
-//             console.log(req.file)
-//             const {
-//                 titleEn, titleRu, genre, year, country,
-//                  description, director, ageCategory, time, actors} = req.body;
-//             const movieData = new MovieModel({
-//                 titleEn: titleEn,
-//                 titleRu: titleRu,
-//                 // picture: req.file.filename + '-' + extLink + path.extname(req.file.originalname),
-//                 picture: req.file.originalname,
-//                 genre: genre.split(','),
-//                 year: year,
-//                 country: country,
-//                 description: description,
-//                 director: director,
-//                 ageCategory: ageCategory,
-//                 time: time,
-//                 actors: actors.split(','),
-//             })
-//             await movieData.save();
-
-//         } catch (error) {
-//             return error
-//         }
-//     }
-// )
 
 export default router;

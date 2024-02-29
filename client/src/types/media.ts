@@ -22,7 +22,7 @@ export interface IMovie {
     ageCategory: string;
     time: string;
     actors: string[];
-    raiting: number | null;
+    rating: number | null;
 }
 export interface IActor {
     _id?: string;
@@ -41,4 +41,8 @@ export interface IActorExt {
 }
 export interface ISearch {
     search: string;
+}
+export interface IMovieRatind {
+    id: string;
+    value: number;
 }

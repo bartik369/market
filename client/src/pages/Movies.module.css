@@ -188,6 +188,11 @@
     transform: translate(-50%, -50%);
 }
 
+.rating {
+    color: hotpink;
+    font-size: 30px;
+}
+
 @media (max-width: 960px) {
     .movies {
         grid-template-columns: repeat(4, 1fr);

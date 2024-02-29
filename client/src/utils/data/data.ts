@@ -86,3 +86,17 @@ export const yearMedia = [{"id":1,"year":1923},{"id":2,"year":1924},{"id":3,"yea
 {"id":108,"year":2030},{"id":109,"year":2031},{"id":110,"year":2032},{"id":111,"year":2033},
 {"id":112,"year":2034},{"id":113,"year":2035},{"id":114,"year":2036},{"id":115,"year":2037},
 {"id":116,"year":2038},{"id":117,"year":2039}]
+
+
+export const ratingMovie = [
+  {id: 1, value: 1 },
+  {id: 2, value: 2 },
+  {id: 3, value: 3 },
+  {id: 4, value: 4 },
+  {id: 5, value: 5 },
+  {id: 6, value: 6 },
+  {id: 7, value: 7 },
+  {id: 8, value: 8 },
+  {id: 9, value: 9 },
+  {id: 10, value: 10 },
+]

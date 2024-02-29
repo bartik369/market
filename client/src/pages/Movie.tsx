@@ -3,20 +3,22 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getMovie } from "../store/movieSlice";
 import { getMovieActors } from "../store/actorSlice";
-import { IMovie } from "../types/media";
+import { setRating } from "../store/movieSlice";
+import { IMovie, IMovieRatind } from "../types/media";
 import ENV from "../env.config";
 import nonePoster from "../assets/pics/blank_movie.jpg";
 import vignette from "../assets/pics/vignette.png";
 import cinema from "../assets/pics/cinema.jpg"
 import style from "./Movies.module.css";
+import Rating from "../components/rating/Rating";
 
 const Movie: FC = () => {
   const params = useParams();
   const { id } = params;
   const dispatch = useAppDispatch();
-  const actors = useAppSelector((state) => state.actors.list)
-  const loading = useAppSelector((state) => state.movies.loading)
+  const actors = useAppSelector((state) => state.actors.list);
   const [movie, setMovie] = useState<IMovie>();
+  const [visibleRating, setVisibleRating] = useState<boolean>(false)
 
   useEffect(() => {
 
@@ -34,11 +36,26 @@ const Movie: FC = () => {
     }
   }, [movie])
 
+  const sendRating = (value: number) => {
+    
+    if (movie) {
+      const ratingData: IMovieRatind = {
+        id: movie?._id!,
+        value: value,
+      }
+      dispatch(setRating(ratingData)).unwrap()
+    }
+  }
+
 
   return (
     <>
+    {visibleRating && <Rating 
+    setVisibleRating={setVisibleRating} 
+    visibleRating={visibleRating} 
+    sendRating={sendRating}
+    />}
       {movie ? (
-
         <div className={style.movie}>
           <div className={style["video-layer"]}>
             {movie.trailer ? (
@@ -80,6 +97,9 @@ const Movie: FC = () => {
 
                 <div className={style.action}>
                   <button className={style.watch}>Смотреть</button>
+                </div>
+                <div className={style.rating} onClick={() => setVisibleRating(true)}>
+                  {movie.rating}
                 </div>
 
                 <div className={style.cast}>
