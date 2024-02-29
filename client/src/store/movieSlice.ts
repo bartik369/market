@@ -75,7 +75,7 @@ const movieSlice = createSlice({
         deleteSearch: (state, action) => {
             state.search = action.payload;
             state.loading = false;
-        }
+        },
     },
     extraReducers: (builder) => {
         builder

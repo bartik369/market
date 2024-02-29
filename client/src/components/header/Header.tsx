@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FC, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "../navigation/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -16,8 +16,10 @@ const Header: FC = () => {
   const [profileMenu, setProfileMenu] = useState<boolean>(false);
   const [visibleSignin, setVisibleSignin] = useState<boolean>(false);
   const [visibleSignup, setVisibleSignup] = useState<boolean>(false);
-  const token = useAppSelector((state) => state.auth.token);
-  const user = useAppSelector((state) => state.auth.user);
+  const token = useAppSelector(state => state.auth.token);
+  const user = useAppSelector(state => state.auth.user);
+  const location = useLocation();
+  const regEx = location.pathname.match(/\/movies\/[a-zA-Z0-9]/)
 
   const visibleHandler = () => {
     setVisible(!visible);
@@ -41,7 +43,7 @@ const Header: FC = () => {
 
   return (
     <>
-      <div className={style["nav-area"]}>
+      <div className={regEx ? style["nav-absolute"] : style["nav-relative"]}>
         <div className={style.container}>
           <div className={style.logo}>
             <Link to={"/"}>

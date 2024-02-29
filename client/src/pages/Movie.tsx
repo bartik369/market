@@ -19,12 +19,14 @@ const Movie: FC = () => {
   const [movie, setMovie] = useState<IMovie>();
 
   useEffect(() => {
+
     if (id) {
       dispatch(getMovie(id)).then((res) => {
         setMovie(res.payload as IMovie);
-      });
+      })
     }
   }, []);
+  console.log('movie page')
 
   useEffect(() => {
     if (movie) {
@@ -32,7 +34,6 @@ const Movie: FC = () => {
     }
   }, [movie])
 
-  console.log(actors)
 
   return (
     <>
