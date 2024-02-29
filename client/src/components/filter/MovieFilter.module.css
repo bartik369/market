@@ -1,0 +1,13 @@
+.filter {
+    background-color: blueviolet;
+    width: 100%;
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.item {
+    width: fit-content;
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+}

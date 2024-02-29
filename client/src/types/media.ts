@@ -22,6 +22,7 @@ export interface IMovie {
     ageCategory: string;
     time: string;
     actors: string[];
+    raiting: number | null;
 }
 export interface IActor {
     _id?: string;

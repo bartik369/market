@@ -6,6 +6,7 @@ import Movie from './Movie';
 import CategoryMovies from '../components/sort/CategoryMovies';
 import style from './Movies.module.css';
 import MovieItem from '../components/items/MovieItem';
+import MovieFilter from '../components/filter/MovieFilter';
 
 const Movies = () => {
     const movies = useAppSelector((state) => state.movies.list);
@@ -17,6 +18,7 @@ const Movies = () => {
 
     return (
         <div className={style.container}>
+        <MovieFilter />
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
             {movies.map((movie) =>

@@ -40,6 +40,10 @@ const   MovieSchema = new mongoose.Schema({
     actors: {
         type: [],
     },
+    raiting: {
+        type: Number,
+        default: 0,
+    }
 });
 
 const Movie = mongoose.model("Movie", MovieSchema);

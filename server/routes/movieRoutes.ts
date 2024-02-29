@@ -66,7 +66,6 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
             const movieData = new MovieModel({
                 titleEn: titleEn,
                 titleRu: titleRu,
-                // picture: req.file.filename + '-' + extLink + path.extname(req.file.originalname),
                 picture: req.files[0].originalname,
                 trailer: req.files[1].originalname,
                 genre: genre.split(','),
@@ -76,6 +75,7 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
                 director: director,
                 ageCategory: ageCategory,
                 time: time,
+                raiting: 0,
                 actors: actors.split(','),
             });
             await movieData.save()
