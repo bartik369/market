@@ -1,10 +1,18 @@
-import { IMovie, ISearch, IMovieRatind, IMovieAddFavorite } from './../types/media';
+import { 
+    IMovie, 
+    ISearch, 
+    IMovieRatind, 
+    IMovieAddFavorite, 
+    IMovieFavorites, 
+    IExistFavorite } from './../types/media';
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
+import { Action } from '@remix-run/router';
 
 type MovieState = {
     list: IMovie[];
+    favorites: string[]
     search: IMovie[];
     loading: boolean;
     error: null | string;
@@ -12,6 +20,7 @@ type MovieState = {
 
 const initialState:MovieState = {
     list: [],
+    favorites: [],
     search: [],
     loading: false,
     error: null,
@@ -93,6 +102,19 @@ export const addFavorite = createAsyncThunk<unknown, IMovieAddFavorite, {rejectV
         return res.data
     }
 )
+export const getFavorites = createAsyncThunk<IMovieFavorites, IExistFavorite, {rejectValue: String}>(
+    'movie/getFavorites',
+    async function(id, {rejectWithValue}) {
+        const res = await axios.post(`${ENV.API_URL}api/favorites`, id, {
+            headers: { 'Content-Type': 'application/json'},
+        });
+        
+        if (!res) {
+            return rejectWithValue('server error')
+        }
+        return res.data
+    }
+)
 
 
 const movieSlice = createSlice({
@@ -127,6 +149,9 @@ const movieSlice = createSlice({
         .addCase(searchMovie.fulfilled, (state, action) => {
             state.search = action.payload;
             state.loading = false;
+        })
+        .addCase(getFavorites.fulfilled, (state, action) => {
+            state.favorites = action.payload.movies
         })
         .addMatcher(isError, (state, action: PayloadAction<string>) => {
             state.loading = false;

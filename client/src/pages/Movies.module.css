@@ -180,6 +180,27 @@
     background-color: #5b60fb;
     border: none;
     border-radius: 5px;
+    margin-right: 10px;
+}
+
+.action .favorite {
+    color: #fd9941;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.action .favorite:hover {
+    color: #535a7c;
+}
+
+.action .nofavorite {
+    color: #535a7c;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.action .nofavorite:hover {
+    color: #fd9941;
 }
 
 .movie-rating {

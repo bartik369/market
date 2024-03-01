@@ -1,10 +1,12 @@
-import React, { FC, useEffect, useState, useCallback, useRef } from "react";
+import React, { FC, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getMovie, addFavorite } from "../store/movieSlice";
 import { getMovieActors } from "../store/actorSlice";
-import { setRating } from "../store/movieSlice";
-import { IMovie, IMovieRatind, IMovieAddFavorite } from "../types/media";
+import { setRating, getFavorites } from "../store/movieSlice";
+import { IMovie, IMovieRatind, IMovieAddFavorite} from "../types/media";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar} from "@fortawesome/free-solid-svg-icons";
 import ENV from "../env.config";
 import nonePoster from "../assets/pics/blank_movie.jpg";
 import vignette from "../assets/pics/vignette.png";
@@ -16,8 +18,9 @@ const Movie: FC = () => {
   const params = useParams();
   const { id } = params;
   const dispatch = useAppDispatch();
-  const actors = useAppSelector((state) => state.actors.list);
-  const user = useAppSelector((state) => state.auth.user);
+  const actors = useAppSelector(state => state.actors.list);
+  const user = useAppSelector(state => state.auth.user);
+  const favorites = useAppSelector(state => state.movies.favorites)
   const [movie, setMovie] = useState<IMovie>();
   const [visibleRating, setVisibleRating] = useState<boolean>(false);
 
@@ -32,6 +35,9 @@ const Movie: FC = () => {
   useEffect(() => {
     if (movie) {
       dispatch(getMovieActors(movie.actors));
+      dispatch(getFavorites({id: user?._id})).then((res) => {
+        console.log(res.payload)
+      })
     }
   }, [movie]);
 
@@ -111,17 +117,20 @@ const Movie: FC = () => {
 
               <div className={style.action}>
                 <div className={style.watch}>Смотреть</div>
-                <div
-                  className={style["movie-rating"]}
+                <div className={favorites.includes(movie._id as string) 
+                  ? style.favorite 
+                  : style.nofavorite}
+                >
+                  <FontAwesomeIcon 
+                   onClick={() => favoriteHandler(movie._id as string)} 
+                   icon={faStar}
+                  />
+                </div>
+                <div className={style["movie-rating"]}
                   onClick={() => setVisibleRating(true)}
                 >
                   <div className={style.number}>{movie.rating}</div>
                   <div className={style.vote}>Оценить</div>
-                </div>
-                <div className={style.favorite}>
-                  <button onClick={() => favoriteHandler(movie._id as string)}>
-                    add favotite
-                  </button>
                 </div>
               </div>
 

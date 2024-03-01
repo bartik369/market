@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 import { ISearch } from '../../types/media';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark} from "@fortawesome/free-solid-svg-icons";

@@ -50,4 +50,11 @@ export interface IMovieAddFavorite {
     userId: string;
     movieId: string;
 }
+export interface IMovieFavorites {
+    userId: string;
+    movies: string[];
+}
+export interface IExistFavorite {
+    id: string
+}
 

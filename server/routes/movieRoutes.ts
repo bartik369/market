@@ -106,13 +106,51 @@ router.post('/add-favorite', async(req: Request, res:Response) => {
     try {
         const {userId, movieId} = req.body;
         const existRecord = await Favorite.findOne({userId: userId});
-        const existFavotite = await Favorite.findOne({
-            participants: { $all: movieId}
-        })
+        if (!existRecord) {
+            const newRecord = new Favorite({
+                userId: userId,
+                movies: movieId,
+            });
+            await newRecord.save()
+        } else {
+            const existFavotite = await Favorite.findOne({
+                movies: { $all: movieId}
+            })
+            if (existFavotite) {
+                return null
+            } else {
+                const newData = await Favorite.findByIdAndUpdate(existRecord._id, {
+                    $push: { movies: movieId},
+                })
+                await newData.save()
+                return res.json(newData)
+            }
+        }
+    } catch (error) {
+        
+    }
+});
+
+router.post('/favorites', async(req: Request, res: Response) => {
+    try {
+        const {id} = req.body;
+        const favoriteData = await Favorite.findOne({userId: id})
+
+        if (favoriteData) {
+            return res.json(favoriteData)
+        } else {
+            return null
+        }
     } catch (error) {
         
     }
 })
+
+// const enableVisible = await ParticipantsModel.findByIdAndUpdate(
+//     participants._id, {
+//         $push: { visible: creatorId },
+//     }
+// );
 
 
 export default router;
