@@ -47,7 +47,6 @@ router.post('/search-movie/',
 async (req: Request, res:Response) => {
     try {
         const {search} = req.body
-        console.log(req.body.search)
         const movieData = await MovieModel.find(
             {'titleRu': {$options: 'i', $regex: search}})
         return res.json(movieData)
@@ -88,8 +87,15 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
 router.post('/set-rating', async(req:Request, res:Response) => {
     try {
         const {value, id} = req.body;
-        console.log(value)
-        console.log(id)
+        const movieData = await MovieModel.findById(id);
+        
+        if (movieData) {
+            const ratingData = await MovieModel.findByIdAndUpdate(id, {
+                rating: (value + movieData.rating) / 2
+            });
+            await ratingData.save()
+            return res.json(ratingData)
+        }
     } catch (error) {
         
     }

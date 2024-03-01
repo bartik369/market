@@ -156,7 +156,6 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
         );
     
         const existToken = await Token.findOne({user: user._id});
-        console.log(existToken)
 
         if (existToken) {
             const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {

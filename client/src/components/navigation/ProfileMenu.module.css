@@ -5,8 +5,8 @@
     right: 0;
     align-items: center;
     flex-direction: column;
-    background-color: #1d1e30;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 16px 16px 0 rgba(0, 0, 0, 0.25), 0 32px 32px 0 rgba(0, 0, 0, 0.25), 0 64px 64px 0 rgba(0, 0, 0, 0.25);
+    background-color: #14141f;
+    box-shadow: rgba(15, 15, 27, 0.7) 0px 50px 100px -20px, rgba(15, 15, 27, 0.8) 0px 30px 60px -30px;
     padding: 20px;
     width: 140px;
     border-radius: 6px;
