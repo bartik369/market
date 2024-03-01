@@ -46,3 +46,8 @@ export interface IMovieRatind {
     id: string;
     value: number;
 }
+export interface IMovieAddFavorite {
+    userId: string;
+    movieId: string;
+}
+

@@ -14,10 +14,6 @@
 .inner {
     display: flex;
     flex-direction: column;
-    background-color: #14141f;
-    padding: 18px 20px 12px;
-    border-radius: 16px;
-    box-shadow: rgba(7, 7, 10, 0.5) 0px 1px 1px 0px inset, rgba(7, 7, 10, 0.65) 0px 50px 100px -20px, rgba(7, 7, 10, 0.75) 0px 30px 60px -30px;
 }
 
 .inner .title {
@@ -39,13 +35,17 @@
     color: #a4aec1;
     font-family: inherit;
     font-size: 13px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
 .inner .numbers {
     display: flex;
     flex-direction: row;
+    background-color: #14141f;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: rgba(7, 7, 10, 0.5) 0px 1px 1px 0px inset, rgba(7, 7, 10, 0.65) 0px 50px 100px -20px, rgba(7, 7, 10, 0.75) 0px 30px 60px -30px;
 }
 
 .inner .item {

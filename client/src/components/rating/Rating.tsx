@@ -7,7 +7,7 @@ import style from './Rating.module.css';
 
 interface IRatingProps  {
     setVisibleRating: (visibleRating: boolean) => void;
-    sendRating: (value: number) => void;
+    ratingHandler: (value: number) => void;
     visibleRating: boolean;
     movie: IMovie;
 }
@@ -15,7 +15,7 @@ interface IRatingProps  {
 const Rating: FC<IRatingProps> = ({
     setVisibleRating, 
     visibleRating, 
-    sendRating,
+    ratingHandler,
     movie,
 }) => {
 
@@ -26,7 +26,7 @@ const Rating: FC<IRatingProps> = ({
                 <div className={style.en}>{movie.titleEn}</div>
                 <div className={style.numbers}>
                 {ratingMovie.map((item) =>
-                 <div onClick={() => sendRating(item.value)} className={style.item} key={item.id}>{item.value}</div>
+                 <div onClick={() => ratingHandler(item.value)} className={style.item} key={item.id}>{item.value}</div>
                 )}
                 </div>
             </div>

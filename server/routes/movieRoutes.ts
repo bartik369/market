@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
-import MovieModel from '../models/media/movie';
+import Movie from '../models/media/movie';
+import Favorite from '../models/media/favotite';
 import multer from 'multer';
 
 const router = express.Router();
@@ -16,7 +17,7 @@ const moviePoster = multer.diskStorage({
 router.get('/movies/',
 async(req:Request, res:Response) => {
     try {
-        const movieData = await MovieModel.find({});
+        const movieData = await Movie.find({});
 
         if (movieData) {
             return res.json(movieData)
@@ -31,7 +32,7 @@ router.get('/movie/:id',
 async (req: Request, res: Response) => {
     try {
         const {id} = req.params;
-        const movieData = await MovieModel.findOne({_id: id});
+        const movieData = await Movie.findOne({_id: id});
 
         if (movieData) {
             return res.json(movieData)
@@ -47,7 +48,7 @@ router.post('/search-movie/',
 async (req: Request, res:Response) => {
     try {
         const {search} = req.body
-        const movieData = await MovieModel.find(
+        const movieData = await Movie.find(
             {'titleRu': {$options: 'i', $regex: search}})
         return res.json(movieData)
     } catch (error) {
@@ -62,7 +63,7 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
             const {
                 titleEn, titleRu, genre, year, country,
                  description, director, ageCategory, time, actors} = req.body;
-            const movieData = new MovieModel({
+            const movieData = new Movie({
                 titleEn: titleEn,
                 titleRu: titleRu,
                 picture: req.files[0].originalname,
@@ -87,10 +88,10 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
 router.post('/set-rating', async(req:Request, res:Response) => {
     try {
         const {value, id} = req.body;
-        const movieData = await MovieModel.findById(id);
+        const movieData = await Movie.findById(id);
         
         if (movieData) {
-            const ratingData = await MovieModel.findByIdAndUpdate(id, {
+            const ratingData = await Movie.findByIdAndUpdate(id, {
                 rating: (value + movieData.rating) / 2
             });
             await ratingData.save()
@@ -100,6 +101,18 @@ router.post('/set-rating', async(req:Request, res:Response) => {
         
     }
 });
+
+router.post('/add-favorite', async(req: Request, res:Response) => {
+    try {
+        const {userId, movieId} = req.body;
+        const existRecord = await Favorite.findOne({userId: userId});
+        const existFavotite = await Favorite.findOne({
+            participants: { $all: movieId}
+        })
+    } catch (error) {
+        
+    }
+})
 
 
 export default router;

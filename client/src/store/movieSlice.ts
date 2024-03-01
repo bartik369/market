@@ -1,4 +1,4 @@
-import { IMovie, ISearch, IMovieRatind } from './../types/media';
+import { IMovie, ISearch, IMovieRatind, IMovieAddFavorite } from './../types/media';
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
@@ -80,6 +80,20 @@ export const setRating = createAsyncThunk<unknown, IMovieRatind, {rejectValue: S
         return res.data
     }
 )
+export const addFavorite = createAsyncThunk<unknown, IMovieAddFavorite, {rejectValue: String}>(
+    'movie/addFavorite',
+    async function(ratingData, {rejectWithValue}) {
+        const res = await axios.post(`${ENV.API_URL}api/add-favorite`, ratingData, {
+            headers: { 'Content-Type': 'application/json'},
+        });
+        
+        if (!res) {
+            return rejectWithValue('server error')
+        }
+        return res.data
+    }
+)
+
 
 const movieSlice = createSlice({
     name: 'movie',
