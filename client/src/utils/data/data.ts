@@ -11,6 +11,19 @@ export const menuItemsData = [
     {id: 2, title: 'Избранное', url: ''},
     {id: 3, title: 'Админка', url: '/admin'},
   ];
+  export const ratingRangeData = [
+    {id: 1, title: 'больше 6', value: '6'},
+    {id: 2, title: 'больше 7', value: '7'},
+    {id: 3, title: 'больше 8', value: '8'},
+    {id: 4, title: 'больше 9', value: '9'},
+  ];
+  export const yearMovieRageData = [
+    {id: 1, title: '1940-1960', value: '1960'},
+    {id: 2, title: '1960-1980', value: '1980'},
+    {id: 3, title: '1980-2000', value: '2000'},
+    {id: 4, title: '2000-2020', value: '2020'},
+    {id: 5, title: '2020+', value: '2021'},
+  ];
 
   export const footerMenu1 = [
     {id: 1, title: 'Регистрация и оплата', url: '#'},

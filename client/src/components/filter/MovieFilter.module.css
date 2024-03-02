@@ -10,3 +10,9 @@
     display: flex;
     flex-direction: column;
 }
+
+.item .title {
+    color: #fff;
+    font-family: inherit;
+    padding: 10px 0 5px;
+}

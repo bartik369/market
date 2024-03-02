@@ -58,3 +58,10 @@ export interface IExistFavorite {
     id: string
 }
 
+export interface IFilterMovie {
+    category: string;
+    cast: string;
+    year: string;
+    rating: string;
+}
+

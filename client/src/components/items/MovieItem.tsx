@@ -12,10 +12,6 @@ interface MOvieItemProps {
 const MovieItem: FC<MOvieItemProps> = ({ movie }) => {
   const [visible, setVisible] = useState(false);
 
-  function showExtMenu() {
-    setVisible(true);
-  }
-
   return (
     <div
       className={style.wrapper}
@@ -36,8 +32,12 @@ const MovieItem: FC<MOvieItemProps> = ({ movie }) => {
         </div>
       </div>
       <div className={style.title}>
-        <div className={style.ru}>{movie.titleRu}</div>
-        <div className={style.en}> {movie.titleEn}</div>
+        <div className={style.ru}>{movie.titleRu.length > 25 
+        ? `${movie.titleRu.substring(0, 25)}...` 
+        : movie.titleRu}</div>
+        <div className={style.en}> {movie.titleEn.length > 25 
+        ? `${movie.titleEn.substring(0, 25)}...` 
+        : movie.titleEn}</div>
       </div>
     </div>
   );
