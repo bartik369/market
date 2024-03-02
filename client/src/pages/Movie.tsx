@@ -7,6 +7,7 @@ import { setRating, getFavorites } from "../store/movieSlice";
 import { IMovie, IMovieRatind, IMovieAddFavorite} from "../types/media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar} from "@fortawesome/free-solid-svg-icons";
+import * as contentConst from '../utils/constants/content'
 import ENV from "../env.config";
 import nonePoster from "../assets/pics/blank_movie.jpg";
 import vignette from "../assets/pics/vignette.png";
@@ -23,6 +24,7 @@ const Movie: FC = () => {
   const favorites = useAppSelector(state => state.movies.favorites)
   const [movie, setMovie] = useState<IMovie>();
   const [visibleRating, setVisibleRating] = useState<boolean>(false);
+  const [successVote, setSuccessVote] = useState<boolean>(false)
 
   useEffect(() => {
     if (id) {
@@ -48,7 +50,8 @@ const Movie: FC = () => {
         value: value,
       };
       await dispatch(setRating(ratingData)).then((res) => {
-        console.log(res);
+        res.payload && setSuccessVote(true)
+        setTimeout(() => setVisibleRating(false), 2000 )
       });
     }
   };
@@ -70,6 +73,7 @@ const Movie: FC = () => {
           visibleRating={visibleRating}
           ratingHandler={ratingHandler}
           movie={movie as IMovie}
+          successVote={successVote}
         />
       )}
       {movie ? (
@@ -79,9 +83,7 @@ const Movie: FC = () => {
               <video
                 className={style.video}
                 src={`${ENV.API_URL_UPLOADS_MOVIES}${movie.trailer}`}
-                autoPlay
-                muted
-                loop
+                autoPlay muted loop
               ></video>
             ) : (
               <img className={style.cinema} src={cinema} />
@@ -103,7 +105,10 @@ const Movie: FC = () => {
               <div className={style["ext-info"]}>
                 <div className={style.sub}>{movie.year}</div>
                 <div className={style.sub}>{movie.country}</div>
-                <div className={style.sub}>{movie.time}</div>
+                <div className={style.sub}>
+                  {movie.time}
+                  <span>{contentConst.movieMins}</span>
+                </div>
               </div>
               <div className={style["ext-info"]}>
                 <div className={style.category}>
@@ -116,7 +121,7 @@ const Movie: FC = () => {
               <div className={style.description}>{movie.description}</div>
 
               <div className={style.action}>
-                <div className={style.watch}>Смотреть</div>
+                <div className={style.watch}>{contentConst.watch}</div>
                 <div className={favorites.includes(movie._id as string) 
                   ? style.favorite 
                   : style.nofavorite}
@@ -129,11 +134,12 @@ const Movie: FC = () => {
                 <div className={style["movie-rating"]}
                   onClick={() => setVisibleRating(true)}
                 >
-                  <div className={style.number}>{movie.rating}</div>
-                  <div className={style.vote}>Оценить</div>
+                  <div className={style.number}>{movie?.rating?.toFixed(1)}</div>
+                  <div className={style.vote}>{contentConst.vote}</div>
                 </div>
               </div>
 
+              <div className={style['cast-title']}>{contentConst.movieCasts}</div>
               <div className={style.cast}>
                 {actors.map((item) => (
                   <div className={style.item2}>
@@ -153,7 +159,7 @@ const Movie: FC = () => {
           </div>
         </div>
       ) : (
-        <span className={style.loading}>Loading.....</span>
+        <span className={style.loading}>{contentConst.loading}</span>
       )}
     </>
   );

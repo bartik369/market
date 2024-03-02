@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .inner {
@@ -86,4 +87,15 @@
     top: 20px;
     right: 20px;
     background-color: transparent;
+}
+
+.message {
+    color: #fff;
+    font-size: 35px;
+    position: absolute;
+    top: 30%;
+}
+
+.hidden {
+    display: none;
 }

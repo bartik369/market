@@ -9,18 +9,21 @@ interface IRatingProps  {
     setVisibleRating: (visibleRating: boolean) => void;
     ratingHandler: (value: number) => void;
     visibleRating: boolean;
+    successVote: boolean;
     movie: IMovie;
 }
 
 const Rating: FC<IRatingProps> = ({
     setVisibleRating, 
-    visibleRating, 
+    visibleRating,
     ratingHandler,
+    successVote,
     movie,
 }) => {
 
     return (
         <div className={style.rating}>
+            {successVote && <div className={style.message}>Спасибо за Вашу оценку!</div>}
             <div className={style.inner}>
                 <div className={style.ru}>{movie.titleRu}</div>
                 <div className={style.en}>{movie.titleEn}</div>
