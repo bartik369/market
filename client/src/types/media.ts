@@ -13,7 +13,7 @@ export interface IMovie {
     titleEn: string;
     titleRu: string;
     picture: string;
-    trailer: string;
+    trailer?: string;
     genre: string[];
     year: string;
     country: string;

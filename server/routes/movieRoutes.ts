@@ -63,11 +63,12 @@ router.post('/add-movie/', multer({storage: moviePoster}).any(),
             const {
                 titleEn, titleRu, genre, year, country,
                  description, director, ageCategory, time, actors} = req.body;
+
             const movieData = new Movie({
                 titleEn: titleEn,
                 titleRu: titleRu,
                 picture: req.files[0].originalname,
-                trailer: req.files[1].originalname,
+                trailer: req.files[1]?.originalname || '',
                 genre: genre.split(','),
                 year: year,
                 country: country,

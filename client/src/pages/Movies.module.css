@@ -186,7 +186,7 @@
 }
 
 .action .watch {
-    padding: 12px 10px;
+    padding: 12px 14px;
     font-family: inherit;
     font-weight: 300;
     font-size: 12px;
@@ -235,7 +235,6 @@
 .movie-rating .number {
     padding: 6.5px 12px;
     font-family: inherit;
-    /* background-color: #0e0e15; */
     font-size: 20px;
     border: 2px solid #fd9941;
     color: #fd9941;
