@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
 import { getMovies } from '../store/movieSlice';
-import Movie from './Movie';
+import { IFilterMovie } from '../types/media';
 import CategoryMovies from '../components/sort/CategoryMovies';
 import style from './Movies.module.css';
 import MovieItem from '../components/items/MovieItem';
@@ -12,13 +12,27 @@ const Movies = () => {
     const movies = useAppSelector((state) => state.movies.list);
     const dispatch = useAppDispatch();
 
+    const [filterData, setFilterData] = useState<IFilterMovie>({
+        category: [],
+        country: [],
+        year: '',
+        rating: '',
+      });
+
     useEffect(() => {
-        dispatch(getMovies())
-    }, [dispatch]);
+        dispatch(getMovies(filterData))
+    }, [dispatch, filterData]);
+    console.log("movies")
+
+    // disabled
 
     return (
         <div className={style.container}>
-        <MovieFilter />
+        <MovieFilter
+         setFilterData={setFilterData} 
+         filterData={filterData}
+         movies={movies}
+         />
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
             {movies.map((movie) =>

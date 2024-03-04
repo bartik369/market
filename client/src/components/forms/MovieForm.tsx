@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ageItemsData, categoryMovies, yearMedia } from "../../utils/data/data";
 import { coutryList } from "../../utils/data/coutry";
-import { actorsList } from "../../utils/data/actors";
 import { directorsList } from "../../utils/data/directors";
 import {getActors} from '../../store/actorSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/reduxHook'

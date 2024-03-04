@@ -14,11 +14,11 @@ const moviePoster = multer.diskStorage({
       }
 });
 
-router.get('/movies/',
+router.post('/movies/',
 async(req:Request, res:Response) => {
     try {
-        const movieData = await Movie.find({});
-
+        const {category, cast, year, rating} = req.body;
+        const movieData = await Movie.find({})
         if (movieData) {
             return res.json(movieData)
         }
@@ -134,6 +134,8 @@ router.post('/add-favorite', async(req: Request, res:Response) => {
 
 router.post('/favorites', async(req: Request, res: Response) => {
     try {
+        const ip = req.connection.remoteAddress
+        console.log(ip)
         const {id} = req.body;
         const favoriteData = await Favorite.findOne({userId: id})
 

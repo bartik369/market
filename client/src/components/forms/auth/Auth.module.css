@@ -61,14 +61,18 @@
     width: 20px;
 }
 
-input {
+.input-data {
     width: 100%;
-}
-
-.input {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 6px;
+}
+
+.input-data .data {
+    display: flex;
+    align-items: center;
+    width: 100%
 }
 
 .label {

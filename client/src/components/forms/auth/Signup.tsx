@@ -39,9 +39,10 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
       <form className={style.form} action="" onSubmit={create}>
         <span className={style.title}>{contentConst.signupTitle}</span>
         <span className={style.label}>{contentConst.email}</span>
-        <div className={style.input}>
+        <div className={style['input-data']}>
           <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
           <input
+            className={style.data}
             type="text"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setAuthData({ ...authData, email: e.target.value })
@@ -49,7 +50,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
           />
         </div>
         <span className={style.label}>{contentConst.password}</span>
-        <div className={style.input}>
+        <div className={style['input-data']}>
           {passwordType ? (
             <FontAwesomeIcon
               className={style.icon}
@@ -63,14 +64,14 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
               icon={faEye}
             />
           )}
-          <input type={passwordType ? "text" : "password"}
+          <input className={style.data} type={passwordType ? "text" : "password"}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setAuthData({ ...authData, password: e.target.value })
             }
           />
         </div>
         <span className={style.label}>{contentConst.repeatPassword}</span>
-        <div className={style.input}>
+        <div className={style['input-data']}>
           {passwordType ? (
             <FontAwesomeIcon
               className={style.icon}
@@ -84,7 +85,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
               icon={faEye}
             />
           )}
-          <input type={passwordType ? "text" : "password"}
+          <input className={style.data} type={passwordType ? "text" : "password"}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setAuthData({ ...authData, repeatPassword: e.target.value })
             }

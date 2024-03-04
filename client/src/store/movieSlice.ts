@@ -1,6 +1,7 @@
 import { 
     IMovie, 
-    ISearch, 
+    ISearch,
+    IFilterMovie,
     IMovieRatind, 
     IMovieAddFavorite, 
     IMovieFavorites, 
@@ -38,9 +39,11 @@ async function(id,{rejectWithValue}) {
 }
 )
 
-export const getMovies = createAsyncThunk <IMovie[], undefined,{rejectValue: String}>('movie/getMovies',
-async function(_, {rejectWithValue, dispatch}) {
-    const res = await axios.get(`${ENV.API_URL}api/movies`);
+export const getMovies = createAsyncThunk <IMovie[], IFilterMovie,{rejectValue: String}>('movie/getMovies',
+async function(filterData, {rejectWithValue}) {
+    const res = await axios.post(`${ENV.API_URL}api/movies`, filterData, {
+        headers: { 'Content-Type': 'application/json'},
+    });
     
     if (!res.data) {
         return rejectWithValue('server error')

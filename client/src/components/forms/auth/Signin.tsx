@@ -47,16 +47,16 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
       <form className={style.form} action="" onSubmit={login}>
         <span className={style.title}>{contentConst.signinTitle}</span>
         <span className={style.label}>{contentConst.email}</span>
-        <div className={style.input}>
+        <div className={style['input-data']}>
           <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
-          <input type="text"
+          <input className={style.data} type="text"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setAuthData({ ...authData, email: e.target.value })
             }
           />
         </div>
         <span className={style.label}>{contentConst.password}</span>
-        <div className={style.input}>
+        <div className={style['input-data']}>
           {passwordType ? (
             <FontAwesomeIcon
               className={style.icon}
@@ -70,7 +70,7 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
               icon={faEye}
             />
           )}
-          <input type={passwordType ? "text" : "password"}
+          <input className={style.data} type={passwordType ? "text" : "password"}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setAuthData({ ...authData, password: e.target.value })
             }

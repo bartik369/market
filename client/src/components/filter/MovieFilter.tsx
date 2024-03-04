@@ -1,44 +1,42 @@
 import React, { FC, useState, useEffect } from "react";
 import * as contentConst from "../../utils/constants/content";
+import { categoryMovies } from "../../utils/data/data";
+import {coutryList} from '../../utils/data/coutry'
 import { ratingRangeData, yearMovieRageData } from "../../utils/data/data";
-import { getActors } from "../../store/actorSlice";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import { IFilterMovie } from "../../types/media";
+import { IFilterMovie, IMovie } from "../../types/media";
 import style from "./MovieFilter.module.css";
+import DropCategory from "../../hooks/dropdown/DropCategory";
 
-const MovieFilter: FC = () => {
-  const [filterData, setFilterData] = useState<IFilterMovie>({
-    category: "",
-    cast: "",
-    year: "",
-    rating: "",
-  });
-  const dispatch = useAppDispatch();
-  const actors = useAppSelector((state) => state.actors.list);
-  
-  useEffect(() => {
-    dispatch(getActors())
-  }, [])
+interface IMovieFilterProps {
+  setFilterData: (filterData: IFilterMovie) => void;
+  filterData: IFilterMovie;
+  movies: IMovie[];
+}
+
+const MovieFilter: FC<IMovieFilterProps> = ({
+  setFilterData, 
+  filterData,
+  movies,
+}) => {
 
   return (
     <div className={style.filter}>
       <div className={style.item}>
-        <div className={style.title}>{contentConst.movieCategory}</div>
-        <input type="text" />
+        <DropCategory setFilterData={setFilterData} filterData={filterData} />
       </div>
       <div className={style.item}>
-        <div className={style.title}>{contentConst.movieCast}</div>
+        <div className={style.title}>{contentConst.movieCountry}</div>
         <select
           defaultValue=""
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            setFilterData({ ...filterData, cast: e.target.value })
-          }
+          // onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+          //   setFilterData({ ...filterData, cast: e.target.value })
+          // }
         >
           <option value="" disabled>
             {contentConst.select}
           </option>
-          {actors.map((item) => (
-            <option key={item._id}>{item.nameRu}</option>
+          {coutryList.map((item) => (
+            <option>{item.name}</option>
           ))}
         </select>
       </div>
@@ -74,6 +72,9 @@ const MovieFilter: FC = () => {
           ))}
         </select>
       </div>
+      {/* <div className={style.item}><button onClick={() => setFilterData({
+        ...filterData, cast: '', category: '',
+      })}>сбросить</button></div> */}
     </div>
   );
 };

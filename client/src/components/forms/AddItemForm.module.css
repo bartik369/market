@@ -36,8 +36,9 @@ select {
     cursor: pointer;
 }
 
-input {
+.input-data {
     padding: 10px 6px;
+    width: 100%;
 }
 
 input:focus,
