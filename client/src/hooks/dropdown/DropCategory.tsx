@@ -1,6 +1,8 @@
-import React, {useState, useEffect, FC} from 'react';
-import { IFilterMovie } from '../../types/media';
-import {categoryMovies} from '../../utils/data/data'
+import React, {useState, FC} from 'react';
+import { useAppDispatch, useAppSelector } from '../reduxHook';
+import { IFilterMovie, IFilterCategory } from '../../types/media';
+import {categoryMovies} from '../../utils/data/data';
+import { setMovieCategory } from '../../store/movieSlice';
 import style from './DropCategory.module.css'
 
 interface IDropCategoryProps {
@@ -10,34 +12,41 @@ interface IDropCategoryProps {
 const DropCategory: FC<IDropCategoryProps> = ({setFilterData, filterData}) => {
 
     const [isDropdownDisplayed, setIsDropDownDisplayed] = useState<boolean>(false)
-    const [selectedStates, setSelectedState] = useState({})
-  
-    window.onclick = function() {
-      setIsDropDownDisplayed((prevState) => !prevState)
-    }
+    const dispatch = useAppDispatch()
+    const filter = useAppSelector(state => state.movies.filter.category)
+    const [checkedState, setCheckedState] = useState<any>({});
 
-    const myFuc = (id:any, e:any, item:any) => {
-        console.log(e)
-        console.log(item)
-        console.log(id)
+    console.log(filter)
+
+    const dataHandler = (
+        e:React.ChangeEvent<HTMLInputElement>, 
+        id: number, 
+        name: string) => {
+        dispatch(setMovieCategory({id: id, value: name}))
     }
   
     return (
         <>
         <fieldset className={style['state-dropdown']} onClick={(e) => e.stopPropagation()}>
-        <button onClick={() => setIsDropDownDisplayed((prevState) => !prevState)}>select category</button>
+        <button onClick={() => setIsDropDownDisplayed(!isDropdownDisplayed)}>select category</button>
         {isDropdownDisplayed && 
         <div className={style.panel}>
             {categoryMovies.map((item) => (
-                <fieldset>
-                <input onChange={(e) => myFuc(item.id, e.target.checked, item.name)} 
+                <div className={style.data}>
+                 <input onChange={(e) => {
+                     dataHandler(e, item.id, item.name)
+                     setCheckedState({...checkedState,
+                        [item.id]: e.target.checked
+                    })
+                 }} 
                 id={item.name} 
                 type='checkbox'
-                // checked={selectedStates[item.value]}
+                checked={checkedState[item.id]}
                  />
                 <label htmlFor={item.value}>{item.name}</label>
-                </fieldset>
-            ))}
+                </div>
+            ))
+            }
         </div>}
         </fieldset></>
     );

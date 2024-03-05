@@ -58,15 +58,14 @@ export interface IExistFavorite {
     id: string
 }
 
-export interface IMovieFilterCategory {
-    id: boolean;
-    value: string;
-}
-
 export interface IFilterMovie {
-    category: IMovieFilterCategory[];
+    category: IFilterCategory[];
     country: string[];
     year: string;
     rating: string;
+}
+export interface IFilterCategory {
+    id: number;
+    value: string;
 }
 

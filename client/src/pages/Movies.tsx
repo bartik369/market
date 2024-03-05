@@ -19,10 +19,13 @@ const Movies = () => {
         rating: '',
       });
 
+
     useEffect(() => {
         dispatch(getMovies(filterData))
     }, [dispatch, filterData]);
-    console.log("movies")
+
+
+    console.log(filterData)
 
     // disabled
 

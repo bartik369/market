@@ -1,15 +1,17 @@
+import { actorAge } from './../utils/constants/content';
 import { 
     IMovie, 
     ISearch,
     IFilterMovie,
     IMovieRatind, 
     IMovieAddFavorite, 
-    IMovieFavorites, 
-    IExistFavorite } from './../types/media';
+    IMovieFavorites,
+    IExistFavorite,
+} from './../types/media';
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
-import { Action } from '@remix-run/router';
+import { isTemplateLiteral } from 'typescript';
 
 type MovieState = {
     list: IMovie[];
@@ -17,6 +19,7 @@ type MovieState = {
     search: IMovie[];
     loading: boolean;
     error: null | string;
+    filter: IFilterMovie
 };
 
 const initialState:MovieState = {
@@ -25,6 +28,12 @@ const initialState:MovieState = {
     search: [],
     loading: false,
     error: null,
+    filter:{
+        category: [],
+        country: [],
+        year:'',
+        rating: '',
+    }
 };
 
 export const getMovie = createAsyncThunk<IMovie, string>('movie/getMovie', 
@@ -128,6 +137,9 @@ const movieSlice = createSlice({
             state.search = action.payload;
             state.loading = false;
         },
+        setMovieCategory: (state, action) => {
+            state.filter.category.push(action.payload)
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -163,7 +175,7 @@ const movieSlice = createSlice({
     }
 })
 export default movieSlice.reducer;
-export const {deleteSearch} = movieSlice.actions
+export const {deleteSearch, setMovieCategory} = movieSlice.actions
 
 const isError = (action:AnyAction) => {
     return action.type.endsWith('rejected')
