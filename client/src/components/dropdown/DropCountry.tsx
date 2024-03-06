@@ -18,7 +18,7 @@ const DropCountry: FC = () => {
         {isDropdownDisplayed && 
         <div className={style['panel-country']}>
             {countryList.map((item) => (
-                <div className={style.data}>
+                <label className={style['check-container']}>
                  <input onChange={(e) => {
                      dispatch(setMovieCountry(item.name))
                      setCheckedState({...checkedState,
@@ -29,8 +29,10 @@ const DropCountry: FC = () => {
                 type='checkbox'
                 checked={checkedState[item.id]}
                  />
-                <label htmlFor={item.value}>{item.name}</label>
-                </div>
+                 <span className={style.checkmark}></span>
+                 <label htmlFor={item.value}>{item.name}</label>
+                 </label>
+                
             ))
             }
         </div>}
