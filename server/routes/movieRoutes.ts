@@ -20,6 +20,8 @@ async(req:Request, res:Response) => {
         const {category,country, year, rating} = req.body;
         console.log(category)
         console.log(country)
+        console.log(year)
+        console.log(rating)
         const movieData = await Movie.find({})
         if (movieData) {
             return res.json(movieData)

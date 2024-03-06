@@ -6,7 +6,7 @@
 
 .item {
     width: fit-content;
-    margin-right: 40px;
+    margin-right: 25px;
     display: flex;
     flex-direction: column;
 }

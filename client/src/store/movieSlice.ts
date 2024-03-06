@@ -27,8 +27,8 @@ const initialState:MovieState = {
     filter:{
         category: [],
         country: [],
-        year:'',
-        rating: '',
+        year:[],
+        rating: [],
     },
     loading: false,
     error: null,
@@ -141,6 +141,12 @@ const movieSlice = createSlice({
         setMovieCountry: (state, action) => {
             state.filter.country.push(action.payload)
         },
+        setMovieYear: (state, action) => {
+            state.filter.year.push(action.payload)
+        },
+        setMovieRating: (state, action) => {
+            state.filter.rating.push(action.payload)
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -176,7 +182,13 @@ const movieSlice = createSlice({
     }
 })
 export default movieSlice.reducer;
-export const {deleteSearch, setMovieCategory, setMovieCountry} = movieSlice.actions
+export const {
+    deleteSearch, 
+    setMovieCategory, 
+    setMovieCountry,
+    setMovieYear,
+    setMovieRating,
+} = movieSlice.actions
 
 const isError = (action:AnyAction) => {
     return action.type.endsWith('rejected')

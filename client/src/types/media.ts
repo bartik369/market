@@ -61,8 +61,8 @@ export interface IExistFavorite {
 export interface IFilterMovie {
     category: IFilterCategory[];
     country: string[];
-    year: string;
-    rating: string;
+    year: string [];
+    rating: string [];
 }
 export interface IFilterCategory {
     id: number;

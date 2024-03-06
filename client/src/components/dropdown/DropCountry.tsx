@@ -2,6 +2,9 @@ import React, {useState, FC, useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
 import { countryList } from '../../utils/data/coutry';
 import { setMovieCountry } from '../../store/movieSlice';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp} from "@fortawesome/free-solid-svg-icons";
+import * as contentConst from '../../utils/constants/content'
 import style from './Drop.module.css'
 
 const DropCountry: FC = () => {
@@ -14,9 +17,15 @@ const DropCountry: FC = () => {
     return (
         <>
         <fieldset className={style['state-dropdown']} onClick={(e) => e.stopPropagation()}>
-        <button onClick={() => setIsDropDownDisplayed(!isDropdownDisplayed)}>select category</button>
+        <button className={style['drop-btn']} onClick={() => setIsDropDownDisplayed(!isDropdownDisplayed)}>
+        <span>{contentConst.movieCountry}</span>
+           {isDropdownDisplayed 
+           ? <FontAwesomeIcon icon={faArrowUp} />
+           : <FontAwesomeIcon icon={faArrowDown} />
+           }
+        </button>
         {isDropdownDisplayed && 
-        <div className={style['panel-country']}>
+        <div className={style['panel-five']}>
             {countryList.map((item) => (
                 <label className={style['check-container']}>
                  <input onChange={(e) => {
