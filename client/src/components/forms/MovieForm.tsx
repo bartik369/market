@@ -4,7 +4,7 @@ import { IMovie } from "../../types/media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ageItemsData, categoryMovies, yearMedia } from "../../utils/data/data";
-import { coutryList } from "../../utils/data/coutry";
+import { countryList } from "../../utils/data/coutry";
 import { directorsList } from "../../utils/data/directors";
 import {getActors} from '../../store/actorSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/reduxHook'
@@ -95,7 +95,7 @@ const MovieForm: FC<IMovieProps> = ({
             <option value="" disabled>
               {contentConst.select}
             </option>
-            {coutryList.map((item) => (
+            {countryList.map((item) => (
               <option key={item.id}>{item.name}</option>
             ))}
           </select>

@@ -1,0 +1,46 @@
+.panel {
+    position: absolute;
+    background-color: #1c1c2b;
+    padding: 20px;
+    z-index: 9;
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
+    grid-auto-rows: 30px;
+}
+
+.panel .data {
+    display: flex;
+    align-items: center;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.panel .data input {
+    margin-right: 6px;
+}
+
+.panel-country {
+    position: absolute;
+    background-color: #1c1c2b;
+    padding: 20px;
+    z-index: 9;
+    display: grid;
+    grid-template-columns: repeat(5, 120px);
+    grid-auto-rows: 30px;
+}
+
+.panel-country .data {
+    display: flex;
+    align-items: center;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.panel-country .data input {
+    margin-right: 6px;
+    accent-color: green;
+}

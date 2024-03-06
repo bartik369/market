@@ -17,7 +17,9 @@ const moviePoster = multer.diskStorage({
 router.post('/movies/',
 async(req:Request, res:Response) => {
     try {
-        const {category, cast, year, rating} = req.body;
+        const {category,country, year, rating} = req.body;
+        console.log(category)
+        console.log(country)
         const movieData = await Movie.find({})
         if (movieData) {
             return res.json(movieData)

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { categoryMovies, genderItemsData } from "../../utils/data/data";
 import * as contentConst from "../../utils/constants/content";
-import { coutryList } from "../../utils/data/coutry";
+import { countryList } from "../../utils/data/coutry";
 import style from "./AddItemForm.module.css";
 import { IActor } from "../../types/media";
 
@@ -66,7 +66,7 @@ const ActorForm: FC<IActorProps> = ({
             <option value="" disabled>
               {contentConst.select}
             </option>
-            {coutryList.map((item) => (
+            {countryList.map((item) => (
               <option key={item.id}>{item.name}</option>
             ))}
           </select>

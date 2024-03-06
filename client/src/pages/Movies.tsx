@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
 import { getMovies } from '../store/movieSlice';
 import { IFilterMovie } from '../types/media';
-import CategoryMovies from '../components/sort/CategoryMovies';
 import style from './Movies.module.css';
 import MovieItem from '../components/items/MovieItem';
 import MovieFilter from '../components/filter/MovieFilter';
 
 const Movies = () => {
-    const movies = useAppSelector((state) => state.movies.list);
+    const movies = useAppSelector(state => state.movies.list);
+    const filter = useAppSelector(state => state.movies.filter)
     const dispatch = useAppDispatch();
 
     const [filterData, setFilterData] = useState<IFilterMovie>({
@@ -21,8 +21,8 @@ const Movies = () => {
 
 
     useEffect(() => {
-        dispatch(getMovies(filterData))
-    }, [dispatch, filterData]);
+        dispatch(getMovies(filter))
+    }, [dispatch, filter]);
 
 
     console.log(filterData)

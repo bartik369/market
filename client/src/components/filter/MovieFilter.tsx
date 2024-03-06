@@ -1,11 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
 import * as contentConst from "../../utils/constants/content";
-import { categoryMovies } from "../../utils/data/data";
-import {coutryList} from '../../utils/data/coutry'
 import { ratingRangeData, yearMovieRageData } from "../../utils/data/data";
 import { IFilterMovie, IMovie } from "../../types/media";
 import style from "./MovieFilter.module.css";
-import DropCategory from "../../hooks/dropdown/DropCategory";
+import DropCategory from "../dropdown/DropCategory";
+import DropCountry from "../dropdown/DropCountry";
 
 interface IMovieFilterProps {
   setFilterData: (filterData: IFilterMovie) => void;
@@ -22,23 +21,12 @@ const MovieFilter: FC<IMovieFilterProps> = ({
   return (
     <div className={style.filter}>
       <div className={style.item}>
-        <DropCategory setFilterData={setFilterData} filterData={filterData} />
+      <div className={style.title}>{contentConst.movieCategory}</div>
+        <DropCategory/>
       </div>
       <div className={style.item}>
-        <div className={style.title}>{contentConst.movieCountry}</div>
-        <select
-          defaultValue=""
-          // onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-          //   setFilterData({ ...filterData, cast: e.target.value })
-          // }
-        >
-          <option value="" disabled>
-            {contentConst.select}
-          </option>
-          {coutryList.map((item) => (
-            <option>{item.name}</option>
-          ))}
-        </select>
+      <div className={style.title}>{contentConst.movieCountry}</div>
+      <DropCountry/>
       </div>
       <div className={style.item}>
         <div className={style.title}>{contentConst.movieYear}</div>

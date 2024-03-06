@@ -66,6 +66,6 @@ export interface IFilterMovie {
 }
 export interface IFilterCategory {
     id: number;
-    value: string;
+    value: boolean;
 }
 

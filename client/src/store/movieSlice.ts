@@ -1,4 +1,3 @@
-import { actorAge } from './../utils/constants/content';
 import { 
     IMovie, 
     ISearch,
@@ -11,7 +10,6 @@ import {
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
-import { isTemplateLiteral } from 'typescript';
 
 type MovieState = {
     list: IMovie[];
@@ -19,21 +17,21 @@ type MovieState = {
     search: IMovie[];
     loading: boolean;
     error: null | string;
-    filter: IFilterMovie
+    filter: IFilterMovie;
 };
 
 const initialState:MovieState = {
     list: [],
     favorites: [],
     search: [],
-    loading: false,
-    error: null,
     filter:{
         category: [],
         country: [],
         year:'',
         rating: '',
-    }
+    },
+    loading: false,
+    error: null,
 };
 
 export const getMovie = createAsyncThunk<IMovie, string>('movie/getMovie', 
@@ -139,7 +137,10 @@ const movieSlice = createSlice({
         },
         setMovieCategory: (state, action) => {
             state.filter.category.push(action.payload)
-        }
+        },
+        setMovieCountry: (state, action) => {
+            state.filter.country.push(action.payload)
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -175,7 +176,7 @@ const movieSlice = createSlice({
     }
 })
 export default movieSlice.reducer;
-export const {deleteSearch, setMovieCategory} = movieSlice.actions
+export const {deleteSearch, setMovieCategory, setMovieCountry} = movieSlice.actions
 
 const isError = (action:AnyAction) => {
     return action.type.endsWith('rejected')
