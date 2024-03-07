@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import * as contentConst from "../../utils/constants/content";
 import {IMovie } from "../../types/media";
 import style from "./MovieFilter.module.css";
 import DropCategory from "../dropdown/DropCategory";

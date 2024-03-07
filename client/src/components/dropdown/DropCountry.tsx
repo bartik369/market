@@ -5,6 +5,7 @@ import { setMovieCountry } from '../../store/movieSlice';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import * as contentConst from '../../utils/constants/content'
+import { useFilterModal } from '../../hooks/modalHook';
 import style from './Drop.module.css'
 
 const DropCountry: FC = () => {
@@ -14,7 +15,6 @@ const DropCountry: FC = () => {
     const movies = useAppSelector(state => state.movies.list)
     const [checkedState, setCheckedState] = useState<any>([]);
     const myRef = useRef<HTMLButtonElement>(null)
-
 
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {

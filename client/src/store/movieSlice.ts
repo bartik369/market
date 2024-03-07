@@ -136,7 +136,10 @@ const movieSlice = createSlice({
             state.loading = false;
         },
         setMovieCategory: (state, action) => {
-            state.filter.category.push(action.payload)
+            // state.filter.category.push(action.payload)
+            state.filter.category.includes(action.payload)
+            ? state.filter.category = state.filter.category.filter(el => el !== action.payload)
+            : state.filter.category.push(action.payload)
         },
         setMovieCountry: (state, action) => {
             state.filter.country.push(action.payload)

@@ -19,8 +19,6 @@ const DropCategory: FC = () => {
         const checkIfClickedOutside = (e:any) => {
           if (myRef.current && !myRef.current.contains(e.target)) {
             setDropdownDisplay(false) 
-          } else {
-              console.log('dfdd')
           }
         }
         document.addEventListener("click", checkIfClickedOutside)
