@@ -7,14 +7,20 @@ import { setMovieCategory } from '../../store/movieSlice';
 import * as contentConst from '../../utils/constants/content';
 import style from './Drop.module.css'
 
+
 const DropCategory: FC = () => {
 
     const [dropdownDisplay, setDropdownDisplay] = useState<boolean>(false)
     const dispatch = useAppDispatch()
-    const movies = useAppSelector(state => state.movies.list)
     const [checkedState, setCheckedState] = useState<any>([]);
     const myRef = useRef<HTMLButtonElement>(null)
+    const existGenre = useAppSelector(state => state.movies.properties.genre);
+    console.log(existGenre)
+    // console.log(existCountry)
+    // console.log(existYear)
+    // console.log(existRating)
 
+  
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
           if (myRef.current && !myRef.current.contains(e.target)) {
@@ -25,7 +31,7 @@ const DropCategory: FC = () => {
         return () => {
           document.removeEventListener("click", checkIfClickedOutside)
         }
-      }, [])
+      }, []);
   
     return (
         <>
@@ -52,6 +58,7 @@ const DropCategory: FC = () => {
                 id={item.name} 
                 type='checkbox'
                 checked={checkedState[item.id]}
+                disabled={existGenre.includes(item.name) === false}
                  />
                  <span className={style.checkmark}></span>
                 <label htmlFor={item.value}>{item.name}</label>

@@ -15,6 +15,7 @@ const DropCountry: FC = () => {
     const movies = useAppSelector(state => state.movies.list)
     const [checkedState, setCheckedState] = useState<any>([]);
     const myRef = useRef<HTMLButtonElement>(null)
+    const existCountry = useAppSelector(state => state.movies.properties.country);    const existRating = useAppSelector(state => state.movies.properties.rating);
 
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
@@ -53,6 +54,8 @@ const DropCountry: FC = () => {
                 id={item.name} 
                 type='checkbox'
                 checked={checkedState[item.id]}
+                disabled={existCountry.includes(item.name) === false}
+
                  />
                  <span className={style.checkmark}></span>
                  <label htmlFor={item.value}>{item.name}</label>

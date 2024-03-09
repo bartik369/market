@@ -40,13 +40,13 @@ const App: FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/movies/:id" element={<Movie />} />
-            <Route path="/add-movie" element={<AddMovie />} />
-            <Route path="/add-actor" element={<AddActor />} />
             <Route element={<PrivateRoutes allowedRoles={[contentConst.USER]} />}>
               <Route path="/profile" element={<Profile />} />
             </Route>
             <Route element={<PrivateRoutes allowedRoles={[contentConst.ADMIN]} />}>
               <Route path="/admin" element={<Admin />} />
+              <Route path="/add-movie" element={<AddMovie />} />
+              <Route path="/add-actor" element={<AddActor />} />
             </Route>
           </Routes>
         <Footer />

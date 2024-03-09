@@ -62,10 +62,17 @@ export interface IFilterMovie {
     category:  string[];
     country: string[];
     year: string [];
-    rating: string [];
+    rating: number [];
 }
 export interface IFilterCategory {
     id: number;
     value: boolean;
+}
+
+export interface IMovieProperties {
+    genre: string[];
+    country: string[];
+    year: string[];
+    rating: number[];
 }
 

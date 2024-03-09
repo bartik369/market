@@ -1,9 +1,10 @@
 export const menuItemsData = [
     {id: 1, title: 'Главная', url: '/'},
     {id: 2, title: 'Фильмы', url: '/movies'},
-    {id: 3, title: 'Add Media', url: '/add-movie'},
-    {id: 4, title: 'Add Actor', url: '/add-actor'},
-    {id: 5, title: 'Profile', url: '/profile'},
+    {id: 3, title: 'Новинки', url: '/movies'},
+    {id: 4, title: 'Журнал', url: '/movies'},
+    {id: 5, title: 'TV', url: '/movies'},
+    {id: 5, title: 'Выбор редакции', url: '/movies'},
   ];
 
   export const profileMenuData = [
@@ -12,17 +13,31 @@ export const menuItemsData = [
     {id: 3, title: 'Админка', url: '/admin'},
   ];
   export const ratingRangeData = [
-    {id: 1, title: 'больше 6', value: '6'},
+    {id: 1, title: 'меньше 7', value: '6'},
     {id: 2, title: 'больше 7', value: '7'},
     {id: 3, title: 'больше 8', value: '8'},
-    {id: 4, title: 'больше 9', value: '9'},
   ];
   export const yearMovieRageData = [
-    {id: 1, title: '1940-1960', value: '1960'},
-    {id: 2, title: '1960-1980', value: '1980'},
-    {id: 3, title: '1980-2000', value: '2000'},
-    {id: 4, title: '2000-2020', value: '2020'},
-    {id: 5, title: '2020+', value: '2021'},
+    {id: 1, title: '2024', value: '2024'},
+    {id: 2, title: '2023', value: '2023'},
+    {id: 3, title: '2022', value: '2022'},
+    {id: 4, title: '2021', value: '2021'},
+    {id: 5, title: '2020', value: '2020'},
+    {id: 6, title: '2019', value: '2019'},
+    {id: 7, title: '2018', value: '2018'},
+    {id: 8, title: '2017', value: '2017'},
+    {id: 9, title: '2016', value: '2016'},
+    {id: 10, title: '2015', value: '2015'},
+    {id: 11, title: '2014', value: '2014'},
+    {id: 12, title: '2013', value: '2013'},
+    {id: 13, title: '2012', value: '2012'},
+    {id: 14, title: '2011', value: '2011'},
+    {id: 15, title: '2000-2010', value: '9'},
+    {id: 16, title: '1990-2000', value: '10'},
+    {id: 17, title: '1980-1990', value: '90'},
+    {id: 18, title: '1970-1980', value: '80'},
+    {id: 19, title: '1960-1970', value: '70'},
+    {id: 20, title: 'до 1960', value: '60'},
   ];
 
   export const footerMenu1 = [

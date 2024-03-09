@@ -18,13 +18,15 @@ router.post('/movies/',
 async(req:Request, res:Response) => {
     try {
         const {category, country, year, rating} = req.body;
-        console.log(category)
+        console.log(req.body)
 
         if (category.length > 0 || country.length > 0 || year.length > 0 || rating.length > 0) {
             const filterData = await Movie.find({
-                genre: { $in: category },
-                // country: { $in: country },
+             genre: { $in: category },
+            // country: { $in: country },
+             // year: { $in: year },
             })
+            
             if (filterData) return res.json(filterData)
         } else {
             const movieData = await Movie.find({})
@@ -139,6 +141,42 @@ router.post('/add-favorite', async(req: Request, res:Response) => {
         
     }
 });
+
+router.get('/properties', async(req: Request, res: Response) => {
+    try {
+       const genre:string[] = []
+       const country:string[] = []
+       const year:string[] = []
+       const rating:number[] = []
+       const movieData = await Movie.find({})
+       movieData.map((item) => {
+        item.genre.map((el) => {
+            genre.push(el)
+        })
+        country.push(item.country)
+        year.push(item.year)
+        rating.push(item.rating)
+       })
+       const genreArr = genre.filter((value, index, self) => {
+           return self.indexOf(value) === index
+       })
+       const countryArr = country.filter((value, index, self) => {
+        return self.indexOf(value) === index
+       })
+       const yearArr = year.filter((value, index, self) => {
+        return self.indexOf(value) === index
+       })
+       const ratingArr = rating.filter((value, index, self) => {
+        return self.indexOf(value) === index
+       })
+
+       return res.json({genreArr, countryArr, yearArr, ratingArr})
+    } catch (error) {
+        
+    }
+})
+
+
 
 router.post('/favorites', async(req: Request, res: Response) => {
     try {

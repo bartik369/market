@@ -14,6 +14,9 @@ const DropYear: FC = () => {
     const movies = useAppSelector(state => state.movies.list)
     const [checkedState, setCheckedState] = useState<any>([]);
     const myRef = useRef<HTMLButtonElement>(null)
+    const existYear = useAppSelector(state => state.movies.properties.year);
+
+    console.log(existYear)
 
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
@@ -40,7 +43,7 @@ const DropYear: FC = () => {
            </div>
         </button>
         {dropdownDisplay && 
-        <div className={style['panel-one']} onClick={e => e.stopPropagation()}>
+        <div className={style['panel-three']} onClick={e => e.stopPropagation()}>
             {yearMovieRageData.map((item) => (
                 <label className={style['check-container']}>
                  <input onChange={(e) => {
@@ -52,6 +55,8 @@ const DropYear: FC = () => {
                 id={item.title} 
                 type='checkbox'
                 checked={checkedState[item.id]}
+                disabled={existYear.includes(item.value) === false}
+
                  />
                  <span className={style.checkmark}></span>
                  <label htmlFor={item.value}>{item.title}</label>

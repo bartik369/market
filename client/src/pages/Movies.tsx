@@ -10,6 +10,7 @@ const Movies = () => {
     const movies = useAppSelector(state => state.movies.list);
     const filter = useAppSelector(state => state.movies.filter)
     const dispatch = useAppDispatch();
+
     useEffect(() => {
         dispatch(getMovies(filter))
     }, [dispatch, filter]);
@@ -18,9 +19,7 @@ const Movies = () => {
 
     return (
         <div className={style.container}>
-        <MovieFilter
-         movies={movies}
-         />
+        <MovieFilter />
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
             {movies.map((movie) =>

@@ -6,6 +6,7 @@ import {
     IMovieAddFavorite, 
     IMovieFavorites,
     IExistFavorite,
+    IMovieProperties,
 } from './../types/media';
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
@@ -18,6 +19,7 @@ type MovieState = {
     loading: boolean;
     error: null | string;
     filter: IFilterMovie;
+    properties: IMovieProperties;
 };
 
 const initialState:MovieState = {
@@ -30,6 +32,13 @@ const initialState:MovieState = {
         year:[],
         rating: [],
     },
+    properties: {
+        genre: [],
+        country: [],
+        year:[],
+        rating: [],
+    },
+
     loading: false,
     error: null,
 };
@@ -37,6 +46,20 @@ const initialState:MovieState = {
 export const getMovie = createAsyncThunk<IMovie, string>('movie/getMovie', 
 async function(id,{rejectWithValue}) {
     const res = await axios.get(`${ENV.API_URL}api/movie/${id}`)
+
+    if (!res.data) {
+        return rejectWithValue('server error')
+    }
+    // return response.data
+    return (await res.data) as IMovie
+}
+)
+
+export const getProperties = createAsyncThunk<any, undefined, {rejectValue: String}>(
+'movie/getProperties', 
+async function(_,{rejectWithValue}) {
+    const res = await axios.get(`${ENV.API_URL}api/properties/`)
+    console.log(res.data, 'reeees')
 
     if (!res.data) {
         return rejectWithValue('server error')
@@ -141,13 +164,19 @@ const movieSlice = createSlice({
             : state.filter.category.push(action.payload)
         },
         setMovieCountry: (state, action) => {
-            state.filter.country.push(action.payload)
+            state.filter.country.includes(action.payload)
+            ? state.filter.country = state.filter.country.filter(el => el !== action.payload)
+            : state.filter.country.push(action.payload)
         },
         setMovieYear: (state, action) => {
-            state.filter.year.push(action.payload)
+            state.filter.year.includes(action.payload)
+            ? state.filter.year = state.filter.year.filter(el => el !== action.payload)
+            : state.filter.year.push(action.payload)
         },
         setMovieRating: (state, action) => {
-            state.filter.rating.push(action.payload)
+            state.filter.rating.includes(action.payload)
+            ? state.filter.rating = state.filter.rating.filter(el => el !== action.payload)
+            : state.filter.rating.push(action.payload)
         },
     },
     extraReducers: (builder) => {
@@ -159,6 +188,35 @@ const movieSlice = createSlice({
         .addCase(getMovies.fulfilled, (state, action) => {
             state.list = action.payload;
             state.loading = false;
+            // let genreArr: string[] = []
+            // let countryArr: string[] = []
+            // let yearArr: string[] = []
+            // let ratingArr: number[] = []
+            
+            // action.payload.map((movie) => {
+            //     movie.genre.map((item) => {
+            //         genreArr.push(item)
+            //     });
+            //     countryArr.push(movie.country);
+            //     yearArr.push(movie.year);
+            //     ratingArr.push(movie.rating!)
+            // })
+            // const getUnique = (arr: string[]) => {
+            //     const sortArr = arr.filter((value, index, self) => {
+            //         return self.indexOf(value) === index
+            //     })
+            //     return sortArr
+            // }
+            // const getUniqueRating = (arr: number[]) => {
+            //     const sortArr = arr.filter((value, index, self) => {
+            //         return self.indexOf(value) === index
+            //     })
+            //     return sortArr
+            // }
+            // state.properties.genre = getUnique(genreArr);
+            // state.properties.country = getUnique(countryArr);
+            // state.properties.year = getUnique(yearArr);
+            // state.properties.rating = getUniqueRating(ratingArr)
         })
         .addCase(createMovie.pending, (state) => {
             state.error = null;
@@ -176,6 +234,12 @@ const movieSlice = createSlice({
         })
         .addCase(getFavorites.fulfilled, (state, action) => {
             state.favorites = action.payload.movies
+        })
+        .addCase(getProperties.fulfilled, (state, action) => {
+            state.properties.genre = action.payload.genreArr;
+            state.properties.country = action.payload.countryArr;
+            state.properties.year = action.payload.yearArr;
+            state.properties.rating = action.payload.ratingArr;
         })
         .addMatcher(isError, (state, action: PayloadAction<string>) => {
             state.loading = false;
