@@ -63,7 +63,7 @@ const PreviewActor: FC<IPreviewActorProps> = ({
         <div className={style.result}>
         <span className={style.prevText}>{contentConst.actorGenre}</span>
         <div className={style['genre-list']}>
-            {actor?.extInfo.genre.map((item) => 
+            {actor && actor.extInfo.genre.map((item) => 
             <div>{item}</div>
             )}
         </div>

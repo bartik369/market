@@ -1,6 +1,9 @@
-.header-nav {
+.menu-wrapper {
+    background-color: midnightblue;
     margin-left: 15px;
 }
+
+.header-nav {}
 
 .menu-items {
     list-style-type: none;

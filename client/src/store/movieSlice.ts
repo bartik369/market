@@ -5,6 +5,7 @@ import {
     IMovieRatind, 
     IMovieAddFavorite, 
     IMovieFavorites,
+    IMovieTitles,
     IExistFavorite,
     IMovieProperties,
 } from './../types/media';
@@ -14,6 +15,7 @@ import ENV from "../env.config";
 
 type MovieState = {
     list: IMovie[];
+    movie: IMovieTitles;
     favorites: string[]
     search: IMovie[];
     loading: boolean;
@@ -22,8 +24,13 @@ type MovieState = {
     properties: IMovieProperties;
 };
 
+
 const initialState:MovieState = {
     list: [],
+    movie: {
+        titleRu: '',
+        titleEn: '',
+    },
     favorites: [],
     search: [],
     filter:{
@@ -181,6 +188,10 @@ const movieSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+        .addCase(getMovie.fulfilled, (state, action) => {
+            state.movie.titleRu = action.payload.titleRu
+            state.movie.titleEn = action.payload.titleEn
+        })
         .addCase(getMovies.pending, (state) => {
             state.loading = true;
             state.error = null;
@@ -188,35 +199,6 @@ const movieSlice = createSlice({
         .addCase(getMovies.fulfilled, (state, action) => {
             state.list = action.payload;
             state.loading = false;
-            // let genreArr: string[] = []
-            // let countryArr: string[] = []
-            // let yearArr: string[] = []
-            // let ratingArr: number[] = []
-            
-            // action.payload.map((movie) => {
-            //     movie.genre.map((item) => {
-            //         genreArr.push(item)
-            //     });
-            //     countryArr.push(movie.country);
-            //     yearArr.push(movie.year);
-            //     ratingArr.push(movie.rating!)
-            // })
-            // const getUnique = (arr: string[]) => {
-            //     const sortArr = arr.filter((value, index, self) => {
-            //         return self.indexOf(value) === index
-            //     })
-            //     return sortArr
-            // }
-            // const getUniqueRating = (arr: number[]) => {
-            //     const sortArr = arr.filter((value, index, self) => {
-            //         return self.indexOf(value) === index
-            //     })
-            //     return sortArr
-            // }
-            // state.properties.genre = getUnique(genreArr);
-            // state.properties.country = getUnique(countryArr);
-            // state.properties.year = getUnique(yearArr);
-            // state.properties.rating = getUniqueRating(ratingArr)
         })
         .addCase(createMovie.pending, (state) => {
             state.error = null;

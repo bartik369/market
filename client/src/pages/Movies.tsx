@@ -15,14 +15,12 @@ const Movies = () => {
         dispatch(getMovies(filter))
     }, [dispatch, filter]);
 
-    // disabled
-
     return (
         <div className={style.container}>
         <MovieFilter />
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
-            {movies.map((movie) =>
+            {movies && movies.map((movie) =>
             <div key={movie._id}>
             <Link to={`/movies/${movie._id}`}>
                 <MovieItem movie={movie} />

@@ -157,7 +157,7 @@ const MovieForm: FC<IMovieProps> = ({
         </div>
       </div>
       <div className={style.genre}>
-        {movie.genre.map((item) => (
+        {movie && movie.genre.map((item) => (
           <div className={style.item}>
             {item}
             <FontAwesomeIcon
@@ -180,7 +180,7 @@ const MovieForm: FC<IMovieProps> = ({
             <option value="" disabled>
               {contentConst.select}
             </option>
-            {actors.map((item) => (
+            {actors && actors.map((item) => (
               <option key={item._id}>{item.nameRu}</option>
             ))}
           </select>
@@ -256,7 +256,7 @@ const MovieForm: FC<IMovieProps> = ({
         </div>
       </div>
       <div className={style.genre}>
-        {movie.actors.map((item) => (
+        {movie && movie.actors.map((item) => (
           <div className={style.item}>
             {item}
             <FontAwesomeIcon

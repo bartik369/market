@@ -10,6 +10,7 @@ import Signup from "../forms/auth/Signup";
 import { useAppSelector } from "../../hooks/reduxHook";
 import style from "./Header.module.css";
 import ProfileMenu from "../navigation/ProfileMenu";
+import Breadcrumbs from "../breadcrumbs/Breadcrumbs";
 
 const Header: FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -78,6 +79,10 @@ const Header: FC = () => {
               />}
           </div>
         </div>
+        <div className={style.breadcrumbs}>
+        <Breadcrumbs />
+        </div>
+      
       </div>
       {visible && <Search visible={visible} visibleHandler={visibleHandler} />}
       {visibleSignin && (

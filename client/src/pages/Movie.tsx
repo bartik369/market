@@ -112,7 +112,7 @@ const Movie: FC = () => {
               </div>
               <div className={style["ext-info"]}>
                 <div className={style.category}>
-                  {movie.genre.map((item) => (
+                  {movie && movie.genre.map((item) => (
                     <div className={style.item}>{item}</div>
                   ))}
                 </div>
@@ -141,7 +141,7 @@ const Movie: FC = () => {
 
               <div className={style['cast-title']}>{contentConst.movieCasts}</div>
               <div className={style.cast}>
-                {actors.map((item) => (
+                {actors && actors.map((item) => (
                   <div className={style.item2}>
                     <div className={style.portrait}>
                       <img

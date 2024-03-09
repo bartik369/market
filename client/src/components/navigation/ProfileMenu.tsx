@@ -20,7 +20,7 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
   const [logoutUser] = useLogoutUserMutation()
 
   useEffect(() => {
-    user?.roles?.map((role) => {
+    user && user.roles?.map((role) => {
       if (role === "ADMIN") {
         setIsAdmin(true);
       }

@@ -7,6 +7,14 @@
     margin: 0 auto;
 }
 
+.breadcrumbs {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    height: 40px;
+    margin: 0 auto;
+}
+
 .nav-absolute {
     width: 100%;
     z-index: 998;

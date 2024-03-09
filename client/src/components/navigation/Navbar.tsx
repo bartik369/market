@@ -4,7 +4,6 @@ import {menuItemsData} from '../../utils/data/data'
 import { Link } from 'react-router-dom';
 
 const Navbar:FC = () => {
-    console.log(menuItemsData)
     return (
         <nav className={style['header-nav']}>
             <ul className={style['menu-items']}>

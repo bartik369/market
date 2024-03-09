@@ -24,6 +24,10 @@ export interface IMovie {
     actors: string[];
     rating: number | null;
 }
+export interface IMovieTitles {
+    titleRu: string;
+    titleEn: string;
+}
 export interface IActor {
     _id?: string;
     nameEn: string;

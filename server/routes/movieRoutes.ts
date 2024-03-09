@@ -18,7 +18,6 @@ router.post('/movies/',
 async(req:Request, res:Response) => {
     try {
         const {category, country, year, rating} = req.body;
-        console.log(req.body)
 
         if (category.length > 0 || country.length > 0 || year.length > 0 || rating.length > 0) {
             const filterData = await Movie.find({
@@ -26,7 +25,7 @@ async(req:Request, res:Response) => {
             // country: { $in: country },
              // year: { $in: year },
             })
-            
+
             if (filterData) return res.json(filterData)
         } else {
             const movieData = await Movie.find({})
@@ -180,8 +179,6 @@ router.get('/properties', async(req: Request, res: Response) => {
 
 router.post('/favorites', async(req: Request, res: Response) => {
     try {
-        const ip = req.connection.remoteAddress
-        console.log(ip)
         const {id} = req.body;
         const favoriteData = await Favorite.findOne({userId: id})
 

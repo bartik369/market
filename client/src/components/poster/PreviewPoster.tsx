@@ -66,7 +66,7 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
            <div className={style.block}>
            <span className={style.prevText}>{contentConst.movieCategory}</span>
            <div className={style['genre-column']}>
-               {movie.genre.map((item) => 
+               {movie && movie.genre.map((item) => 
                <span className={style['list-item']}>{item}</span>)
                }
          </div>
@@ -78,7 +78,7 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
           <div className={style.block}>
           <span className={style.prevText}>{contentConst.movieCast}</span>
           <div className={style['genre-column']}>
-              {movie.actors.map((item) => 
+              {movie && movie.actors.map((item) => 
               <span className={style['list-item']}>{item}</span>)
               }
           </div>
