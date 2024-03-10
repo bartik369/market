@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { useAppSelector } from "./hooks/reduxHook";
 import { logOut } from "./store/authSlice";
 import * as contentConst from '../src/utils/constants/content';
@@ -15,6 +15,7 @@ import Movie from "./pages/Movie";
 import Profile from "./pages/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
 import Admin from "./pages/Admin";
+import Breadcrumbs from "./components/breadcrumbs/Breadcrumbs";
 
 const App: FC = () => {
   const validateAccessToken = useValidateAccessToken();
@@ -38,7 +39,7 @@ const App: FC = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/movies" element={<Movies />} />
+            <Route path="/movies"element={<Movies />}/>
             <Route path="/movies/:id" element={<Movie />} />
             <Route element={<PrivateRoutes allowedRoles={[contentConst.USER]} />}>
               <Route path="/profile" element={<Profile />} />
