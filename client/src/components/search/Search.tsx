@@ -19,7 +19,6 @@ const Search:FC<IVisibleProps> = ({visible, visibleHandler}) => {
     });
     const dispatch = useAppDispatch();
     const searchResult = useAppSelector((state) => state.movies.search)
-    console.log(searchResult)
 
     useEffect(() => {
         if (text.search.length) {
