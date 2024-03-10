@@ -2,6 +2,11 @@
     display: flex;
     align-items: center;
     font-family: inherit;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
 }
 
 .breadcrumbs .last-link {

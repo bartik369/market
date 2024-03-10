@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import { useLocation, Link, useNavigate} from 'react-router-dom';
 import { useAppSelector } from '../../hooks/reduxHook';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,13 +7,13 @@ import { pageTitles } from '../../utils/data/data';
 import style from './Breadcrumbs.module.css'
 
 const Breadcrumbs: FC = () => {
-    const movieTitles = useAppSelector(state => state.movies.movie.titleRu)
+    const movieTitles = useAppSelector(state => state.movies.movie.titleRu);
     const location = useLocation();
-    let navigate = useNavigate();
-    const regEx = location.pathname.match(/\/movies\/[a-zA-Z0-9]/)
+    const navigate = useNavigate();
+    const regEx = location.pathname.match(/\/movies\/[a-zA-Z0-9]/);
     const pathnames = location.pathname.split("/").filter(x => x);
    return (
-  <div className={style.breadcrumbs}>
+  <div className={pathnames.length === 0 ? style.hidden : style.breadcrumbs}>
     {pathnames.length > 0 
     ? (<div className={style.home}>
         <div className={style['home-icon']}><FontAwesomeIcon icon={faHome}/></div>

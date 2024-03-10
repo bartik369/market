@@ -6,6 +6,7 @@ import actorRoutes from './routes/actorRoutes';
 import movieRoutes from './routes/movieRoutes';
 import userRoutes from './routes/userRoutes';
 import profileRoutes from './routes/profileRoutes';
+import adminRoutes from './routes/adminRoutes'
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import { createServer } from 'http';
@@ -25,7 +26,7 @@ app.use(cors({
 }));
 app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
-app.use('/api', actorRoutes, movieRoutes, userRoutes, profileRoutes)
+app.use('/api', actorRoutes, movieRoutes, userRoutes, profileRoutes, adminRoutes)
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 server.listen(PORT, () => {

@@ -20,13 +20,13 @@ const Movies = () => {
         <MovieFilter />
         <div className={style.movies}>
             {/* <CategoryMovies /> */}
-            {movies && movies.map((movie) =>
+            {movies ? movies.map((movie) =>
             <div key={movie._id}>
             <Link to={`/movies/${movie._id}`}>
                 <MovieItem movie={movie} />
             </Link>
             </div>
-            )}
+            ): <div>Loading........</div>}
         </div>
         </div>
     );

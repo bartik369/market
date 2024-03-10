@@ -3,15 +3,20 @@ import moviesReducer from './movieSlice';
 import actorReducer from './actorSlice';
 import authReducer from './authSlice';
 import { apiSlice } from './apiSlice';
+import { adminApi } from './adminApi';
 
 const store = configureStore({
     reducer: {
+      [adminApi.reducerPath]: adminApi.reducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
       movies: moviesReducer,
       actors: actorReducer,
       auth: authReducer,
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware),
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(
+      apiSlice.middleware, 
+      adminApi.middleware,
+    ),
     devTools: true,
 })
 
