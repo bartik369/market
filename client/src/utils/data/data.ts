@@ -128,3 +128,11 @@ export const ratingMovie = [
   {id: 9, value: 9 },
   {id: 10, value: 10 },
 ]
+export const pageTitles = {
+  'movies': 'Фильмы', 
+  'profile': 'Профиль',
+  'admin': 'Админ панель',
+  'add-movie': 'Добавить фильм',
+  'add-actor': 'Добавить актера',
+
+}

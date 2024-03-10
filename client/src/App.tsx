@@ -15,7 +15,6 @@ import Movie from "./pages/Movie";
 import Profile from "./pages/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
 import Admin from "./pages/Admin";
-import Breadcrumbs from "./components/breadcrumbs/Breadcrumbs";
 
 const App: FC = () => {
   const validateAccessToken = useValidateAccessToken();
