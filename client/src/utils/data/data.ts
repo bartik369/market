@@ -134,5 +134,5 @@ export const pageTitles = {
   'admin': 'Админ панель',
   'add-movie': 'Добавить фильм',
   'add-actor': 'Добавить актера',
-
+  'edit-slider': 'Слайдер',
 }

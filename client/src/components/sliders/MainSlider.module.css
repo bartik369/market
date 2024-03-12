@@ -1,27 +1,110 @@
 .carousel__container {
-    max-width: 1300px;
     margin: auto;
+    position: relative;
+}
+
+.btn_prev {
+    left: 0;
+    margin-left: 5px;
+    box-shadow: rgba(13, 13, 21, 0.5) 0px 7px 29px 0px;
+}
+
+.btn_next {
+    right: 0;
+    margin-right: 5px;
+    box-shadow: rgba(13, 13, 21, 0.5) 0px 7px 29px 0px;
+}
+
+.btn_next,
+.btn_prev {
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+    height: 70px;
+    width: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    background-color: #15151c;
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+    transition: all .6s ease-in-out;
+}
+
+.btn_next:hover,
+.btn_prev:hover {
+    background-color: #5b60fb;
+}
+
+.chevron {
+    font-size: 20px;
 }
 
 .carousel__slider {
-    padding-left: 25%;
-    padding-right: 25%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .carousel__inner-slide {
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    left: 10px;
-    top: 10px;
-    background-color: rgb(165, 149, 49);
+    position: relative;
+}
+
+.carousel__inner-slide .description {
+    position: absolute;
+    width: 400px;
+    bottom: 10%;
+    left: 30px;
+    color: #cbd5e8;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px;
+    z-index: 9;
+}
+
+.white {
+    color: #fff;
 }
 
 .carousel__inner-slide img {
-    width: 100%;
-    height: 400px;
+    width: calc(100% - 20px);
+    border-radius: 12px;
+    margin: 10px;
     object-fit: cover;
+    box-shadow: rgba(13, 13, 21, 0.24) 0px 3px 8px;
 }
 
-.carousel__inner-slide .slide {
-    border: 1px solid rgb(121, 8, 81);
+.nav-btn {
+    text-align: center;
+}
+
+.carousel__inner-slide video {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel__inner-slide .watch {
+    padding: 12px 20px;
+    background-color: #4b50d4;
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    z-index: 9;
+}
+
+.carousel__inner-slide::after {
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    background: rgb(19, 19, 30);
+    background: linear-gradient(0deg, rgba(19, 19, 30, 0.9738489145658263) 2%, rgba(19, 19, 30, 0.7343531162464986) 16%, rgba(19, 19, 30, 0.4038209033613446) 30%, rgba(19, 19, 30, 0.2567620798319328) 35%);
 }

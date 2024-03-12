@@ -15,6 +15,7 @@ import Movie from "./pages/Movie";
 import Profile from "./pages/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
 import Admin from "./pages/Admin";
+import EditMainSlider from "./pages/EditMainSlider";
 
 const App: FC = () => {
   const validateAccessToken = useValidateAccessToken();
@@ -47,6 +48,7 @@ const App: FC = () => {
               <Route path="/admin" element={<Admin />} />
               <Route path="/add-movie" element={<AddMovie />} />
               <Route path="/add-actor" element={<AddActor />} />
+              <Route path="/edit-slider" element={<EditMainSlider />} />
             </Route>
           </Routes>
         <Footer />

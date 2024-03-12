@@ -80,3 +80,13 @@ export interface IMovieProperties {
     rating: number[];
 }
 
+export interface ISlider {
+    movieTitle?: string;
+    _id?: string;
+    movieId?: string;
+    movieLink: string;
+    media: string;
+    description: string;
+
+}
+

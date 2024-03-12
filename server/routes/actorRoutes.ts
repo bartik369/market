@@ -41,7 +41,8 @@ const actorPortrait = multer.diskStorage({
   }
   )
 
-  router.post('/add-actor/', multer({ storage: actorPortrait }).single('file'),
+  router.post('/add-actor/', 
+  multer({ storage: actorPortrait }).single('file'),
    async (req: Request, res:Response) => {
      try {
       const {nameEn, nameRu, link, birthday, country, city, height, gender, genre} = req.body;

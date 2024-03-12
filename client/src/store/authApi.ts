@@ -1,6 +1,5 @@
 import { IUser } from '../types/auth';
 import { apiSlice } from "./apiSlice";
-import { createApi } from '@reduxjs/toolkit/query';
 import { logOut, setCredentials } from './authSlice';
 
 export const authApi = apiSlice.injectEndpoints({
