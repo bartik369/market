@@ -2,6 +2,8 @@ import React, {FC, useState, useEffect} from 'react';
 import { ISlider } from '../types/media';
 import { useAddSlideMutation, useGetSlidesQuery } from '../store/adminApi';
 import style from './EditMainSlider.module.css'
+import EditSliderForm from '../components/forms/EditSliderForm';
+import SlidersList from '../components/sliders/SlidersList';
 
 const EditMainSlider: FC = () => {
     const [slider, setSlider] = useState<ISlider>({
@@ -15,9 +17,11 @@ const EditMainSlider: FC = () => {
     const [addSlide] = useAddSlideMutation();
     const [file, setFile] = useState<string | Blob>('');
     const [prevImg, setPrevImg] = useState<string | null>('');
+    const [modalSlider, setModalSlider] = useState<boolean>(false)
     const {data: slides} = useGetSlidesQuery()
 
-    const sliderHandler = () => {
+    const sliderHandler = (e: { preventDefault: () => void; }) => {
+        e.preventDefault()
         const formData = new FormData();
         type sliderKey = keyof typeof slider._id;
         Object.keys(slider).forEach((key) => {
@@ -27,31 +31,53 @@ const EditMainSlider: FC = () => {
         addSlide(formData)
 
     }
+    const resetFormHandler = (e: { preventDefault: () => void; }) => {
+        e.preventDefault()
+        setSlider({
+            _id: '',
+            movieTitle: '',
+            movieId: '',
+            movieLink: '',
+            media: '',
+            description: '',
+        });
+        setPrevImg(null);
+    }
+    const modalHandler = () => {
+        setModalSlider(!modalSlider);
+        setSlider({
+            _id: '',
+            movieTitle: '',
+            movieId: '',
+            movieLink: '',
+            media: '',
+            description: '',
+        });
+        setPrevImg(null);
+    }
 
     return (
         <div className={style.container}>
-        <div>title film</div>
-           <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSlider({
-               ...slider,  movieTitle: e.target.value.trim()
-           })}
-           type="text" />
-           <div>description</div>
-           <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSlider({
-               ...slider, description: e.target.value.trim()
-           })}
-           />
-           <div>slide</div>
-           <input 
-           type="file" 
-           name="file"
-           id="upload"
-           onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
-            e.target.files && setFile(e.target.files[0]);
-            e.target.files && setPrevImg(URL.createObjectURL(e.target.files[0]))
-           }}
-           />
-           <button onClick={() => sliderHandler()}>Добавить сладер</button>
-           <img src={prevImg!} alt="" />
+            <div className={style.container__inner}>
+                <div className={style.add}>
+                <button onClick={() => setModalSlider(!modalSlider)}>
+                добавить новый слайдер
+            </button>
+                </div>
+            <SlidersList />
+            {modalSlider &&
+            <EditSliderForm
+            slider={slider}
+            setSlider={setSlider}
+            prevImg={prevImg}
+            setPrevImg={setPrevImg}
+            setFile={setFile}
+            sliderHandler={sliderHandler}
+            modalHandler={modalHandler}
+            resetFormHandler={resetFormHandler}
+            />
+            }
+            </div>
         </div>
     );
 };

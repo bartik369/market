@@ -25,7 +25,6 @@ const App: FC = () => {
       try {
         await validateAccessToken()
       } catch (error) {
-      
       } 
     }
     verifyAccessToken()

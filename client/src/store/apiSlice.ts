@@ -49,7 +49,6 @@ export const useValidateAccessToken = () => {
 
           if (response.data) {
               try {
-                console.log(response.data)
                 dispatch(setCredentials(response.data))
 
               } catch (error) {

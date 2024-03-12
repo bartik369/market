@@ -4,7 +4,7 @@ export const menuItemsData = [
     {id: 3, title: 'Новинки', url: '/movies'},
     {id: 4, title: 'Журнал', url: '/movies'},
     {id: 5, title: 'TV', url: '/movies'},
-    {id: 5, title: 'Выбор редакции', url: '/movies'},
+    {id: 6, title: 'Выбор редакции', url: '/movies'},
   ];
 
   export const profileMenuData = [

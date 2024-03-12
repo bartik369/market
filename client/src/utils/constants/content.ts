@@ -65,7 +65,11 @@ export const register = 'Отправить';
 
 export const watch = 'Смотреть';
 export const vote = 'Оценить';
+export const slide = 'Слайд';
+export const slideSize = 'Cоотношение сторон слайда 1700х910px'
 export const loading = 'Загрузка...';
+export const resetForm = 'Очистить форму'
+export const selectSlide = 'Выбрать слайд'
 
 
 
