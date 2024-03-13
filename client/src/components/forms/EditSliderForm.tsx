@@ -9,11 +9,12 @@ import style from "./EditSliderForm.module.css";
 interface IEditSliderForm {
   slider: ISlider;
   setSlider: (slider: ISlider) => void;
+  updateImg: string | null;
   prevImg: string | null;
   setPrevImg: (prevImg: string | null) => void;
   sliderHandler: (e:any) => void;
   setFile: (file: string | Blob) => void;
-  modalHandler: () => void;
+  modalHandler: (e: any) => void;
   resetFormHandler: (e: any) => void;
 }
 
@@ -21,12 +22,15 @@ const EditSliderForm: FC<IEditSliderForm> = ({
   slider,
   setSlider,
   prevImg,
+  updateImg,
   setPrevImg,
   sliderHandler,
   setFile,
   modalHandler,
   resetFormHandler,
 }) => {
+
+  console.group(prevImg)
   return (
     <div className={style["slider-wrapper"]}>
     <div className={style['slider-size']}>{contentConst.slideSize}</div>
@@ -62,7 +66,7 @@ const EditSliderForm: FC<IEditSliderForm> = ({
             </label>
           </label>
           <input
-            type="file" name="file" id="upload" hidden value={slider.media}
+            type="file" name="file" id="upload" hidden 
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               e.target.files && setFile(e.target.files[0]);
               e.target.files &&
@@ -80,6 +84,7 @@ const EditSliderForm: FC<IEditSliderForm> = ({
           <button className={style.watch}>{contentConst.watch}</button>
           {prevImg
           ? <img src={prevImg} alt="" />
+          : updateImg ? <img src={`data:image/jpeg;base64,${updateImg}`} alt="" />
           : <div className={style.zaglushka}><img src={defaultPreview} alt="" /></div>
           }
         </div>
