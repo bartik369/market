@@ -81,12 +81,16 @@ export interface IMovieProperties {
 }
 
 export interface ISlider {
-    movieTitle?: string;
     _id?: string;
     movieId?: string;
     movieLink: string;
     media: string;
     description: string;
-
+    movieTitle?: string;
 }
+export interface ISliderUpdate {
+    slideData: ISlider;
+    file64: string;
+}
+
 
