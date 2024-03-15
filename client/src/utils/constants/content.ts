@@ -49,6 +49,8 @@ export const repeatPassword = 'Повторите пароль';
 
 export const addBtn = 'Добавить';
 export const enterBtn = 'Войти';
+export const updateBtn = 'Обновить';
+export const deleteBtn = 'Удалить';
 
 // roles
 
@@ -70,6 +72,7 @@ export const slideSize = 'Cоотношение сторон слайда 1700х
 export const loading = 'Загрузка...';
 export const resetForm = 'Очистить форму'
 export const selectSlide = 'Выбрать слайд'
+export const addSlide = 'Добавить слайд'
 
 
 

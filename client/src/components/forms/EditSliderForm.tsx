@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC, MouseEvent, FormEvent } from "react";
 import { ISlider } from "../../types/media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -12,11 +12,11 @@ interface IEditSliderForm {
   updateImg: string | null;
   prevImg: string | null;
   setPrevImg: (prevImg: string | null) => void;
-  addSlideHandler: (e:any) => void;
-  updateSlideHandler: (e:any) => void;
+  addSlideHandler: (e:FormEvent<HTMLFormElement>) => void;
+  updateSlideHandler: (e: FormEvent<HTMLFormElement>) => void;
   setFile: (file: string | Blob) => void;
-  modalHandler: (e: any) => void;
-  resetFormHandler: (e: any) => void;
+  modalHandler: (e:MouseEvent<HTMLButtonElement>) => void;
+  resetFormHandler: (e: MouseEvent<HTMLButtonElement>) => void;
   updateStatus: boolean;
 }
 
@@ -41,7 +41,10 @@ const EditSliderForm: FC<IEditSliderForm> = ({
       <div className={style.inner}>
         <form className={style["form-slider"]} 
         onClick={(e) => e.stopPropagation()}
-        onSubmit={updateStatus ? updateSlideHandler : addSlideHandler }
+        onSubmit={updateStatus 
+          ? (e: FormEvent<HTMLFormElement>) =>  updateSlideHandler(e)
+          : (e: FormEvent<HTMLFormElement>) =>  addSlideHandler(e) 
+        }
         >
           <div className={style["input-info"]}>{contentConst.movieNameRu}</div>
           <input type="text" defaultValue={slider.movieTitle} onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -77,7 +80,7 @@ const EditSliderForm: FC<IEditSliderForm> = ({
                 setPrevImg(URL.createObjectURL(e.target.files[0]));
             }}
           />
-          <button onClick={resetFormHandler} className={style.reset}>{contentConst.resetForm}</button>
+          <button onClick={(e: MouseEvent<HTMLButtonElement>) => resetFormHandler(e)} className={style.reset}>{contentConst.resetForm}</button>
           </div>
           <button className={style.add} type='submit'>
             {updateStatus ? contentConst.updateBtn : contentConst.addBtn}
@@ -90,8 +93,9 @@ const EditSliderForm: FC<IEditSliderForm> = ({
           <button className={style.watch}>{contentConst.watch}</button>
           {prevImg
           ? <img src={prevImg} alt="" />
-          : updateImg ? <img src={`data:image/jpeg;base64,${updateImg}`} alt="" />
-          : <div className={style.zaglushka}><img src={defaultPreview} alt="" /></div>
+          : updateImg 
+            ? <img src={`data:image/jpeg;base64,${updateImg}`} alt="" />
+            : <div className={style.zaglushka}><img src={defaultPreview} alt="" /></div>
           }
         </div>
       </div>

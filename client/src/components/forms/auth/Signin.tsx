@@ -31,7 +31,7 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
     e.preventDefault();
     try {
       if (authData) {
-        const userData = await signinUser(authData).unwrap();
+        const userData = await signinUser(authData);
         dispatch(setCredentials(userData));
         closeFormHandler();
       }

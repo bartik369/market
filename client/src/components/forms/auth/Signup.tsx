@@ -30,7 +30,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
         email: authData.email,
         password: authData.password,
       };
-      await signupUser(userData).unwrap();
+      await signupUser(userData);
     }
   };
 

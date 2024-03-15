@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect} from 'react';
+import React, {FC, useState, useEffect, MouseEvent, FormEvent} from 'react';
 import { ISlider } from '../types/media';
 import * as contentConst from '../utils/constants/content'
 import { 
@@ -39,7 +39,7 @@ const EditMainSlider: FC = () => {
        }
     }, [slide])
 
-    const resetFormHandler = (e: { preventDefault: () => void; }) => {
+    const resetFormHandler = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         setSlider({
             _id: '',
@@ -51,7 +51,7 @@ const EditMainSlider: FC = () => {
         });
         setPrevImg(null);
     }
-    const modalHandler = (e: { preventDefault: () => void; }) => {
+    const modalHandler = (e:MouseEvent<HTMLButtonElement>) => {
         setModalSlider(!modalSlider);
         resetFormHandler(e)
         setPrevImg(null);
@@ -67,7 +67,7 @@ const EditMainSlider: FC = () => {
         await deleteSlide(id)    
     }
 
-    const addSlideHandler = async (e: { preventDefault: () => void; }) => {
+    const addSlideHandler = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData();
         type sliderKey = keyof typeof slider._id;
@@ -79,7 +79,7 @@ const EditMainSlider: FC = () => {
             payload && setModalSlider(false)
         });
     }
-    const updateSlideHandler = async (e: { preventDefault: () => void; }) => {
+    const updateSlideHandler = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData();
         type sliderKey = keyof typeof slider._id;

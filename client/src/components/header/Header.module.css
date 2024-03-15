@@ -61,7 +61,7 @@
 }
 
 .search-icon {
-    color: rgb(255, 255, 255);
+    color: #cbd6e9;
     cursor: pointer;
     font-size: 18px;
 }
@@ -78,13 +78,13 @@
 }
 
 .auth-icon {
-    color: rgb(236, 236, 236);
+    color: #cbd6e9;
     margin-right: 6px;
     cursor: pointer;
 }
 
 .auth span {
-    color: rgb(236, 236, 236);
+    color: #cbd6e9;
     font-family: inherit;
     font-weight: 300;
     font-size: 12px;
@@ -92,7 +92,7 @@
 }
 
 .bars {
-    color: #ffffff;
+    color: #cbd6e9;
     margin-left: 20px;
     cursor: pointer;
     font-size: 18px;

@@ -5,14 +5,28 @@
 }
 
 .container .container__inner {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-gap: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .container .container__inner .add {
-    background-color: rgb(58, 58, 58);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.container .container__inner .add .btn {
+    background-color: #4b50d4;
+    color: rgb(237, 237, 237);
+    border-radius: 4px;
+    font-size: 11px;
+    border: none;
+    padding: 10px 14px;
+    margin-bottom: 15px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+
+.container .container__inner .add .btn:hover {
+    background-color: #7c23d5;
 }

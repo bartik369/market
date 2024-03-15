@@ -45,9 +45,9 @@ const App: FC = () => {
             </Route>
             <Route element={<PrivateRoutes allowedRoles={[contentConst.ADMIN]} />}>
               <Route path="/admin" element={<Admin />} />
-              <Route path="/add-movie" element={<AddMovie />} />
-              <Route path="/add-actor" element={<AddActor />} />
-              <Route path="/edit-slider" element={<EditMainSlider />} />
+              <Route path="/admin/add-movie" element={<AddMovie />} />
+              <Route path="/admin/add-actor" element={<AddActor />} />
+              <Route path="/admin/edit-slider" element={<EditMainSlider />} />
             </Route>
           </Routes>
         <Footer />

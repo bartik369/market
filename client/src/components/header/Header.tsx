@@ -44,6 +44,7 @@ const Header: FC = () => {
 
   return (
     <>
+    {visible && <Search visible={visible} visibleHandler={visibleHandler} />}
       <div className={regEx ? style["nav-absolute"] : style["nav-relative"]}>
         <div className={style.container}>
           <div className={style.logo}>
@@ -84,7 +85,6 @@ const Header: FC = () => {
         </div>
       
       </div>
-      {visible && <Search visible={visible} visibleHandler={visibleHandler} />}
       {visibleSignin && (
         <Signin
           signupHandler={signupHandler}

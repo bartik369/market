@@ -12,6 +12,9 @@ const SliderSchema = new mongoose.Schema({
     },
     description: {
         type: String,
+    },
+    movieTitle: {
+        type: String,
     }
 });
 
