@@ -187,7 +187,15 @@
 
 @media (max-width: 800px) {
     .slider-wrapper .inner {
+        grid-template-columns: repeat(2fr, 1fr);
+        grid-gap: 20px;
+    }
+}
+
+@media (max-width: 630px) {
+    .slider-wrapper .inner {
         grid-template-columns: repeat(1, 1fr);
+        grid-gap: 20px;
     }
 }
 

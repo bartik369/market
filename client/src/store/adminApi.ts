@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISlider, ISliderUpdate } from "../types/media";
+import { ISlider, ISliderUpdate, ISliderFormData } from "../types/media";
 import { IUser } from "../types/auth";
 import ENV from "../env.config";
 
@@ -33,7 +33,7 @@ export const adminApi = createApi({
           ]
         : [{ type: 'Slides', _id: 'LIST' }],
   }),
-    addSlide: builder.mutation<ISlider, any>({
+    addSlide: builder.mutation<ISlider, ISliderFormData>({
       query: (data) => ({
         url: "/api/add-slide",
         method: "POST",
@@ -56,13 +56,12 @@ export const adminApi = createApi({
       }),
       invalidatesTags: ['Slides'],
     }),
-    updateSide: builder.mutation<ISlider, any>({
+    updateSide: builder.mutation<ISlider, ISliderFormData>({
       query:(body) => ({
         url: '/api/update-slide',
         method: 'PUT',
         body: body,
       }),
-      transformResponse: (response: { data: ISlider }, meta, arg) => response.data
     })
   }),
 });

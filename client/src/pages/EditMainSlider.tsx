@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect, MouseEvent, FormEvent} from 'react';
-import { ISlider } from '../types/media';
+import { ISlider, ISliderFormData } from '../types/media';
 import * as contentConst from '../utils/constants/content'
 import { 
     useAddSlideMutation, 
@@ -75,7 +75,7 @@ const EditMainSlider: FC = () => {
             formData.append(key, slider[key as sliderKey]);
         });
         file && formData.append('file', file);
-        await addSlide(formData).then((payload) => {
+        await addSlide(formData as unknown as ISliderFormData).then((payload) => {
             payload && setModalSlider(false)
         });
     }
@@ -87,7 +87,7 @@ const EditMainSlider: FC = () => {
             formData.append(key, slider[key as sliderKey]);
         });
         file && formData.append('file', file);
-        await updateSlide(formData).then((payload) => {
+        await updateSlide(formData as unknown as ISliderFormData).then((payload) => {
              payload && setModalSlider(false)
         });
     }

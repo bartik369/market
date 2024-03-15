@@ -88,6 +88,15 @@ export interface ISlider {
     description: string;
     movieTitle?: string;
 }
+export interface ISliderFormData {
+    _id?: string;
+    movieId?: string;
+    movieLink: string;
+    media: string;
+    description: string;
+    movieTitle?: string;
+    file: string | Blob;
+}
 export interface ISliderUpdate {
     slideData: ISlider;
     file64: string;

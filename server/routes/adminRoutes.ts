@@ -83,6 +83,12 @@ router.post('/get-slide/', async(req:Request, res: Response) => {
 router.delete('/delete-slide/', async(req:Request, res: Response) => {
     try {
         const {id} = req.body;
+        const existSlide = await Slider.findById(id);
+        fs.unlink(`./uploads/slider/main/${existSlide.media}`, (err) => {
+            if (err) {
+                throw err
+            }
+        });
         const slideData = await Slider.findByIdAndDelete(id)
         return res.json(slideData)
     } catch (error) {
@@ -99,6 +105,11 @@ async(req:Request, res: Response) => {
             const slide = await Slider.findById(_id);
 
             if (slide) {
+                if (req.file) {
+                    fs.unlink(`./uploads/slider/main/${slide.media}`, (err) => {
+                        if (err) { throw err}
+                    });
+                }
                 const updatedSlide = await Slider.findByIdAndUpdate(_id, {
                     movieId: _id,
                     movieLink: movie._id,
