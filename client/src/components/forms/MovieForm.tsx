@@ -185,24 +185,7 @@ const MovieForm: FC<IMovieProps> = ({
             ))}
           </select>
         </div>
-
-
-        {/* <div className={style.column3}>
-          <span className={style['input-info']}>{contentConst.movieCast}</span>
-          <select
-            defaultValue=""
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => addActor(e)}
-          >
-            <option value="" disabled>
-              {contentConst.select}
-            </option>
-            {actorsList.map((item) => (
-              <option key={item.id}>{item.name}</option>
-            ))}
-          </select>
-        </div> */}
-
-
+        
         <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.movieAge}</span>
           <select

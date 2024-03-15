@@ -12,10 +12,12 @@ interface IEditSliderForm {
   updateImg: string | null;
   prevImg: string | null;
   setPrevImg: (prevImg: string | null) => void;
-  sliderHandler: (e:any) => void;
+  addSlideHandler: (e:any) => void;
+  updateSlideHandler: (e:any) => void;
   setFile: (file: string | Blob) => void;
   modalHandler: (e: any) => void;
   resetFormHandler: (e: any) => void;
+  updateStatus: boolean;
 }
 
 const EditSliderForm: FC<IEditSliderForm> = ({
@@ -24,23 +26,25 @@ const EditSliderForm: FC<IEditSliderForm> = ({
   prevImg,
   updateImg,
   setPrevImg,
-  sliderHandler,
+  addSlideHandler,
+  updateSlideHandler,
   setFile,
   modalHandler,
   resetFormHandler,
+  updateStatus,
+
 }) => {
 
-  console.group(prevImg)
   return (
     <div className={style["slider-wrapper"]}>
     <div className={style['slider-size']}>{contentConst.slideSize}</div>
       <div className={style.inner}>
         <form className={style["form-slider"]} 
         onClick={(e) => e.stopPropagation()}
-        onSubmit={sliderHandler}
+        onSubmit={updateStatus ? updateSlideHandler : addSlideHandler }
         >
           <div className={style["input-info"]}>{contentConst.movieNameRu}</div>
-          <input type="text" value={slider.movieTitle} onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          <input type="text" defaultValue={slider.movieTitle} onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setSlider({
                 ...slider,
                 movieTitle: e.target.value.trim(),
@@ -50,7 +54,7 @@ const EditSliderForm: FC<IEditSliderForm> = ({
           <div className={style["input-info"]}>
             {contentConst.movieDescription}
           </div>
-          <textarea value={slider.description}
+          <textarea defaultValue={slider.description}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
               setSlider({
                 ...slider,
@@ -75,7 +79,9 @@ const EditSliderForm: FC<IEditSliderForm> = ({
           />
           <button onClick={resetFormHandler} className={style.reset}>{contentConst.resetForm}</button>
           </div>
-          <button className={style.add} type='submit'>{contentConst.addBtn}</button>
+          <button className={style.add} type='submit'>
+            {updateStatus ? contentConst.updateBtn : contentConst.addBtn}
+          </button>
         </form>
         <div className={style.preview}>
           <div className={style.description}>
