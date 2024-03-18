@@ -1,6 +1,7 @@
 export interface IAuthData {
     email: string;
     password: string;
+    repeatPassword: string;
 }
 
 export interface IUserSignin {
@@ -21,4 +22,5 @@ export interface IUser {
 export interface IUserAuth {
     email: string;
     password: string;
+    repeatPassword: string;
 }

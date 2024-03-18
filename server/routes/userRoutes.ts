@@ -11,16 +11,17 @@ const router = express.Router();
 router.post('/auth/', async(req: Request, res:Response) => {
     try {
         const {email, password} = req.body;
+        console.log('auth')
         const user = await User.findOne({email: email});
 
         if (!user) {
-            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные данные'})
+            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные Вами данные.'})
         }
         const candidat = await Password.findOne({userId: user._id});
         const comparePassword = await bcrypt.compare(password, candidat.password);
 
         if (!comparePassword) {
-            return res.status(400).json({message: 'Проверьте пароль'})
+            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные Вами данные.'})
         }
         const accessToken = jwt.sign(
             {
@@ -73,11 +74,12 @@ router.post('/auth/', async(req: Request, res:Response) => {
 
 router.post('/create-user/', async(req: Request, res:Response) => {
     try {
+        console.log('reg')
         const {email, password} = req.body;
         const dublicate = await User.findOne({email: email});
 
         if (dublicate) {
-            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные данные'})
+            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные Вами данные.'})
         }
         const hashPassword = await bcrypt.hash(password, 7); 
         const user = new User({

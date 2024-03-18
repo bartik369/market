@@ -1,60 +1,77 @@
 import React, { FC, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHook";
+import { useAppDispatch} from "../../../hooks/reduxHook";
 import { IUserAuth } from "../../../types/auth";
 import { useSigninUserMutation } from "../../../store/authApi";
 import { setCredentials } from "../../../store/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
 import * as contentConst from "../../../utils/constants/content";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import validate from "../../../middleware/validateAuth";
 import { faEye, faEyeSlash, faEnvelope, faXmark } from "@fortawesome/free-solid-svg-icons";
 import style from "./Auth.module.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ISigninProps {
   signupHandler: () => void;
   closeFormHandler: () => void;
 }
 const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
+  type Errors = Partial<Record<keyof IUserAuth, string>>
+  type Touched = Partial<Record<keyof IUserAuth, boolean>>
   const dispatch = useAppDispatch();
-  const signupError = useAppSelector((state) => state.auth.error);
-  const [passwordType, setPasswordType] = useState(false);
+  const [signinUser, {error}] = useSigninUserMutation();
   const [authData, setAuthData] = useState<IUserAuth>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
+    repeatPassword: '',
   });
-  const [signinUser, { isLoading, error }] = useSigninUserMutation();
+  const [passwordType, setPasswordType] = useState(false);
+  const [errors, setErrors] = useState<Errors>(validate(authData))
+  const [touched, setTouched] = useState<Touched>({})
 
   const showPassword = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setPasswordType(passwordType ? false : true);
   };
-
+  
   const login = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    try {
-      if (authData) {
-        const userData = await signinUser(authData);
-        dispatch(setCredentials(userData));
-        closeFormHandler();
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error);
-      }
+      if (errors?.email?.length === 0 && errors?.password?.length === 0) {
+        await signinUser(authData)
+        .unwrap()
+        .then((data) => {
+            dispatch(setCredentials(data));
+            closeFormHandler();
+        })
+        .catch((error) => toast.error(error.data.message));
     }
   };
+  
 
   return (
     <div className={style.auth}>
+      <div className={style.toast}>
+      <ToastContainer
+      theme="colored"
+      autoClose={7000}
+      position="top-center"
+       />
+       </div> 
       <form className={style.form} action="" onSubmit={login}>
         <span className={style.title}>{contentConst.signinTitle}</span>
+        {errors.email && touched.email ? <p>{errors.email}</p> : null}
         <span className={style.label}>{contentConst.email}</span>
         <div className={style['input-data']}>
           <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
           <input className={style.data} type="text"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setAuthData({ ...authData, email: e.target.value })
-            }
+              setErrors(validate({ ...authData, email: e.target.value }))
+            }}
+            onBlur={() => setTouched({ ...touched, email: true })}
           />
         </div>
+        {errors.password && touched.password ? <p>{errors.password}</p> : null}
         <span className={style.label}>{contentConst.password}</span>
         <div className={style['input-data']}>
           {passwordType ? (
@@ -71,9 +88,11 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
             />
           )}
           <input className={style.data} type={passwordType ? "text" : "password"}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setAuthData({ ...authData, password: e.target.value })
-            }
+              setErrors(validate({...authData, password: e.target.value }))
+            }}
+            onBlur={() => setTouched({ ...touched, password: true })}
           />
         </div>
         <p>
@@ -82,7 +101,8 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
             {contentConst.registetText}
           </span>
         </p>
-        <button className={style["enter-btn"]}>{contentConst.enterBtn}</button>
+        <button
+        className={style["enter-btn"]}>{contentConst.enterBtn}</button>
       </form>
       <button className={style.close} onClick={closeFormHandler}>
         <FontAwesomeIcon icon={faXmark} />
