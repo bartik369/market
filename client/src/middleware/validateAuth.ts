@@ -1,4 +1,5 @@
 import { IAuthData } from "../types/auth";
+import * as contentConst from '../utils/constants/content'
 
 export default function validateLogin(authData: IAuthData) {
     let errors = {
@@ -8,18 +9,18 @@ export default function validateLogin(authData: IAuthData) {
     };
 
     if (!authData.email) {
-      errors.email = "Email requided";
+      errors.email = contentConst.inputEmail;
     } else if (!/\S+@\S+\.\S+/.test(authData.email)) {
-      errors.email = "Email address is invalid";
+      errors.email = contentConst.wrongEmailFormat;
     }
 
     if (!authData.password) {
-      errors.password = "Password is required";
+      errors.password = contentConst.inputPassword;
     } else if (
       (authData.password.length !== 0  && authData.repeatPassword.length !== 0) 
       && (authData.password !== authData.repeatPassword)) {
-      errors.password = "Do not match";
-      errors.repeatPassword = "Do not match";
+      errors.password = contentConst.dontPasswordMatch;
+      errors.repeatPassword = contentConst.dontPasswordMatch;
 
     }
     return errors;

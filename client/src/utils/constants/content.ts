@@ -75,4 +75,11 @@ export const selectSlide = 'Выбрать слайд'
 export const addSlide = 'Добавить слайд'
 
 
+export const dontPasswordMatch = 'Пароли не совпадают';
+export const inputPassword = 'Введите пароль';
+export const inputEmail = 'Укажите почту';
+export const wrongEmailFormat = 'Неправильный формат почты';
+
+
+
 

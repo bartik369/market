@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useSignupUserMutation } from "../../../store/authApi";
 import { useAppDispatch } from "../../../hooks/reduxHook";
 import { setCredentials } from "../../../store/authSlice";
@@ -26,9 +26,10 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
     password: "",
     repeatPassword: "",
   });
-  const [signupUser, { isLoading }] = useSignupUserMutation();
+  const [signupUser] = useSignupUserMutation();
   const [errors, setErrors] = useState<Errors>(validate(authData));
   const [touched, setTouched] = useState<Touched>({});
+
   const showPassword = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setPasswordType(passwordType ? false : true);
@@ -36,6 +37,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
 
   const create = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    
     if (errors?.email?.length === 0 && errors?.password?.length === 0) {
       let userData = {
         email: authData.email,
@@ -49,16 +51,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
       })
       .catch((error) => toast.error(error.data.message));
     }
-
-    // if (authData) {
-    //   let userData = {
-    //     email: authData.email,
-    //     password: authData.password,
-    //   };
-    //   await signupUser(userData);
-    // }
   };
-
 
   return (
     <div className={style.auth}>
@@ -71,7 +64,6 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
        </div>
       <form className={style.form} action="" onSubmit={create}>
         <span className={style.title}>{contentConst.signupTitle}</span>
-        {errors.email && touched.email ? <p>{errors.email}</p> : null}
         <span className={style.label}>{contentConst.email}</span>
         <div className={style['input-data']}>
           <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
@@ -85,7 +77,9 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
             onBlur={() => setTouched({ ...touched, email: true })}
           />
         </div>
-        {errors.password && touched.password ? <p>{errors.password}</p> : null}
+        <div className={style.error}>
+          {errors.email && touched.email ? <p>{errors.email}</p> : null}
+        </div>
         <span className={style.label}>{contentConst.password}</span>
         <div className={style['input-data']}>
           {passwordType ? (
@@ -109,7 +103,9 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
             onBlur={() => setTouched({ ...touched, password: true })}
           />
         </div>
-        {errors.repeatPassword && touched.repeatPassword ? <p>{errors.repeatPassword}</p> : null}
+        <div className={style.error}>
+        {errors.password && touched.password ? <p>{errors.password}</p> : null}
+        </div>
         <span className={style.label}>{contentConst.repeatPassword}</span>
         <div className={style['input-data']}>
           {passwordType ? (
@@ -133,12 +129,15 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
             onBlur={() => setTouched({ ...touched, repeatPassword: true })}
           />
         </div>
-        <p>
+        <div className={style.error}>
+        {errors.repeatPassword && touched.repeatPassword ? <p>{errors.repeatPassword}</p> : null}
+        </div>
+        <div className={style.switch}>
           {contentConst.haveAccount}
           <span onClick={signinHandler} className={style.login}>
             {contentConst.login}
           </span>
-        </p>
+        </div>
         <button className={style["enter-btn"]}>{contentConst.register}</button>
       </form>
       <button className={style.close} onClick={closeFormHandler}>

@@ -14,7 +14,7 @@ import AddActor from "./pages/AddActor";
 import Movie from "./pages/Movie";
 import Profile from "./pages/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
-import Admin from "./pages/Admin";
+import Admin from "./pages/admin/Admin";
 import EditMainSlider from "./pages/EditMainSlider";
 
 const App: FC = () => {

@@ -36,6 +36,7 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
   
   const login = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    
       if (errors?.email?.length === 0 && errors?.password?.length === 0) {
         await signinUser(authData)
         .unwrap()
@@ -46,7 +47,6 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
         .catch((error) => toast.error(error.data.message));
     }
   };
-  
 
   return (
     <div className={style.auth}>
@@ -59,7 +59,6 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
        </div> 
       <form className={style.form} action="" onSubmit={login}>
         <span className={style.title}>{contentConst.signinTitle}</span>
-        {errors.email && touched.email ? <p>{errors.email}</p> : null}
         <span className={style.label}>{contentConst.email}</span>
         <div className={style['input-data']}>
           <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
@@ -71,7 +70,9 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
             onBlur={() => setTouched({ ...touched, email: true })}
           />
         </div>
-        {errors.password && touched.password ? <p>{errors.password}</p> : null}
+        <div className={style.error}>
+        {errors.email && touched.email ? <p>{errors.email}</p> : null}
+        </div>
         <span className={style.label}>{contentConst.password}</span>
         <div className={style['input-data']}>
           {passwordType ? (
@@ -95,12 +96,15 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
             onBlur={() => setTouched({ ...touched, password: true })}
           />
         </div>
-        <p>
+        <div className={style.error}>
+        {errors.password && touched.password ? <p>{errors.password}</p> : null}
+        </div>
+        <div className={style.switch}>
           {contentConst.havenotAccount}
           <span onClick={signupHandler} className={style.login}>
             {contentConst.registetText}
           </span>
-        </p>
+        </div>
         <button
         className={style["enter-btn"]}>{contentConst.enterBtn}</button>
       </form>

@@ -12,12 +12,19 @@
     align-items: center;
 }
 
+.form .error {
+    color: #fd4e52;
+    font-size: 10px;
+    font-family: inherit;
+    text-align: right;
+}
+
 .form {
     display: flex;
     flex-direction: column;
     background-color: #10111a;
     border: 1px solid #141520;
-    padding: 30px 20px;
+    padding: 30px 40px;
     width: 300px;
     border-radius: 8px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.06), 0 8px 8px 0 rgba(0, 0, 0, 0.06), 0 16px 16px 0 rgba(0, 0, 0, 0.06), 0 32px 32px 0 rgba(0, 0, 0, 0.06), 0 64px 64px 0 rgba(0, 0, 0, 0.06);
@@ -104,8 +111,8 @@
     background-color: #cb5bfb;
 }
 
-.form p {
-    color: aliceblue;
+.form .switch {
+    color: #a4aec1;
     font-family: inherit;
     font-size: 11px;
     text-align: center;
@@ -114,7 +121,7 @@
 
 .login {
     cursor: pointer;
-    color: #52ebea;
+    color: #fff;
     font-size: 11px;
     margin-left: 6px;
 }

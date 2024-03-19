@@ -89,6 +89,18 @@ async function(filterData, {rejectWithValue}) {
 }
 )
 
+export const getLastMovies = createAsyncThunk<IMovie[], undefined, {rejectValue: String}>('movie/getLasrMovies',
+async function(_, {rejectWithValue}) {
+    const res = await axios.get(`${ENV.API_URL}api/last-movies`, {
+        headers: { 'Content-Type': 'application/json'},
+    });
+    if (!res.data) {
+        return rejectWithValue('server error')
+    }
+    return res.data
+}
+)
+
 
 export const createMovie = createAsyncThunk<IMovie, any, {rejectValue: String}>(
 'movie/createMovie',
