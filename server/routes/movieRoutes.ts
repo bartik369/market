@@ -37,6 +37,17 @@ async(req:Request, res:Response) => {
 }
 )
 
+router.get('/last-movies/',
+async(req:Request, res:Response) => {
+    try {
+        const moviesData = await Movie.find().sort({$natural:-1}).limit(12);
+        return res.json(moviesData)
+    } catch (error) {
+       
+    }
+}
+)
+
 router.get('/movie/:id',
 async (req: Request, res: Response) => {
     try {

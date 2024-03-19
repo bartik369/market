@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useGetSlidesQuery } from "../../store/adminApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
+import { getLastMovies } from "../../store/movieSlice";
+import MovieItem from "../items/MovieItem";
 import {
   faChevronLeft,
   faChevronRight,
@@ -18,16 +20,21 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import style from "./MainSlider.module.css";
 
-const MainSlider: FC = () => {
-  const { data: slides } = useGetSlidesQuery();
+const LastMovies: FC = () => {
+  const dispatch = useAppDispatch()
+  const movies = useAppSelector(state => state.movies.list)
+
+  useEffect(() => {
+    dispatch(getLastMovies())
+  }, [dispatch])
 
   return (
     <div className={style.carousel__container}>
       <CarouselProvider
-        naturalSlideWidth={100}
-        naturalSlideHeight={55}
-        totalSlides={slides! && slides!.length}
-        visibleSlides={1}
+        naturalSlideWidth={70}
+        naturalSlideHeight={160}
+        totalSlides={13}
+        visibleSlides={7}
         currentSlide={1}
         isPlaying={true}
         interval={5000}
@@ -40,22 +47,16 @@ const MainSlider: FC = () => {
           <FontAwesomeIcon className={style.chevron} icon={faChevronRight} />
         </ButtonNext>
 
-        <Slider className={style.carousel__slider}>
-          {slides &&
-            slides.map((slide) => (
+        <Slider className={style.carousel__slider2}>
+          {movies &&
+            movies.map((movie) => (
               <Slide
-                key={slide._id}
-                className={style["carousel__inner-slide"]}
-                index={0}
-              >
-                <div className={style.description}>{slide.description}</div>
-                <Link to={`${ENV.MOVIES_URL}${slide.movieLink}`}>
-                  <button className={style.watch}>{contentConst.watch}</button>
-                </Link>
-                <img
-                  src={`${ENV.API_URL_UPLOADS_MAIN_SLIDER}${slide.media}`}
-                  alt=""
-                />
+                key={movie._id}
+                className={style["carousel__inner-slide2"]}
+                index={0}>
+                   <Link to={`/movies/${movie._id}`}>
+                  <MovieItem movie={movie}/>
+                  </Link>
               </Slide>
             ))}
         </Slider>
@@ -64,4 +65,4 @@ const MainSlider: FC = () => {
   );
 };
 
-export default MainSlider;
+export default LastMovies;

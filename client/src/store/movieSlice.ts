@@ -12,6 +12,7 @@ import {
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
+import { Action } from '@remix-run/router';
 
 type MovieState = {
     list: IMovie[];
@@ -89,7 +90,7 @@ async function(filterData, {rejectWithValue}) {
 }
 )
 
-export const getLastMovies = createAsyncThunk<IMovie[], undefined, {rejectValue: String}>('movie/getLasrMovies',
+export const getLastMovies = createAsyncThunk<IMovie[], undefined, {rejectValue: String}>('movie/getLastMovies',
 async function(_, {rejectWithValue}) {
     const res = await axios.get(`${ENV.API_URL}api/last-movies`, {
         headers: { 'Content-Type': 'application/json'},
@@ -207,6 +208,14 @@ const movieSlice = createSlice({
         .addCase(getMovies.pending, (state) => {
             state.loading = true;
             state.error = null;
+        })
+        .addCase(getLastMovies.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getLastMovies.fulfilled, (state, action) => {
+            state.list = action.payload;
+            state.loading = false;
         })
         .addCase(getMovies.fulfilled, (state, action) => {
             state.list = action.payload;
