@@ -32,11 +32,11 @@ const MovieItem: FC<MOvieItemProps> = ({ movie }) => {
         </div>
       </div>
       <div className={style.title}>
-        <div className={style.ru}>{movie.titleRu.length > 25 
-        ? `${movie.titleRu.substring(0, 25)}...` 
+        <div className={style.ru}>{movie.titleRu.length > 15
+        ? `${movie.titleRu.substring(0, 15)}...` 
         : movie.titleRu}</div>
-        <div className={style.en}> {movie.titleEn.length > 25 
-        ? `${movie.titleEn.substring(0, 25)}...` 
+        <div className={style.en}> {movie.titleEn.length > 15
+        ? `${movie.titleEn.substring(0, 15)}...` 
         : movie.titleEn}</div>
       </div>
     </div>

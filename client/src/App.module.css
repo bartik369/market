@@ -13,32 +13,3 @@ html {
     width: 100%;
     margin: 0 auto;
 }
-
-
-/* .header-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.main-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 0px 20px;
-    box-sizing: border-box;
-}
-
-.container {
-    width: 100%;
-    max-width: 1300px;
-    position: relative;
-}
-
-.footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    bottom: 0;
-    height: 100px;
-} */

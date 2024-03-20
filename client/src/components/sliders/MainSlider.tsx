@@ -43,20 +43,20 @@ const MainSlider: FC = () => {
         <Slider className={style.carousel__slider}>
           {slides &&
             slides.map((slide) => (
+              <Link to={`${ENV.MOVIES_URL}${slide.movieLink}`}>
               <Slide
                 key={slide._id}
                 className={style["carousel__inner-slide"]}
                 index={0}
               >
                 <div className={style.description}>{slide.description}</div>
-                <Link to={`${ENV.MOVIES_URL}${slide.movieLink}`}>
                   <button className={style.watch}>{contentConst.watch}</button>
-                </Link>
                 <img
                   src={`${ENV.API_URL_UPLOADS_MAIN_SLIDER}${slide.media}`}
                   alt=""
                 />
               </Slide>
+              </Link>
             ))}
         </Slider>
       </CarouselProvider>

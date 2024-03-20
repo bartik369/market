@@ -6,8 +6,9 @@ import style from './Home.module.css'
 const Home: FC = () => {
     return (
        <div className={style.main}>
+            <MainSlider />
            <div className={style.container}>
-           <MainSlider />
+           <div className={style.title}>Новинки недели</div>
            <LastMovies />
            </div>
        </div>

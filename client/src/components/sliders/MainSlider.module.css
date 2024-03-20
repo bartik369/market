@@ -1,6 +1,15 @@
 .carousel__container {
     margin: auto;
     position: relative;
+    width: 100%;
+    max-width: 1800px;
+}
+
+.movies__carousel {
+    margin: auto;
+    position: relative;
+    width: 100%;
+    max-width: 1320px;
 }
 
 .btn_prev {
@@ -18,7 +27,7 @@
 .btn_next,
 .btn_prev {
     position: absolute;
-    z-index: 9;
+    z-index: 10;
     top: 50%;
     height: 70px;
     width: 23px;
@@ -26,7 +35,7 @@
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    background-color: #15151c;
+    background-color: #16161e;
     border: none;
     color: rgb(255, 255, 255);
     border-radius: 2px;
@@ -51,12 +60,31 @@
     position: relative;
 }
 
-.carousel__inner-slide2 {
+.carousel__inner {
     position: relative;
-    margin: 5px;
+    margin: 10px 5px;
 }
 
-.carousel__slider2 {}
+.movies__slider {}
+
+.movies__slider::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 110px;
+    background-image: url('../../../src/assets/pics/vignette_left.png');
+    z-index: 9;
+}
+
+.movies__slider::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    background-image: url('../../../src/assets/pics/vignette_right.png');
+    z-index: 9;
+    right: 0;
+}
 
 .carousel__inner-slide .description {
     position: absolute;
@@ -82,7 +110,7 @@
     box-shadow: rgba(13, 13, 21, 0.24) 0px 3px 8px;
 }
 
-.carousel__inner-slide2 img {
+.carousel__inner img {
     width: 100%;
     object-fit: cover;
 }

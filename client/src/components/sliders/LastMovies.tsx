@@ -29,15 +29,15 @@ const LastMovies: FC = () => {
   }, [dispatch])
 
   return (
-    <div className={style.carousel__container}>
+    <div className={style.movies__carousel}>
       <CarouselProvider
         naturalSlideWidth={70}
         naturalSlideHeight={160}
-        totalSlides={13}
-        visibleSlides={7}
-        currentSlide={1}
+        totalSlides={movies && movies.length + 1}
+        visibleSlides={8}
+        currentSlide={0}
         isPlaying={true}
-        interval={5000}
+        interval={6000}
         infinite={true}
       >
         <ButtonBack className={style.btn_prev}>
@@ -47,12 +47,12 @@ const LastMovies: FC = () => {
           <FontAwesomeIcon className={style.chevron} icon={faChevronRight} />
         </ButtonNext>
 
-        <Slider className={style.carousel__slider2}>
+        <Slider className={style.movies__slider}>
           {movies &&
             movies.map((movie) => (
               <Slide
                 key={movie._id}
-                className={style["carousel__inner-slide2"]}
+                className={style["carousel__inner"]}
                 index={0}>
                    <Link to={`/movies/${movie._id}`}>
                   <MovieItem movie={movie}/>
