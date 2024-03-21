@@ -1,11 +1,10 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, PureComponent} from 'react';
 import style from './Admin.module.css'
 import Menu from './Menu';
 import MoviesCounts from './MoviesCounts';
 import UsersCounts from './UsersCounts';
 
 const Admin: FC = () => {
-
 
     return (
         <div className={style.container}>
@@ -21,7 +20,7 @@ const Admin: FC = () => {
                        <UsersCounts />
                     </div>
                     <div className={style.item}>
-                        3
+                    
                     </div>
                     <div className={style.item}>
                         4

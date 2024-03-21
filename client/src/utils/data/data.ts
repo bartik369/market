@@ -3,10 +3,10 @@ import { faBolt, faHouse, faFilm, faTv, faNewspaper, faStar } from "@fortawesome
   export const menuItemsData = [
     {id: 1, title: 'Главная', url: '/', icon: faHouse},
     {id: 2, title: 'Фильмы', url: '/movies', icon: faFilm},
-    {id: 3, title: 'Новинки', url: '/movies', icon: faBolt },
-    {id: 4, title: 'Журнал', url: '/movies', icon: faNewspaper},
-    {id: 5, title: 'TV', url: '/movies', icon: faTv},
-    {id: 6, title: 'Наш выбор', url: '/movies', icon:faStar},
+    {id: 3, title: 'Новинки', url: '/new', icon: faBolt },
+    {id: 4, title: 'Журнал', url: '/journal', icon: faNewspaper},
+    {id: 5, title: 'TV', url: '/tv', icon: faTv},
+    {id: 6, title: 'Наш выбор', url: '/our', icon:faStar},
   ];
 
   export const profileMenuData = [

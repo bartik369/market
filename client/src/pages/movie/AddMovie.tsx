@@ -1,10 +1,10 @@
 import React, { FC, useState} from "react";
-import { useAppDispatch} from "../hooks/reduxHook";
-import {createMovie} from '../store/movieSlice'
-import PreviewPoster from "../components/poster/PreviewPoster";
-import { IMovie } from "../types/media";
+import { useAppDispatch} from "../../hooks/reduxHook";
+import {createMovie} from '../../store/movieSlice'
+import PreviewPoster from "../../components/poster/PreviewPoster";
+import { IMovie } from "../../types/media";
 import style from "./AddMovie.module.css";
-import MovieForm from "../components/forms/MovieForm";
+import MovieForm from "../../components/forms/MovieForm";
 
 const AddMovie: FC = () => {
   const dispatch = useAppDispatch();

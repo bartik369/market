@@ -12,7 +12,6 @@ import {
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction} from '@reduxjs/toolkit';
 import axios from "axios";
 import ENV from "../env.config";
-import { Action } from '@remix-run/router';
 
 type MovieState = {
     list: IMovie[];
@@ -67,7 +66,6 @@ export const getProperties = createAsyncThunk<any, undefined, {rejectValue: Stri
 'movie/getProperties', 
 async function(_,{rejectWithValue}) {
     const res = await axios.get(`${ENV.API_URL}api/properties/`)
-    console.log(res.data, 'reeees')
 
     if (!res.data) {
         return rejectWithValue('server error')
@@ -132,6 +130,7 @@ export const searchMovie = createAsyncThunk<IMovie[], ISearch, {rejectValue: Str
 export const setRating = createAsyncThunk<unknown, IMovieRatind, {rejectValue: String}>(
     'movie/setRating',
     async function(ratingData, {rejectWithValue}) {
+        console.log(ratingData)
         const res = await axios.post(`${ENV.API_URL}api/set-rating`, ratingData, {
             headers: { 'Content-Type': 'application/json'},
         });

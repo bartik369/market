@@ -43,8 +43,8 @@ async(req:Request, res:Response) => {
         const moviesData = await Movie.find().sort({$natural:-1}).limit(12);
         return res.json(moviesData)
     } catch (error) {
-       
-    }
+        return error
+     }
 }
 )
 
@@ -59,8 +59,8 @@ async (req: Request, res: Response) => {
         }
         
     } catch (error) {
-        
-    }
+        return error
+     }
 }
 )
 
@@ -72,7 +72,7 @@ async (req: Request, res:Response) => {
             {'titleRu': {$options: 'i', $regex: search}})
         return res.json(movieData)
     } catch (error) {
-        
+        return error
     }
 }
 )
@@ -113,13 +113,16 @@ router.post('/set-rating', async(req:Request, res:Response) => {
         
         if (movieData) {
             const ratingData = await Movie.findByIdAndUpdate(id, {
-                rating: (value + movieData.rating) / 2
+                rating: movieData.rating === 0
+                ? value + movieData.rating
+                : (value + movieData.rating) / 2
             });
             await ratingData.save()
-            return res.json(ratingData)
+            const newData = await Movie.findById(id);
+            return res.json(newData)
         }
     } catch (error) {
-        
+        return error
     }
 });
 
@@ -133,22 +136,28 @@ router.post('/add-favorite', async(req: Request, res:Response) => {
                 movies: movieId,
             });
             await newRecord.save()
+            return res.json(newRecord)
         } else {
             const existFavotite = await Favorite.findOne({
                 movies: { $all: movieId}
-            })
+            });
+           
             if (existFavotite) {
-                return null
+                const removeFavorite = await Favorite.findByIdAndUpdate(existRecord._id, {
+                    $pull: { movies: movieId},
+                })
+                return res.json(removeFavorite)
             } else {
                 const newData = await Favorite.findByIdAndUpdate(existRecord._id, {
                     $push: { movies: movieId},
                 })
                 await newData.save()
+                console.log(newData)
                 return res.json(newData)
             }
         }
     } catch (error) {
-        
+        return error
     }
 });
 
@@ -182,7 +191,7 @@ router.get('/properties', async(req: Request, res: Response) => {
 
        return res.json({genreArr, countryArr, yearArr, ratingArr})
     } catch (error) {
-        
+        return error
     }
 })
 
@@ -199,15 +208,10 @@ router.post('/favorites', async(req: Request, res: Response) => {
             return null
         }
     } catch (error) {
-        
+        return error
     }
 })
 
-// const enableVisible = await ParticipantsModel.findByIdAndUpdate(
-//     participants._id, {
-//         $push: { visible: creatorId },
-//     }
-// );
 
 
 export default router;

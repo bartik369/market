@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const   MovieSchema = new mongoose.Schema({
-    id: {
-        type: String,
-    },
+    // id: {
+    //     type: String,
+    // },
     titleEn: {
         type: String,
     },

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
-import { getMovies } from '../store/movieSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
+import { getMovies } from '../../store/movieSlice';
 import style from './Movies.module.css';
-import MovieItem from '../components/items/MovieItem';
-import MovieFilter from '../components/filter/MovieFilter';
+import MovieItem from '../../components/items/MovieItem';
+import MovieFilter from '../../components/filter/MovieFilter';
 
 const Movies = () => {
     const movies = useAppSelector(state => state.movies.list);

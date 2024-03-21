@@ -11,7 +11,6 @@ interface IProfileMenuProps {
     setProfileMenu: (profileMenu: boolean) => void;
     profileMenu: boolean;
 }
-  
 
 const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
   const user = useAppSelector((state) => state.auth.user);

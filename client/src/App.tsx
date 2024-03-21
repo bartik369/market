@@ -4,18 +4,18 @@ import { useAppSelector } from "./hooks/reduxHook";
 import { logOut } from "./store/authSlice";
 import * as contentConst from '../src/utils/constants/content';
 import PrivateRoutes from "./routes/PrivateRoutes";
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
 import style from "./App.module.css";
-import Movies from "./pages/Movies";
-import AddMovie from "./pages/AddMovie";
+import Movies from "./pages/movie/Movies";
+import AddMovie from "./pages/movie/AddMovie";
 import Footer from "./components/footer/Footer";
-import AddActor from "./pages/AddActor";
-import Movie from "./pages/Movie";
-import Profile from "./pages/Profile";
+import AddActor from "./pages/actor/AddActor";
+import Movie from "./pages/movie/Movie";
+import Profile from "./pages/profile/Profile";
 import { useValidateAccessToken } from "./store/apiSlice";
 import Admin from "./pages/admin/Admin";
-import EditMainSlider from "./pages/EditMainSlider";
+import EditMainSlider from "./pages/slider/EditMainSlider";
 
 const App: FC = () => {
   const validateAccessToken = useValidateAccessToken();

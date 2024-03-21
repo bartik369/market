@@ -1,19 +1,19 @@
 import React, { FC, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getMovie, addFavorite } from "../store/movieSlice";
-import { getMovieActors } from "../store/actorSlice";
-import { setRating, getFavorites } from "../store/movieSlice";
-import { IMovie, IMovieRatind, IMovieAddFavorite} from "../types/media";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { getMovie, addFavorite } from "../../store/movieSlice";
+import { getMovieActors } from "../../store/actorSlice";
+import { setRating, getFavorites } from "../../store/movieSlice";
+import { IMovie, IMovieRatind, IMovieAddFavorite} from "../../types/media";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar} from "@fortawesome/free-solid-svg-icons";
-import * as contentConst from '../utils/constants/content'
-import ENV from "../env.config";
-import nonePoster from "../assets/pics/blank_movie.jpg";
-import vignette from "../assets/pics/vignette.png";
-import cinema from "../assets/pics/cinema.jpg";
+import * as contentConst from '../../utils/constants/content'
+import ENV from "../../env.config";
+import nonePoster from "../../assets/pics/blank_movie.jpg";
+import vignette from "../../assets/pics/vignette.png";
+import cinema from "../../assets/pics/cinema.jpg";
 import style from "./Movies.module.css";
-import Rating from "../components/rating/Rating";
+import Rating from "../../components/rating/Rating";
 
 const Movie: FC = () => {
   const params = useParams();
@@ -32,16 +32,17 @@ const Movie: FC = () => {
         setMovie(res.payload as IMovie);
       });
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
+    
     if (movie) {
       dispatch(getMovieActors(movie.actors));
-      dispatch(getFavorites({id: user?._id})).then((res) => {
-        console.log(res.payload)
-      })
+      dispatch(getFavorites({id: user?._id}));
     }
   }, [movie]);
+
+  console.log('dsdsd')
 
   const ratingHandler = async (value: number) => {
     if (movie) {
@@ -50,18 +51,23 @@ const Movie: FC = () => {
         value: value,
       };
       await dispatch(setRating(ratingData)).then((res) => {
+        setMovie(res.payload as IMovie);
         res.payload && setSuccessVote(true)
-        setTimeout(() => setVisibleRating(false), 2000 )
+        setTimeout(() => {
+          setVisibleRating(false);
+          setSuccessVote(false);
+        }, 2000 )
       });
     }
   };
+
   const favoriteHandler = async (_id: string) => {
     const favoriteData: IMovieAddFavorite = {
       userId: user?._id,
       movieId: movie?._id!,
     };
-    dispatch(addFavorite(favoriteData)).then((res) => {
-      console.log(res);
+    await dispatch(addFavorite(favoriteData)).then(() => {
+      dispatch(getFavorites({id: user?._id}))
     });
   };
 
@@ -112,8 +118,8 @@ const Movie: FC = () => {
               </div>
               <div className={style["ext-info"]}>
                 <div className={style.category}>
-                  {movie && movie.genre.map((item) => (
-                    <div className={style.item}>{item}</div>
+                  {movie && movie.genre.map((item, index) => (
+                    <div className={style.item} key={index}>{item}</div>
                   ))}
                 </div>
               </div>
@@ -142,7 +148,7 @@ const Movie: FC = () => {
               <div className={style['cast-title']}>{contentConst.movieCasts}</div>
               <div className={style.cast}>
                 {actors && actors.map((item) => (
-                  <div className={style.item2}>
+                  <div className={style.item2} key={item._id}>
                     <div className={style.portrait}>
                       <img
                         src={`${ENV.API_URL_UPLOADS_ACTORS}${item.picture}`}

@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
-import { useProfileUserQuery } from '../store/authApi';
-import { useAppSelector} from '../hooks/reduxHook';
+import { useProfileUserQuery } from '../../store/authApi';
+import { useAppSelector} from '../../hooks/reduxHook';
 
 const Profile: FC = () => {
     const user = useAppSelector(state => state.auth.user);

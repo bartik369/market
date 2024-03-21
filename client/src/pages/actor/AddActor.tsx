@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { addActor, getActors } from "../store/actorSlice";
-import { IActor } from "../types/media";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { addActor, getActors } from "../../store/actorSlice";
+import { IActor } from "../../types/media";
 import style from "./AddActor.module.css";
-import ActorForm from "../components/forms/ActorForm";
-import PreviewActor from "../components/preview/PreviewActor";
+import ActorForm from "../../components/forms/ActorForm";
+import PreviewActor from "../../components/preview/PreviewActor";
 
 const AddActor: FC = () => {
   const dispatch = useAppDispatch();
