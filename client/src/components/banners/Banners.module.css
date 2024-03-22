@@ -4,4 +4,10 @@
     grid-row: 20px;
 }
 
-.commercial .item {}
+.commercial .item {
+    margin: 5px;
+}
+
+.commercial .item img {
+    width: 100%;
+}

@@ -16,14 +16,14 @@
 }
 
 .main .container .title span {
-    font-size: 20px;
+    font-size: 25px;
     margin: 10px;
     font-family: inherit;
     color: rgb(199, 210, 232);
 }
 
 .main .container .title .icon {
-    font-size: 26px;
+    font-size: 24px;
     font-family: inherit;
     color: #fd8841;
 }
