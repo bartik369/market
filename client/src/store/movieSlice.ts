@@ -15,6 +15,7 @@ import ENV from "../env.config";
 
 type MovieState = {
     list: IMovie[];
+    top: IMovie[];
     movie: IMovieTitles;
     favorites: string[]
     search: IMovie[];
@@ -27,6 +28,7 @@ type MovieState = {
 
 const initialState:MovieState = {
     list: [],
+    top: [],
     movie: {
         titleRu: '',
         titleEn: '',
@@ -91,6 +93,18 @@ async function(filterData, {rejectWithValue}) {
 export const getLastMovies = createAsyncThunk<IMovie[], undefined, {rejectValue: String}>('movie/getLastMovies',
 async function(_, {rejectWithValue}) {
     const res = await axios.get(`${ENV.API_URL}api/last-movies`, {
+        headers: { 'Content-Type': 'application/json'},
+    });
+    if (!res.data) {
+        return rejectWithValue('server error')
+    }
+    return res.data
+}
+)
+
+export const getTopMovies = createAsyncThunk<IMovie[], undefined, {rejectValue: String}>('movie/getTopMovies',
+async function(_, {rejectWithValue}) {
+    const res = await axios.get(`${ENV.API_URL}api/top-movies`, {
         headers: { 'Content-Type': 'application/json'},
     });
     if (!res.data) {
@@ -214,6 +228,10 @@ const movieSlice = createSlice({
         })
         .addCase(getLastMovies.fulfilled, (state, action) => {
             state.list = action.payload;
+            state.loading = false;
+        })
+        .addCase(getTopMovies.fulfilled, (state, action) => {
+            state.top = action.payload;
             state.loading = false;
         })
         .addCase(getMovies.fulfilled, (state, action) => {

@@ -15,12 +15,7 @@ const DropCategory: FC = () => {
     const [checkedState, setCheckedState] = useState<any>([]);
     const myRef = useRef<HTMLButtonElement>(null)
     const existGenre = useAppSelector(state => state.movies.properties.genre);
-    console.log(existGenre)
-    // console.log(existCountry)
-    // console.log(existYear)
-    // console.log(existRating)
-
-  
+    
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
           if (myRef.current && !myRef.current.contains(e.target)) {

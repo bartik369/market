@@ -21,19 +21,18 @@
     text-align: center;
     transition: all .6s ease-in-out;
     cursor: pointer;
-    color: #cbd6e9;
 }
 
 .header-nav .menu-items .menu-item {
-    color: #cbd6e9;
+    color: #d2dcee;
 }
 
 .header-nav .menu-items .active {
-    color: #52ebea;
+    color: #fd8841;
 }
 
 .menu-item:hover {
-    color: #52ebea !important;
+    color: #fd8841 !important;
 }
 
 .menu-item .icon,

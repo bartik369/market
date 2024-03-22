@@ -7,11 +7,23 @@
     width: 100%;
     max-width: 1320px;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
 .main .container .title {
-    font-size: 23px;
+    display: flex;
+    align-items: center;
+}
+
+.main .container .title span {
+    font-size: 20px;
     margin: 10px;
     font-family: inherit;
     color: rgb(199, 210, 232);
+}
+
+.main .container .title .icon {
+    font-size: 26px;
+    font-family: inherit;
+    color: #fd8841;
 }

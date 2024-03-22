@@ -1,16 +1,27 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ENV from "../../env.config";
 import { IMovie } from "../../types/media";
+import { getFavorites } from "../../store/movieSlice";
+import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar} from "@fortawesome/free-solid-svg-icons";
 import style from "./MovieItem.module.css";
 
-interface MOvieItemProps {
+interface MovieItemProps {
   movie: IMovie;
+  favorites: string[]
 }
 
-const MovieItem: FC<MOvieItemProps> = ({ movie }) => {
+const MovieItem: FC<MovieItemProps> = ({ movie, favorites }) => {
+  // const dispatch = useAppDispatch();
   const [visible, setVisible] = useState(false);
+//   const favorites = useAppSelector(state => state.movies.favorites)
+//   const user = useAppSelector(state => state.auth.user);
+
+// useEffect(() => {
+//   movie && dispatch(getFavorites({id: user?._id}))
+//   console.log('one')
+// }, [])
 
   return (
     <div
@@ -22,7 +33,15 @@ const MovieItem: FC<MOvieItemProps> = ({ movie }) => {
         <img src={`${ENV.API_URL_UPLOADS_MOVIES}/${movie.picture}`} alt="" />
         <div className={visible ? style["item-info"] : style.hidden}>
             <div className={style['right-info']}>
-            <FontAwesomeIcon icon={faStar} className={style.icon} />
+            <div className={favorites.includes(movie._id as string) 
+                  ? style.favorite 
+                  : style.nofavorite}
+                ><FontAwesomeIcon icon={faStar}/>
+            </div>
+            {(movie.rating && movie.rating > 0)
+            ? <div className={style.rating}>{movie.rating.toFixed(1)}</div>
+            : ''
+            }
             </div>
             <div className={style['bottom-info']}>
                 <div>{movie.ageCategory}</div>

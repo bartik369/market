@@ -13,29 +13,19 @@
 }
 
 .logout {
-    display: flex;
-    align-items: center;
-    border-radius: 2px;
-    background-color: #5b60fb;
-    padding: 6px 11px;
+    border: none;
+    color: #7981b7;
+    text-transform: inherit;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-bottom: 1px dashed;
     margin-top: 20px;
     cursor: pointer;
-    transition: all .5s ease-in-out;
 }
 
 .logout:hover {
-    background-color: blueviolet;
-}
-
-.logout span,
-.logout-icon {
-    color: #fff;
-    font-family: inherit;
-    font-size: 11px;
-}
-
-.logout span {
-    margin-left: 5px;
+    color: #ffffff;
 }
 
 .profile-menu ul li:not(:last-child) {
@@ -47,14 +37,22 @@ ul.items {
     text-align: center;
 }
 
+.profile-menu li {
+    padding: 8px 0;
+}
+
 .profile-menu li a {
     color: #cbd6e9;
     text-decoration: none;
     font-family: inherit;
-    font-weight: 400;
-    font-size: 12px;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.profile-menu .active {
+    color: #fd8841;
 }
 
 .profile-menu li a:hover {
-    color: #52ebea;
+    color: #fd8841;
 }

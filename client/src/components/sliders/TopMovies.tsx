@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
-import { getLastMovies } from "../../store/movieSlice";
+import { getTopMovies } from "../../store/movieSlice";
 import { getFavorites } from "../../store/movieSlice";
 import MovieItem from "../items/MovieItem";
 import {
@@ -19,15 +19,15 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import style from "./MainSlider.module.css";
 
-const LastMovies: FC = () => {
+const TopMovies: FC = () => {
   const dispatch = useAppDispatch()
+  const movies = useAppSelector(state => state.movies.top);
   const user = useAppSelector(state => state.auth.user);
-  const movies = useAppSelector(state => state.movies.list);
   const favorites = useAppSelector(state => state.movies.favorites);
 
   useEffect(() => {
-    dispatch(getLastMovies())
-    dispatch(getFavorites({id: user?._id}))
+    dispatch(getTopMovies());
+    dispatch(getFavorites({id: user?._id}));
   }, [dispatch, user])
 
   return (
@@ -67,4 +67,4 @@ const LastMovies: FC = () => {
   );
 };
 
-export default LastMovies;
+export default TopMovies;

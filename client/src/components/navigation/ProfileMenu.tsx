@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { profileMenuData } from "../../utils/data/data";
 import { useAppSelector } from "../../hooks/reduxHook";
 import { useLogoutUserMutation } from "../../store/authApi";
@@ -37,17 +37,22 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
           {profileMenuData.map((item, index) =>
             !isAdmin && item.url === "/admin" ? null : (
               <li key={index}>
-                <Link to={item.url}>{item.title}</Link>
+                 <NavLink className={({ isActive }) => (isActive 
+                  ? style.active 
+                  : style[''])} to={item.url} key={item.id}>
+                    {item.title}
+                  </NavLink>
+                {/* <Link to={item.url}>{item.title}</Link> */}
               </li>
             )
             // icon={item.iconClassName}
           )}
         </ul>
       
-      <div className={style.logout} onClick={() => logoutHandler()}>
-      <FontAwesomeIcon className={style['logout-icon']} icon={faArrowRightFromBracket} />
-      <span>выйти</span>
-      </div>
+      <button className={style.logout} onClick={() => logoutHandler()}>
+      {/* <FontAwesomeIcon className={style['logout-icon']} icon={faArrowRightFromBracket} /> */}
+      выйти
+      </button>
     </div>
   );
 };

@@ -47,12 +47,11 @@ const Header: FC = () => {
     {visible && <Search visible={visible} visibleHandler={visibleHandler} />}
       <div className={regEx ? style["nav-absolute"] : style["nav-relative"]}>
         <div className={style.container}>
-          <div className={style.logo}>
-            <Link to={"/"}>
+            <Link className={style.logo} to={"/"}>
               <img src={Glasses} alt="" />
-              <span>kino</span>
+              <div className={style.bold}>film</div>
+              <span>library</span>
             </Link>
-          </div>
           <Navbar />
           <div className={style.right} onClick={e => e.stopPropagation()}>
             <div onClick={() => setVisible(true)} className={style.search}>

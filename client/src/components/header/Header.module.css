@@ -31,8 +31,9 @@
     width: fit-content;
     height: fit-content;
     display: flex;
-    align-items: flex-end;
-    padding-left: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 18px;
 }
 
 .logo a {
@@ -40,17 +41,26 @@
 }
 
 .logo img {
-    width: 33px;
+    width: 100%;
+    max-width: 45px;
 }
 
 .logo span {
-    color: #f6f6f6;
-    text-transform: uppercase;
+    color: #dde4ef;
     font-family: inherit;
-    font-weight: 500;
-    margin-left: 3px;
-    font-size: 14px;
-    top: 50px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 11px;
+    border-bottom: 1px solid #fd8841;
+}
+
+.logo .bold {
+    color: #dde4ef;
+    font-family: inherit;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 4px;
 }
 
 .right {

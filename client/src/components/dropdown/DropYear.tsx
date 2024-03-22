@@ -16,8 +16,6 @@ const DropYear: FC = () => {
     const myRef = useRef<HTMLButtonElement>(null)
     const existYear = useAppSelector(state => state.movies.properties.year);
 
-    console.log(existYear)
-
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
           if (myRef.current && !myRef.current.contains(e.target)) {

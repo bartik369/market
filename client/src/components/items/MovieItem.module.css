@@ -52,11 +52,29 @@ a {
     right: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.right-info .icon {
+.right-info .favorite {
     font-size: 18px;
     color: #fd9941;
+}
+
+.right-info .nofavorite {
+    font-size: 18px;
+    color: #6783a4;
+}
+
+.right-info .rating {
+    font-size: 23px;
+    font-family: inherit;
+    font-weight: 600;
+    color: rgb(213, 223, 243);
+    margin-top: 7px;
+}
+
+.hidden {
+    display: none;
 }
 
 .bottom-info {

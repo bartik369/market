@@ -48,6 +48,21 @@ async(req:Request, res:Response) => {
 }
 )
 
+router.get('/top-movies/',
+async(req:Request, res:Response) => {
+    try {
+        console.log("toooop")
+        const moviesData = await Movie.find({ 
+            rating: { $gt: 7 } 
+        });
+        console.log(moviesData)
+        return res.json(moviesData)
+    } catch (error) {
+        return error
+     }
+}
+)
+
 router.get('/movie/:id',
 async (req: Request, res: Response) => {
     try {

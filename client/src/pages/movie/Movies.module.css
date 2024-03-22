@@ -125,13 +125,12 @@
 
 .age {
     color: #83dbca;
-    font-size: 18px;
+    font-size: 30px;
+    font-weight: 600;
     font-family: inherit;
-    border: 2px solid #83dbca;
-    border-radius: 8px;
     width: fit-content;
     padding: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .cast {
