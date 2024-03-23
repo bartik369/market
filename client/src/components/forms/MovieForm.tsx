@@ -171,7 +171,7 @@ const MovieForm: FC<IMovieProps> = ({
 
       <div className={style["main-column"]}>
 
-        <div className={style.column3}>
+        <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.movieCast}</span>
           <select
             defaultValue=""
@@ -186,7 +186,7 @@ const MovieForm: FC<IMovieProps> = ({
           </select>
         </div>
         
-        <div className={style.column3}>
+        <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.movieAge}</span>
           <select
             defaultValue=""
@@ -200,8 +200,21 @@ const MovieForm: FC<IMovieProps> = ({
             ))}
           </select>
         </div>
-
-        <div className={style.column3}>
+      </div>
+      <div className={style.genre}>
+        {movie && movie.actors.map((item) => (
+          <div className={style.item}>
+            {item}
+            <FontAwesomeIcon
+              className={style["close-btn"]}
+              onClick={(e: React.MouseEvent) => deleteActor(e, item)}
+              icon={faXmark}
+            />
+          </div>
+        ))}
+      </div>
+      <div className={style['main-column']}>
+      <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.actorPhoto}</span>
           <label className={style["photo-layer"]} htmlFor={"upload"}>
             <FontAwesomeIcon className={style["photo-icon"]} icon={faCamera} />
@@ -237,18 +250,9 @@ const MovieForm: FC<IMovieProps> = ({
             }}
           />
         </div>
-      </div>
-      <div className={style.genre}>
-        {movie && movie.actors.map((item) => (
-          <div className={style.item}>
-            {item}
-            <FontAwesomeIcon
-              className={style["close-btn"]}
-              onClick={(e: React.MouseEvent) => deleteActor(e, item)}
-              icon={faXmark}
-            />
-          </div>
-        ))}
+        <div className={style.column2}>
+         <button className={style.reset}>Очистить форму</button>
+        </div>
       </div>
     </form>
   );

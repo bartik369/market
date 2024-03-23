@@ -16,7 +16,7 @@
 }
 
 .container .container__inner .add .btn {
-    background-color: #4b50d4;
+    background-color: #3e29bf;
     color: rgb(237, 237, 237);
     border-radius: 4px;
     font-size: 11px;
@@ -28,5 +28,5 @@
 }
 
 .container .container__inner .add .btn:hover {
-    background-color: #7c23d5;
+    background-color: #4fd1bf;
 }

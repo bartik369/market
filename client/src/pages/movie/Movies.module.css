@@ -190,7 +190,7 @@
     font-weight: 400;
     font-size: 12px;
     color: #fff;
-    background-color: #5b60fb;
+    background-color: #3e29bf;
     border: none;
     border-radius: 5px;
     margin-right: 10px;
@@ -199,7 +199,7 @@
 }
 
 .action .watch:hover {
-    background-color: #5e84d1;
+    background-color: #27bda8;
 }
 
 .action .favorite {
