@@ -107,3 +107,8 @@
     cursor: pointer;
     font-size: 18px;
 }
+
+.profile-btn {
+    background: transparent;
+    border: none;
+}

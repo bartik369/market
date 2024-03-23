@@ -1,9 +1,10 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
 import { getLastMovies } from "../../store/movieSlice";
 import { getFavorites } from "../../store/movieSlice";
+import useWindowSizeHook from '../../hooks/windowSizeHook';
 import MovieItem from "../items/MovieItem";
 import {
   faChevronLeft,
@@ -24,6 +25,7 @@ const LastMovies: FC = () => {
   const user = useAppSelector(state => state.auth.user);
   const movies = useAppSelector(state => state.movies.list);
   const favorites = useAppSelector(state => state.movies.favorites);
+  const slidesCount = useWindowSizeHook();
 
   useEffect(() => {
     dispatch(getLastMovies())
@@ -36,7 +38,7 @@ const LastMovies: FC = () => {
         naturalSlideWidth={70}
         naturalSlideHeight={160}
         totalSlides={movies && movies.length + 1}
-        visibleSlides={8}
+        visibleSlides={slidesCount}
         currentSlide={0}
         isPlaying={true}
         interval={6000}

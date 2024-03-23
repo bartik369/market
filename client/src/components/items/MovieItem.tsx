@@ -13,15 +13,7 @@ interface MovieItemProps {
 }
 
 const MovieItem: FC<MovieItemProps> = ({ movie, favorites }) => {
-  // const dispatch = useAppDispatch();
   const [visible, setVisible] = useState(false);
-//   const favorites = useAppSelector(state => state.movies.favorites)
-//   const user = useAppSelector(state => state.auth.user);
-
-// useEffect(() => {
-//   movie && dispatch(getFavorites({id: user?._id}))
-//   console.log('one')
-// }, [])
 
   return (
     <div

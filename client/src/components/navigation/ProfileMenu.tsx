@@ -4,7 +4,8 @@ import { profileMenuData } from "../../utils/data/data";
 import { useAppSelector } from "../../hooks/reduxHook";
 import { useLogoutUserMutation } from "../../store/authApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
+import logoutIcon from '../../assets/pics/logout.svg'
+import { faArrowRightFromBracket, faDoorOpen, faPersonWalkingArrowRight} from "@fortawesome/free-solid-svg-icons";
 import style from "./ProfileMenu.module.css";
 
 interface IProfileMenuProps {
@@ -42,16 +43,14 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
                   : style[''])} to={item.url} key={item.id}>
                     {item.title}
                   </NavLink>
-                {/* <Link to={item.url}>{item.title}</Link> */}
               </li>
             )
-            // icon={item.iconClassName}
           )}
         </ul>
       
       <button className={style.logout} onClick={() => logoutHandler()}>
-      {/* <FontAwesomeIcon className={style['logout-icon']} icon={faArrowRightFromBracket} /> */}
-      выйти
+      Выйти
+      <img src={logoutIcon} alt="" />
       </button>
     </div>
   );

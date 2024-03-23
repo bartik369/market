@@ -14,18 +14,25 @@
 
 .logout {
     border: none;
-    color: #7981b7;
-    text-transform: inherit;
+    color: #cbd6e9;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    font-weight: 300;
     background-color: transparent;
-    text-transform: uppercase;
-    font-size: 12px;
-    border-bottom: 1px dashed;
-    margin-top: 20px;
+    font-family: inherit;
+    font-size: 13px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
+.logout img {
+    width: 22px;
+    margin-left: 2px;
+}
+
 .logout:hover {
-    color: #ffffff;
+    color: #fd8841;
 }
 
 .profile-menu ul li:not(:last-child) {
@@ -46,7 +53,7 @@ ul.items {
     text-decoration: none;
     font-family: inherit;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .profile-menu .active {

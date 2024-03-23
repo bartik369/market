@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
 import { getTopMovies } from "../../store/movieSlice";
 import { getFavorites } from "../../store/movieSlice";
 import MovieItem from "../items/MovieItem";
+import useWindowSizeHook from '../../hooks/windowSizeHook';
 import {
   faChevronLeft,
   faChevronRight,
@@ -24,6 +25,7 @@ const TopMovies: FC = () => {
   const movies = useAppSelector(state => state.movies.top);
   const user = useAppSelector(state => state.auth.user);
   const favorites = useAppSelector(state => state.movies.favorites);
+  const slidesCount = useWindowSizeHook();
 
   useEffect(() => {
     dispatch(getTopMovies());
@@ -36,7 +38,7 @@ const TopMovies: FC = () => {
         naturalSlideWidth={70}
         naturalSlideHeight={160}
         totalSlides={movies && movies.length + 1}
-        visibleSlides={8}
+        visibleSlides={slidesCount}
         currentSlide={0}
         isPlaying={true}
         interval={6000}

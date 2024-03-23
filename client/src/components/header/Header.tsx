@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Navbar from "../navigation/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +21,7 @@ const Header: FC = () => {
   const user = useAppSelector(state => state.auth.user);
   const location = useLocation();
   const regEx = location.pathname.match(/\/movies\/[a-zA-Z0-9]/)
+  const myRef = useRef<HTMLButtonElement>(null)
 
   const visibleHandler = () => {
     setVisible(!visible);
@@ -38,9 +39,17 @@ const Header: FC = () => {
     setVisibleSignin(false);
   };
 
-  window.onclick = function() {
-    profileMenu && setProfileMenu(!profileMenu)
-  }
+  useEffect(() => {
+    const checkIfClickedOutside = (e:any) => {
+      if (myRef.current && !myRef.current.contains(e.target)) {
+        setProfileMenu(false) 
+      }
+    }
+    document.addEventListener("click", checkIfClickedOutside)
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside)
+    }
+  }, []);
 
   return (
     <>
@@ -53,7 +62,7 @@ const Header: FC = () => {
               <span>library</span>
             </Link>
           <Navbar />
-          <div className={style.right} onClick={e => e.stopPropagation()}>
+          <div className={style.right}>
             <div onClick={() => setVisible(true)} className={style.search}>
               <FontAwesomeIcon
                 className={style["search-icon"]}
@@ -61,9 +70,9 @@ const Header: FC = () => {
               />
             </div>
             {user && token ? (
-              <div onClick={() => setProfileMenu(!profileMenu)}>
+              <button className={style['profile-btn']} ref={myRef} onClick={() => setProfileMenu(!profileMenu)}>
                 <FontAwesomeIcon className={style.bars} icon={faBars} />
-              </div>
+              </button>
             ) : (
               <div
                 onClick={() => setVisibleSignin(true)}
