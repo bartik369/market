@@ -55,7 +55,10 @@ input::placeholder {
 
 textarea {
     min-height: 150px;
-    color: #a3938a !important;
+}
+
+textarea::placeholder {
+    color: #8a8ea3;
 }
 
 span.input-info {
@@ -195,7 +198,7 @@ span.hide {
     margin: 0;
     border-radius: 4px;
     border: none;
-    background-color: #d72d2d;
+    background-color: #d5461f;
     color: #fff;
     display: flex;
     width: fit-content;

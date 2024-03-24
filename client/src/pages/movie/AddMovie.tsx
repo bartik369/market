@@ -1,10 +1,10 @@
-import React, { FC, useState} from "react";
+import React, { FC, useState, MouseEvent} from "react";
 import { useAppDispatch} from "../../hooks/reduxHook";
 import {createMovie} from '../../store/movieSlice'
 import PreviewPoster from "../../components/poster/PreviewPoster";
 import { IMovie } from "../../types/media";
-import style from "./AddMovie.module.css";
 import MovieForm from "../../components/forms/MovieForm";
+import style from "./AddMovie.module.css";
 
 const AddMovie: FC = () => {
   const dispatch = useAppDispatch();
@@ -65,6 +65,24 @@ const deleteActor = (e: React.MouseEvent, item: string) => {
   });
 }
 
+const resetFormHandler = (e: MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault();
+  setMovie({...movie, 
+    titleEn: '',
+    titleRu: '',
+    genre: [],
+    trailer: '',
+    year: '',
+    country: '',
+    ageCategory: '',
+    description: '',
+    director: '',
+    time: '',
+    actors: [],
+  })
+  setPrevImg('')
+}
+
 
 const imgAction = (e:React.ChangeEvent<HTMLInputElement>) => {
   e.target.files && setFile(e.target.files[0]);
@@ -89,6 +107,7 @@ const videoAction = (e:React.ChangeEvent<HTMLInputElement>) => {
         addActor={addActor}
         deleteActor={deleteActor}
         setFile={setFile}
+        resetFormHandler={resetFormHandler}
         />
       </div>
 

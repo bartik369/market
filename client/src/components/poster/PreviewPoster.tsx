@@ -27,21 +27,21 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
           <span className={style.en}>{movie?.titleEn}</span>
         </div>
 
-        {movie?.year && 
+        {movie.year && 
         <div className={style.block}>
         <span className={style.prevText}>{contentConst.movieYear}</span>
         <span className={style.result}>{movie.year}</span>
         </div>
         }
 
-        {movie?.country &&
+        {movie.country &&
          <div className={style.block}>
          <span className={style.prevText}>{contentConst.movieCountry}</span>
          <span className={style.result}>{movie.country}</span> 
        </div>
        }
         
-        {movie?.time &&
+        {movie.time &&
         <div className={style.block}>
         <span className={style.prevText}>{contentConst.movieTime}</span>
         <span className={style.result}>{movie.time}</span>
@@ -87,7 +87,7 @@ const PreviewPoster: FC<IPreviewPosterProps> = ({
         }
         
         {(movie.titleEn && movie.titleRu) &&
-        <button className={style["btn-submit"]} onClick={() => createMovieHandler()}>
+        <button className={style["btn-submit"]} onClick={createMovieHandler}>
         {contentConst.addBtn}
         </button>
         }

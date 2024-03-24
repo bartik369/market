@@ -80,6 +80,8 @@ export const inputPassword = 'Введите пароль';
 export const inputEmail = 'Укажите почту';
 export const wrongEmailFormat = 'Неправильный формат почты';
 
+export const homePageTitle = 'Главная';
+
 
 
 

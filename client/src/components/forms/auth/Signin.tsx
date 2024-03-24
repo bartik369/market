@@ -1,14 +1,14 @@
-import React, { FC, useState } from "react";
-import { useAppDispatch} from "../../../hooks/reduxHook";
-import { IUserAuth } from "../../../types/auth";
-import { useSigninUserMutation } from "../../../store/authApi";
-import { setCredentials } from "../../../store/authSlice";
+import React, { FC, useState } from 'react';
+import { useAppDispatch} from '../../../hooks/reduxHook';
+import { IUserAuth } from '../../../types/auth';
+import { useSigninUserMutation } from '../../../store/authApi';
+import { setCredentials } from '../../../store/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
-import * as contentConst from "../../../utils/constants/content";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import validate from "../../../middleware/validateAuth";
-import { faEye, faEyeSlash, faEnvelope, faXmark } from "@fortawesome/free-solid-svg-icons";
-import style from "./Auth.module.css";
+import * as contentConst from '../../../utils/constants/content';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import validate from '../../../middleware/validateAuth';
+import { faEye, faEyeSlash, faEnvelope, faXmark } from '@fortawesome/free-solid-svg-icons';
+import style from './Auth.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface ISigninProps {
@@ -18,8 +18,9 @@ interface ISigninProps {
 const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
   type Errors = Partial<Record<keyof IUserAuth, string>>
   type Touched = Partial<Record<keyof IUserAuth, boolean>>
+
   const dispatch = useAppDispatch();
-  const [signinUser, {error}] = useSigninUserMutation();
+  const [signinUser] = useSigninUserMutation();
   const [authData, setAuthData] = useState<IUserAuth>({
     email: '',
     password: '',
@@ -57,12 +58,12 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
       position="top-center"
        />
        </div> 
-      <form className={style.form} action="" onSubmit={login}>
+      <form className={style.form} action='' onSubmit={login}>
         <span className={style.title}>{contentConst.signinTitle}</span>
         <span className={style.label}>{contentConst.email}</span>
         <div className={style['input-data']}>
           <FontAwesomeIcon className={style.icon} icon={faEnvelope} />
-          <input className={style.data} type="text"
+          <input className={style.data} type='text'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setAuthData({ ...authData, email: e.target.value })
               setErrors(validate({ ...authData, email: e.target.value }))
@@ -71,7 +72,10 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
           />
         </div>
         <div className={style.error}>
-        {errors.email && touched.email ? <p>{errors.email}</p> : null}
+        {errors.email && touched.email 
+        ? <p>{errors.email}</p> 
+        : null
+        }
         </div>
         <span className={style.label}>{contentConst.password}</span>
         <div className={style['input-data']}>
@@ -105,8 +109,7 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
             {contentConst.registetText}
           </span>
         </div>
-        <button
-        className={style["enter-btn"]}>{contentConst.enterBtn}</button>
+        <button type="submit" className={style['enter-btn']}>{contentConst.enterBtn}</button>
       </form>
       <button className={style.close} onClick={closeFormHandler}>
         <FontAwesomeIcon icon={faXmark} />

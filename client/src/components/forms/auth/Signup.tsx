@@ -1,14 +1,14 @@
-import React, { FC, useState } from "react";
-import { useSignupUserMutation } from "../../../store/authApi";
-import { useAppDispatch } from "../../../hooks/reduxHook";
-import { setCredentials } from "../../../store/authSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { FC, useState } from 'react';
+import { useSignupUserMutation } from '../../../store/authApi';
+import { useAppDispatch } from '../../../hooks/reduxHook';
+import { setCredentials } from '../../../store/authSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import validate from '../../../middleware/validateAuth'
-import { IUserAuth } from "../../../types/auth";
+import { IUserAuth } from '../../../types/auth';
+import * as contentConst from '../../../utils/constants/content';
 import { ToastContainer, toast } from 'react-toastify';
-import { faEye, faEyeSlash, faEnvelope, faXmark} from "@fortawesome/free-solid-svg-icons";
-import * as contentConst from "../../../utils/constants/content";
-import style from "./Auth.module.css";
+import { faEye, faEyeSlash, faEnvelope, faXmark} from '@fortawesome/free-solid-svg-icons';
+import style from './Auth.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface ISignupProps {
@@ -22,9 +22,9 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
   const dispatch = useAppDispatch();
   const [passwordType, setPasswordType] = useState(false);
   const [authData, setAuthData] = useState({
-    email: "",
-    password: "",
-    repeatPassword: "",
+    email: '',
+    password: '',
+    repeatPassword: '',
   });
   const [signupUser] = useSignupUserMutation();
   const [errors, setErrors] = useState<Errors>(validate(authData));
@@ -62,7 +62,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
       position="top-center"
        />
        </div>
-      <form className={style.form} action="" onSubmit={create}>
+      <form className={style.form} action='' onSubmit={create}>
         <span className={style.title}>{contentConst.signupTitle}</span>
         <span className={style.label}>{contentConst.email}</span>
         <div className={style['input-data']}>
@@ -78,7 +78,10 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
           />
         </div>
         <div className={style.error}>
-          {errors.email && touched.email ? <p>{errors.email}</p> : null}
+          {errors.email && touched.email 
+          ? <p>{errors.email}</p> 
+          : null
+          }
         </div>
         <span className={style.label}>{contentConst.password}</span>
         <div className={style['input-data']}>
@@ -138,7 +141,7 @@ const Signup: FC<ISignupProps> = ({ signinHandler, closeFormHandler }) => {
             {contentConst.login}
           </span>
         </div>
-        <button className={style["enter-btn"]}>{contentConst.register}</button>
+        <button type="submit" className={style['enter-btn']}>{contentConst.register}</button>
       </form>
       <button className={style.close} onClick={closeFormHandler}>
         <FontAwesomeIcon icon={faXmark} />

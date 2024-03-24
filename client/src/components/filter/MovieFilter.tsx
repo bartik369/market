@@ -1,12 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
-import {IMovie} from "../../types/media";
-import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
-import style from "./MovieFilter.module.css";
-import DropCategory from "../dropdown/DropCategory";
-import DropCountry from "../dropdown/DropCountry";
-import DropYear from "../dropdown/DropYear";
-import DropRating from "../dropdown/DropRating";
-import {getProperties} from '../../store/movieSlice'
+import React, { FC, useEffect } from 'react';
+import { useAppDispatch } from '../../hooks/reduxHook';
+import DropCategory from '../dropdown/DropCategory';
+import DropCountry from '../dropdown/DropCountry';
+import DropYear from '../dropdown/DropYear';
+import DropRating from '../dropdown/DropRating';
+import {getProperties} from '../../store/movieSlice';
+import style from './MovieFilter.module.css';
 
 
 

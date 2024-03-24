@@ -1,13 +1,13 @@
-import React, { FC, useEffect } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
-import { categoryMovies, genderItemsData } from "../../utils/data/data";
-import * as contentConst from "../../utils/constants/content";
-import { countryList } from "../../utils/data/coutry";
-import style from "./AddItemForm.module.css";
-import { IActor } from "../../types/media";
+import React, { FC} from 'react';
+import DatePicker from 'react-datepicker';
+import { IActor } from '../../types/media';
+import { categoryMovies, genderItemsData } from '../../utils/data/data';
+import { countryList } from '../../utils/data/coutry';
+import * as contentConst from '../../utils/constants/content';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark, faCamera } from '@fortawesome/free-solid-svg-icons';
+import style from './AddItemForm.module.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface IActorProps {
   actor: IActor;
@@ -48,7 +48,7 @@ const ActorForm: FC<IActorProps> = ({
           }
         />
       </div>
-      <div className={style["main-column"]}>
+      <div className={style['main-column']}>
         <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.actorCountry}</span>
           <select
@@ -88,7 +88,7 @@ const ActorForm: FC<IActorProps> = ({
           />
         </div>
       </div>
-      <div className={style["main-column"]}>
+      <div className={style['main-column']}>
 
         <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.actorBirthday}</span>
@@ -130,7 +130,7 @@ const ActorForm: FC<IActorProps> = ({
         <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.actorGender}</span>
           <select
-            defaultValue=""
+            defaultValue=''
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setActor({
                 ...actor,
@@ -141,7 +141,7 @@ const ActorForm: FC<IActorProps> = ({
               })
             }
           >
-            <option value="" disabled>
+            <option value='' disabled>
               {contentConst.select}
             </option>
             {genderItemsData.map((item) => (
@@ -150,14 +150,14 @@ const ActorForm: FC<IActorProps> = ({
           </select>
         </div>
       </div>
-      <div className={style["main-column"]}>
+      <div className={style['main-column']}>
         <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.actorGenre}</span>
           <select
-            defaultValue=""
+            defaultValue=''
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => addGenre(e)}
           >
-            <option value="" disabled>
+            <option value='' disabled>
               {contentConst.select}
             </option>
             {categoryMovies.map((item) => (
@@ -167,9 +167,9 @@ const ActorForm: FC<IActorProps> = ({
         </div>
         <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.actorPhoto}</span>
-          <label className={style["photo-layer"]} htmlFor={'upload'}>
-            <FontAwesomeIcon className={style["photo-icon"]} icon={faCamera} />
-            <label className={style["select-photo"]}>
+          <label className={style['photo-layer']} htmlFor={"upload"}>
+            <FontAwesomeIcon className={style['photo-icon']} icon={faCamera} />
+            <label className={style['select-photo']}>
               {contentConst.actorSelectPhoto}
             </label>
           </label>
@@ -189,7 +189,7 @@ const ActorForm: FC<IActorProps> = ({
           <div className={style.item}>
             {item}
             <FontAwesomeIcon
-              className={style["close-btn"]}
+              className={style['close-btn']}
               onClick={(e: React.MouseEvent) => deleteGenre(e, item)}
               icon={faXmark}
             />

@@ -5,27 +5,26 @@ import { setMovieCountry } from '../../store/movieSlice';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import * as contentConst from '../../utils/constants/content'
-import { useFilterModal } from '../../hooks/modalHook';
 import style from './Drop.module.css'
 
 const DropCountry: FC = () => {
 
-    const [dropdownDisplay, setDropdownDisplay] = useState<boolean>(false)
-    const dispatch = useAppDispatch()
-    const movies = useAppSelector(state => state.movies.list)
+    const [dropdownDisplay, setDropdownDisplay] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
     const [checkedState, setCheckedState] = useState<any>([]);
-    const myRef = useRef<HTMLButtonElement>(null)
-    const existCountry = useAppSelector(state => state.movies.properties.country);    const existRating = useAppSelector(state => state.movies.properties.rating);
+    const myRef = useRef<HTMLButtonElement>(null);
+    const existCountry = useAppSelector(state => state.movies.properties.country);
 
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
+
           if (myRef.current && !myRef.current.contains(e.target)) {
             setDropdownDisplay(false) 
           }
         }
-        document.addEventListener("click", checkIfClickedOutside)
+        document.addEventListener('click', checkIfClickedOutside)
         return () => {
-          document.removeEventListener("click", checkIfClickedOutside)
+          document.removeEventListener('click', checkIfClickedOutside)
         }
       }, [])
 
@@ -52,10 +51,9 @@ const DropCountry: FC = () => {
                     })
                  }} 
                 id={item.name} 
-                type='checkbox'
+                type="checkbox"
                 checked={checkedState[item.id]}
                 disabled={existCountry.includes(item.name) === false}
-
                  />
                  <span className={style.checkmark}></span>
                  <label htmlFor={item.value}>{item.name}</label>
@@ -64,7 +62,8 @@ const DropCountry: FC = () => {
             ))
             }
         </div>}
-        </fieldset></>
+        </fieldset>
+        </>
     );
 };
 

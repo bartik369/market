@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { IActor } from "../../types/media";
 import * as contentConst from "../../utils/constants/content";
-import style from "./PreviewActor.module.css";
 import BlankAvatar from "../../assets/pics/blank_avatar.jpg";
+import style from "./PreviewActor.module.css";
 
 interface IPreviewActorProps {
   prevImg: string | null;
@@ -71,7 +71,7 @@ const PreviewActor: FC<IPreviewActorProps> = ({
         :''
         }
         {(actor.nameRu && actor.nameEn) &&
-        <button className={style['btn-submit']} onClick={() => createActorHandler()}>{contentConst.addBtn}</button>
+        <button className={style['btn-submit']} onClick={createActorHandler}>{contentConst.addBtn}</button>
         }
       </div>
     </div>

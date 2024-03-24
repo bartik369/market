@@ -1,31 +1,30 @@
 import React, {useState, FC, useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHook';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faAngleUp} from "@fortawesome/free-solid-svg-icons";
 import { setMovieRating } from '../../store/movieSlice';
 import { ratingRangeData } from '../../utils/data/data';
 import * as contentConst from '../../utils/constants/content'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp} from '@fortawesome/free-solid-svg-icons';
 import style from './Drop.module.css'
 
 const DropRating: FC = () => {
-
-    const [dropdownDisplay, setDropdownDisplay] = useState<boolean>(false)
     const dispatch = useAppDispatch()
-    const movies = useAppSelector(state => state.movies.list)
+    const [dropdownDisplay, setDropdownDisplay] = useState<boolean>(false)
     const [checkedState, setCheckedState] = useState<any>([]);
     const myRef = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
         const checkIfClickedOutside = (e:any) => {
+          
           if (myRef.current && !myRef.current.contains(e.target)) {
             setDropdownDisplay(false) 
           } else {
               console.log('dfdd')
           }
         }
-        document.addEventListener("click", checkIfClickedOutside)
+        document.addEventListener('click', checkIfClickedOutside)
         return () => {
-          document.removeEventListener("click", checkIfClickedOutside)
+          document.removeEventListener('click', checkIfClickedOutside)
         }
       }, [])
   
@@ -52,17 +51,17 @@ const DropRating: FC = () => {
                     })
                  }} 
                 id={item.title} 
-                type='checkbox'
+                type="checkbox"
                 checked={checkedState[item.id]}
                  />
                  <span className={style.checkmark}></span>
                  <label htmlFor={item.value}>{item.title}</label>
                  </label>
-                
             ))
             }
         </div>}
-        </fieldset></>
+        </fieldset>
+      </>
     );
 };
 

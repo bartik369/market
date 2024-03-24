@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import style from './Banners.module.css'
 import bannerLeft from '../../assets/pics/banner-left.png';
 import bannerRight from '../../assets/pics/banner-right.png';
+import style from './Banners.module.css'
 
 const Commercial:FC = () => {
     return (
