@@ -1,8 +1,8 @@
-import React, {FC, useEffect, PureComponent} from 'react';
-import style from './Admin.module.css'
+import React, {FC} from 'react';
 import Menu from './Menu';
 import MoviesCounts from './MoviesCounts';
 import UsersCounts from './UsersCounts';
+import style from './Admin.module.css'
 
 const Admin: FC = () => {
 

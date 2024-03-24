@@ -49,23 +49,18 @@ const MovieForm: FC<IMovieProps> = ({
             {contentConst.movieNameRu}
           </span>
           <input
-            type="text"
-            value={movie.titleRu}
-            placeholder={contentConst.fill}
+            type="text" value={movie.titleRu} placeholder={contentConst.fill}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setMovie({ ...movie, titleRu: e.target.value })
             }
           />
         </div>
-
         <div className={style.column2}>
           <span className={style['input-info']}>
             {contentConst.movieNameEn}
           </span>
           <input
-            type="text"
-            value={movie.titleEn}
-            placeholder={contentConst.fill}
+            type="text" value={movie.titleEn} placeholder={contentConst.fill}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setMovie({ ...movie, titleEn: e.target.value })
             }
@@ -89,7 +84,6 @@ const MovieForm: FC<IMovieProps> = ({
             ))}
           </select>
         </div>
-
         <div className={style.column3}>
           <span className={style['input-info']}>
             {contentConst.movieCountry}
@@ -108,33 +102,27 @@ const MovieForm: FC<IMovieProps> = ({
             ))}
           </select>
         </div>
-
         <div className={style.column3}>
           <span className={style['input-info']}>{contentConst.movieTime}</span>
           <input
-            type="text"
-            value={movie.time}
-            placeholder={contentConst.fill}
+            type="text" value={movie.time} placeholder={contentConst.fill}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setMovie({ ...movie, time: e.target.value })
             }
           />
         </div>
       </div>
-
       <div className={style.block}>
         <span className={style['input-info']}>
           {contentConst.movieDescription}
         </span>
         <textarea
-          placeholder={contentConst.fill}
-          value={movie.description}
+          placeholder={contentConst.fill} value={movie.description}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setMovie({ ...movie, description: e.target.value })
           }
         />
       </div>
-
       <div className={style['main-column']}>
         <div className={style.column2}>
           <span className={style['input-info']}>
@@ -152,7 +140,6 @@ const MovieForm: FC<IMovieProps> = ({
             ))}
           </select>
         </div>
-
         <div className={style.column2}>
           <span className={style['input-info']}>
             {contentConst.movieDirector}
@@ -185,12 +172,10 @@ const MovieForm: FC<IMovieProps> = ({
             </div>
           ))}
       </div>
-
       <div className={style['main-column']}>
         <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.movieCast}</span>
-          <select
-            value={{ ...movie.actors }}
+          <select value={{ ...movie.actors }}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => addActor(e)}
           >
             <option value="" disabled>
@@ -202,7 +187,6 @@ const MovieForm: FC<IMovieProps> = ({
               ))}
           </select>
         </div>
-
         <div className={style.column2}>
           <span className={style['input-info']}>{contentConst.movieAge}</span>
           <select
@@ -242,14 +226,8 @@ const MovieForm: FC<IMovieProps> = ({
               {contentConst.actorSelectPhoto}
             </span>
           </label>
-          <input
-            name="file"
-            id="upload"
-            type="file"
-            hidden
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              imgAction(e);
-            }}
+          <input name="file" id="upload" type="file" hidden
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => { imgAction(e); }}
           />
         </div>
         <div className={style.column3}>
@@ -262,22 +240,17 @@ const MovieForm: FC<IMovieProps> = ({
               {contentConst.actorSelectPhoto}
             </span>
           </label>
-          <input
-            name="file"
-            id="upload-video"
-            type="file"
-            hidden
+          <input name="file" id="upload-video" type="file" hidden
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               videoAction(e);
             }}
           />
         </div>
         <div className={style.column2}>
-          <button
-            className={style.reset}
+          <button className={style.reset}
             onClick={(e: MouseEvent<HTMLButtonElement>) => resetFormHandler(e)}
           >
-            Очистить форму
+          {contentConst.resetForm}
           </button>
         </div>
       </div>

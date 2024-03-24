@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faPen } from "@fortawesome/free-solid-svg-icons";
-import { useGetSlidesQuery } from "../../store/adminApi";
-import * as contentConst from "../../utils/constants/content";
-import ENV from "../../env.config";
-import style from "./SlidersList.module.css";
+import React, { FC } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
+import { useGetSlidesQuery } from '../../store/adminApi';
+import * as contentConst from '../../utils/constants/content';
+import ENV from '../../env.config';
+import style from './SlidersList.module.css';
 
 interface ISliderLIstProps {
   update: (id: string) => void;
@@ -13,15 +13,12 @@ interface ISliderLIstProps {
 const SlidersList: FC<ISliderLIstProps> = ({ update, remove }) => {
   const { data: slides } = useGetSlidesQuery();
   return (
-    <div className={style["slides-wrapper"]}>
+    <div className={style['slides-wrapper']}>
       {slides &&
         slides.map((slide) => (
           <div className={style.info} key={slide._id}>
             <div className={style.poster}>
-              <img
-                src={`${ENV.API_URL_UPLOADS_MAIN_SLIDER}${slide.media}`}
-                alt=""
-              />
+              <img src={`${ENV.API_URL_UPLOADS_MAIN_SLIDER}${slide.media}`} alt= "" />
             </div>
             <div className={style.actions}>
               <div className={style.btns}>

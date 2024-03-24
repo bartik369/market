@@ -1,27 +1,27 @@
-import React, { FC, useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import Navbar from "../navigation/Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
-import Glasses from "../../assets/pics/cinema.svg";
-import Search from "../search/Search";
-import Signin from "../forms/auth/Signin";
-import Signup from "../forms/auth/Signup";
-import { useAppSelector } from "../../hooks/reduxHook";
-import style from "./Header.module.css";
-import ProfileMenu from "../navigation/ProfileMenu";
-import Breadcrumbs from "../breadcrumbs/Breadcrumbs";
+import React, { FC, useEffect, useState, useRef, MouseEvent } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Navbar from '../navigation/Navbar';
+import Search from '../search/Search';
+import Signin from '../forms/auth/Signin';
+import Signup from '../forms/auth/Signup';
+import { useAppSelector } from '../../hooks/reduxHook';
+import ProfileMenu from '../navigation/ProfileMenu';
+import Breadcrumbs from '../breadcrumbs/Breadcrumbs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import Glasses from '../../assets/pics/cinema.svg';
+import style from './Header.module.css';
 
 const Header: FC = () => {
+  const token = useAppSelector(state => state.auth.token);
+  const user = useAppSelector(state => state.auth.user);
   const [visible, setVisible] = useState<boolean>(false);
   const [profileMenu, setProfileMenu] = useState<boolean>(false);
   const [visibleSignin, setVisibleSignin] = useState<boolean>(false);
   const [visibleSignup, setVisibleSignup] = useState<boolean>(false);
-  const token = useAppSelector(state => state.auth.token);
-  const user = useAppSelector(state => state.auth.user);
   const location = useLocation();
-  const regEx = location.pathname.match(/\/movies\/[a-zA-Z0-9]/)
-  const myRef = useRef<HTMLButtonElement>(null)
+  const regEx = location.pathname.match(/\/movies\/[a-zA-Z0-9]/);
+  const myRef = useRef<HTMLButtonElement>(null);
 
   const visibleHandler = () => {
     setVisible(!visible);
@@ -40,24 +40,24 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
-    const checkIfClickedOutside = (e:any) => {
-      if (myRef.current && !myRef.current.contains(e.target)) {
-        setProfileMenu(false) 
+    const checkIfClickedOutside = (e: MouseEvent):void => {
+      if (myRef.current && !myRef.current.contains(e.target as Node)) {
+        setProfileMenu(false);
       }
     }
-    document.addEventListener("click", checkIfClickedOutside)
+    document.addEventListener('click', (e:any) =>  checkIfClickedOutside(e))
     return () => {
-      document.removeEventListener("click", checkIfClickedOutside)
+      document.removeEventListener('click',(e:any) => checkIfClickedOutside(e))
     }
   }, []);
 
   return (
     <>
-    {visible && <Search visible={visible} visibleHandler={visibleHandler} />}
-      <div className={regEx ? style["nav-absolute"] : style["nav-relative"]}>
+    {visible && <Search visibleHandler={visibleHandler} />}
+      <div className={regEx ? style['nav-absolute'] : style['nav-relative']}>
         <div className={style.container}>
-            <Link className={style.logo} to={"/"}>
-              <img src={Glasses} alt="" />
+            <Link className={style.logo} to={'/'}>
+              <img src={Glasses} alt='' />
               <div className={style.bold}>film</div>
               <span>library</span>
             </Link>
@@ -65,12 +65,13 @@ const Header: FC = () => {
           <div className={style.right}>
             <div onClick={() => setVisible(true)} className={style.search}>
               <FontAwesomeIcon
-                className={style["search-icon"]}
+                className={style['search-icon']}
                 icon={faSearch}
               />
             </div>
             {user && token ? (
-              <button className={style['profile-btn']} ref={myRef} onClick={() => setProfileMenu(!profileMenu)}>
+              <button className={style['profile-btn']} ref={myRef} 
+              onClick={() => setProfileMenu(!profileMenu)}>
                 <FontAwesomeIcon className={style.bars} icon={faBars} />
               </button>
             ) : (
@@ -78,32 +79,25 @@ const Header: FC = () => {
                 onClick={() => setVisibleSignin(true)}
                 className={style.auth}
               >
-                <FontAwesomeIcon className={style["auth-icon"]} icon={faUser} />
+                <FontAwesomeIcon className={style['auth-icon']} icon={faUser} />
                 <span>Войти</span>
               </div>
             )}
-             {profileMenu && <ProfileMenu 
-             setProfileMenu={setProfileMenu}
-             profileMenu={profileMenu}
-              />}
+             {profileMenu && 
+             <ProfileMenu setProfileMenu={setProfileMenu} profileMenu={profileMenu}/>
+              }
           </div>
         </div>
         <div className={style.breadcrumbs}>
-        <Breadcrumbs />
+         <Breadcrumbs />
         </div>
       
       </div>
       {visibleSignin && (
-        <Signin
-          signupHandler={signupHandler}
-          closeFormHandler={closeFormHandler}
-        />
+        <Signin signupHandler={signupHandler} closeFormHandler={closeFormHandler} />
       )}
       {visibleSignup && (
-        <Signup
-          signinHandler={signinHandler}
-          closeFormHandler={closeFormHandler}
-        />
+        <Signup signinHandler={signinHandler} closeFormHandler={closeFormHandler} />
       )}
     </>
   );

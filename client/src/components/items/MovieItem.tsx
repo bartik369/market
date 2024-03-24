@@ -1,11 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
-import ENV from "../../env.config";
-import { IMovie } from "../../types/media";
-import { getFavorites } from "../../store/movieSlice";
-import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar} from "@fortawesome/free-solid-svg-icons";
-import style from "./MovieItem.module.css";
+import React, { FC, useState } from 'react';
+import ENV from '../../env.config';
+import { IMovie } from '../../types/media';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar} from '@fortawesome/free-solid-svg-icons';
+import style from './MovieItem.module.css';
 
 interface MovieItemProps {
   movie: IMovie;
@@ -16,14 +14,13 @@ const MovieItem: FC<MovieItemProps> = ({ movie, favorites }) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div
-      className={style.wrapper}
+    <div className={style.wrapper}
       onMouseLeave={() => setVisible(false)}
       onMouseEnter={() => setVisible(true)}
     >
       <div className={style.item}>
         <img src={`${ENV.API_URL_UPLOADS_MOVIES}/${movie.picture}`} alt="" />
-        <div className={visible ? style["item-info"] : style.hidden}>
+        <div className={visible ? style['item-info'] : style.hidden}>
             <div className={style['right-info']}>
             <div className={favorites.includes(movie._id as string) 
                   ? style.favorite 

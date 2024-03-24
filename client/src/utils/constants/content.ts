@@ -51,6 +51,11 @@ export const addBtn = 'Добавить';
 export const enterBtn = 'Войти';
 export const updateBtn = 'Обновить';
 export const deleteBtn = 'Удалить';
+export const slider = 'Слайдер';
+export const addMovie = 'Добавить фильм';
+export const addActor = 'Добавить актера';
+export const news = 'Новости';
+export const messages = 'Сообщения';
 
 // roles
 
@@ -63,6 +68,7 @@ export const havenotAccount = 'Еще нет аккаунта?';
 export const haveAccount = 'Уже есть аккаунт?';
 export const registetText = 'Зарегистрироваться';
 export const login = 'Войти';
+export const logout = 'Выйти';
 export const register = 'Отправить';
 
 export const watch = 'Смотреть';
@@ -82,6 +88,10 @@ export const wrongEmailFormat = 'Неправильный формат почт�
 
 export const homePageTitle = 'Главная';
 
+export const locateRu = 'ru-RU';
+export const search = 'Поиск';
+export const gratitudeRating = 'Спасибо за Вашу оценку!'
+export const financeHistory = 'Финансовая история';
 
 
 

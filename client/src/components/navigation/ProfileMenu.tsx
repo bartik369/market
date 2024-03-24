@@ -1,12 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { profileMenuData } from "../../utils/data/data";
-import { useAppSelector } from "../../hooks/reduxHook";
-import { useLogoutUserMutation } from "../../store/authApi";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { FC, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { profileMenuData } from '../../utils/data/data';
+import { useAppSelector } from '../../hooks/reduxHook';
+import { useLogoutUserMutation } from '../../store/authApi';
+import * as contentConst from '../../utils/constants/content'
 import logoutIcon from '../../assets/pics/logout.svg'
-import { faArrowRightFromBracket, faDoorOpen, faPersonWalkingArrowRight} from "@fortawesome/free-solid-svg-icons";
-import style from "./ProfileMenu.module.css";
+import style from './ProfileMenu.module.css';
 
 interface IProfileMenuProps {
     setProfileMenu: (profileMenu: boolean) => void;
@@ -14,14 +13,13 @@ interface IProfileMenuProps {
 }
 
 const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
-  const user = useAppSelector((state) => state.auth.user);
-  const token = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector(state => state.auth.user);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const [logoutUser] = useLogoutUserMutation()
+  const [logoutUser] = useLogoutUserMutation();
 
   useEffect(() => {
     user && user.roles?.map((role) => {
-      if (role === "ADMIN") {
+      if (role === 'ADMIN') {
         setIsAdmin(true);
       }
     });
@@ -36,7 +34,7 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
     <div className={style['profile-menu']}>
         <ul className={style.items}>
           {profileMenuData.map((item, index) =>
-            !isAdmin && item.url === "/admin" ? null : (
+            !isAdmin && item.url === '/admin' ? null : (
               <li key={index}>
                  <NavLink className={({ isActive }) => (isActive 
                   ? style.active 
@@ -47,9 +45,8 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
             )
           )}
         </ul>
-      
-      <button className={style.logout} onClick={() => logoutHandler()}>
-      Выйти
+      <button className={style.logout} onClick={logoutHandler}>
+      {contentConst.logout}
       <img src={logoutIcon} alt="" />
       </button>
     </div>

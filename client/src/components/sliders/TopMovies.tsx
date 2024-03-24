@@ -1,27 +1,25 @@
-import React, { FC, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
-import { getTopMovies } from "../../store/movieSlice";
-import { getFavorites } from "../../store/movieSlice";
-import MovieItem from "../items/MovieItem";
+import React, { FC, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxHook';
+import { getTopMovies } from '../../store/movieSlice';
+import { getFavorites } from '../../store/movieSlice';
+import MovieItem from '../items/MovieItem';
+import ENV from '../../env.config';
 import useWindowSizeHook from '../../hooks/windowSizeHook';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import {
   CarouselProvider,
   Slider,
   Slide,
   ButtonBack,
   ButtonNext,
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
-import style from "./MainSlider.module.css";
+} from 'pure-react-carousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import style from './MainSlider.module.css';
 
 const TopMovies: FC = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const movies = useAppSelector(state => state.movies.top);
   const user = useAppSelector(state => state.auth.user);
   const favorites = useAppSelector(state => state.movies.favorites);
@@ -29,8 +27,8 @@ const TopMovies: FC = () => {
 
   useEffect(() => {
     dispatch(getTopMovies());
-    dispatch(getFavorites({id: user?._id}));
-  }, [dispatch, user])
+    dispatch(getFavorites({ id: user?._id }));
+  }, [dispatch, user]);
 
   return (
     <div className={style.movies__carousel}>
@@ -56,11 +54,12 @@ const TopMovies: FC = () => {
             movies.map((movie) => (
               <Slide
                 key={movie._id}
-                className={style["carousel__inner"]}
-                index={0}>
-                   <Link to={`/movies/${movie._id}`}>
-                  <MovieItem movie={movie} favorites={favorites}/>
-                  </Link>
+                className={style['carousel__inner']}
+                index={0}
+              >
+                <Link to={`${ENV.MOVIES}${movie._id}`}>
+                  <MovieItem movie={movie} favorites={favorites} />
+                </Link>
               </Slide>
             ))}
         </Slider>

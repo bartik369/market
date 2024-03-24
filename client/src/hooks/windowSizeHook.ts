@@ -5,13 +5,13 @@ export default function useWindowSizeHook() {
 
     useEffect(() => {
         if (window.innerWidth > 1200) {
-         setSlidesCount(8)
+         setSlidesCount(8);
         } else if (window.innerWidth > 1100) {
-         setSlidesCount(7)
+         setSlidesCount(7);
         } else if (window.innerWidth > 990) {
-         setSlidesCount(6)
+         setSlidesCount(6);
         }  else if (window.innerWidth > 650) {
-         setSlidesCount(5)
+         setSlidesCount(5);
         }
        }, [window.innerWidth])
        

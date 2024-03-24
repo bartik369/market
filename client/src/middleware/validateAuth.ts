@@ -1,5 +1,5 @@
-import { IAuthData } from "../types/auth";
-import * as contentConst from '../utils/constants/content'
+import { IAuthData } from '../types/auth';
+import * as contentConst from '../utils/constants/content';
 
 export default function validateLogin(authData: IAuthData) {
     let errors = {
@@ -21,7 +21,6 @@ export default function validateLogin(authData: IAuthData) {
       && (authData.password !== authData.repeatPassword)) {
       errors.password = contentConst.dontPasswordMatch;
       errors.repeatPassword = contentConst.dontPasswordMatch;
-
     }
     return errors;
   }
