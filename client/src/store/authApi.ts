@@ -1,19 +1,19 @@
-import { IUser } from '../types/auth';
 import { apiSlice } from "./apiSlice";
 import { logOut, setCredentials } from './authSlice';
+import ENV from "../env.config";
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: builder =>({
         signupUser:builder.mutation({
             query: credentials => ({
-                url: 'api/create-user/',
+                url: `${ENV.API_CREATE_USER}`,
                 method: 'POST',
                 body: {...credentials}
             }),
         }),
         signinUser:builder.mutation({
             query: credentials => ({
-                url: 'api/auth/',
+                url: `${ENV.API_AUTH}`,
                 method: 'POST',
                 body: {...credentials},
                 credentials: 'include',
@@ -21,7 +21,7 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         logoutUser: builder.mutation<void, void>({
             query: () => ({
-                url: 'api/logout/',
+                url: `${ENV.API_LOGOUT}`,
                 method: 'POST',
                 credentials: 'include',
             }),
@@ -36,13 +36,12 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         refresh: builder.mutation({
             query:() => ({
-                url: 'api/refresh-token/',
+                url: `${ENV.API_REFRESH_TOKEN}`,
                 method: 'GET',
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled
-                    console.log(data)
                     const { accessToken } = data
                     dispatch(setCredentials({ accessToken }))
                 } catch (err) {
@@ -52,12 +51,10 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         profileUser: builder.query({
             query: (id) => ({
-                url: `api/profile/${id}`,
+                url: `${ENV.API_PROFILE}${id}`,
                 method: 'GET'
             }),
         }),
-        
-
     })
 });
 

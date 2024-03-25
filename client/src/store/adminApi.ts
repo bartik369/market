@@ -1,28 +1,28 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISlider, ISliderUpdate, ISliderFormData } from "../types/media";
-import { IUser } from "../types/auth";
-import ENV from "../env.config";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ISlider, ISliderUpdate, ISliderFormData } from '../types/media';
+import { IUser } from '../types/auth';
+import ENV from '../env.config';
 
 export const adminApi = createApi({
-  reducerPath: "adminApi",
+  reducerPath: 'adminApi',
   baseQuery: fetchBaseQuery({ baseUrl: ENV.API_URL }),
   tagTypes: ['Slides'],
   endpoints: (builder) => ({
     getUsers: builder.query<IUser[], void>({
       query: () => ({
-        url: "/api/users",
-        method: "GET",
+        url: `${ENV.API_USERS}`,
+        method: 'GET',
       }),
     }),
     getMoviesCount: builder.query<number, void>({
       query: () => ({
-        url: "/api/movies-count",
-        method: "GET",
+        url: `${ENV.API_MOVIES_COUNT}`,
+        method: 'GET',
       }),
     }),
     getSlides: builder.query<ISlider[], void>({
       query:() => ({
-          url:'/api/get-slides',
+          url:`${ENV.API_SLIDES}`,
           method: 'GET'
       }),
       providesTags: (result) =>
@@ -35,22 +35,22 @@ export const adminApi = createApi({
   }),
     addSlide: builder.mutation<ISlider, ISliderFormData>({
       query: (data) => ({
-        url: "/api/add-slide",
-        method: "POST",
+        url: `${ENV.API_ADD_SLIDE}`,
+        method: 'POST',
         body: data,
       }),
       invalidatesTags: ['Slides'],
     }),
     getSlide: builder.mutation<ISliderUpdate, string>({
       query: (id) => ({
-        url:`/api/get-slide/`,
+        url: `${ENV.API_GET_SLIDE}`,
         method: 'POST',
         body: {id: id}
       })
     }),
     deleteSlide: builder.mutation<ISlider, string>({
       query:(id) => ({
-        url:'/api/delete-slide',
+        url: `${ENV.API_DELETE_SLIDE}`,
         method:'DELETE',
         body: {id: id}
       }),
@@ -58,7 +58,7 @@ export const adminApi = createApi({
     }),
     updateSide: builder.mutation<ISlider, ISliderFormData>({
       query:(body) => ({
-        url: '/api/update-slide',
+        url: `${ENV.API_UPDATE_SLIDE}`,
         method: 'PUT',
         body: body,
       }),

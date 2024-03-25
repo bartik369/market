@@ -87,11 +87,18 @@ export const inputEmail = 'Укажите почту';
 export const wrongEmailFormat = 'Неправильный формат почты';
 
 export const homePageTitle = 'Главная';
+export const newMovies = 'Новинки';
+export const topTenMonthMovies = 'Топ-10 месяца';
 
 export const locateRu = 'ru-RU';
 export const search = 'Поиск';
+export const totalMovies = 'Всего фильмов';
+export const totalUsers = 'Всего пользователей';
 export const gratitudeRating = 'Спасибо за Вашу оценку!'
 export const financeHistory = 'Финансовая история';
+
+// errors
+export const serverError = 'server error';
 
 
 

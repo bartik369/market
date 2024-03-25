@@ -49,7 +49,7 @@ export const useValidateAccessToken = () => {
 
           if (response.data) {
               try {
-                dispatch(setCredentials(response.data))
+                dispatch(setCredentials(response.data));
 
               } catch (error) {
 
@@ -63,7 +63,7 @@ export const useValidateAccessToken = () => {
               });
 
               if (response.data) {
-                dispatch(setCredentials(response.data))
+                dispatch(setCredentials(response.data));
               } else {
 
               }

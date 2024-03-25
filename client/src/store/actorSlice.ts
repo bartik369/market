@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import ENV from "../env.config";
-import { IActor} from "../types/media";
+import ENV from '../env.config';
+import * as contentConst from '../utils/constants/content';
+import { IActor} from '../types/media';
 
 type ActorState = {
     list: IActor[];
@@ -16,39 +17,36 @@ const initialState: ActorState = {
 
 export const getActors = createAsyncThunk<IActor[], undefined, {rejectValue: String}>('actors/getActors',
 async function(_, {rejectWithValue}) {
-    const response = await axios.get(`${ENV.API_URL}api/actors`)
+    const response = await axios.get(`${ENV.API_URL}${ENV.API_ACTORS}`);
     
     if (!response.data) {
-        return rejectWithValue('sever error')
+        return rejectWithValue(contentConst.serverError);
     }
-    return response.data
-}
-)
+    return response.data;
+});
 
 export const getMovieActors = createAsyncThunk<IActor[], string[], {rejectValue: String}>('actors/getMovieActors',
 async function(data, {rejectWithValue}) {
-    const response = await axios.post(`${ENV.API_URL}api/movie_actors`, data)
+    const response = await axios.post(`${ENV.API_URL}${ENV.API_MOVIE_ACTORS}`, data);
  
     if (!response.data) {
-        return rejectWithValue('server error')
+        return rejectWithValue(contentConst.serverError);
     }
-    return response.data
-}
-)
+    return response.data;
+});
 
 export const addActor = createAsyncThunk<IActor, any, {rejectValue: string}>(
     'actors/createActor',
     async function(formData, {rejectWithValue}) {
-        const response = await axios.post(`${ENV.API_URL}api/add-actor`, formData, {
+        const response = await axios.post(`${ENV.API_URL}${ENV.API_ADD_ACTOR}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data'},
         });
 
         if (!response) {
-            return rejectWithValue('cant add task, there is some error')
+            return rejectWithValue(contentConst.serverError);
         }
-        return await response.data
-    }
-)
+        return await response.data;
+    });
 
 const actorSlice = createSlice({
     name: 'actor',

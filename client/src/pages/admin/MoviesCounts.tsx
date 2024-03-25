@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
 import {useGetMoviesCountQuery} from '../../store/adminApi';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as contentConst from '../../utils/constants/content'
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import style from './Admin.module.css'
 
 const MoviesCounts: FC = () => {
@@ -15,7 +16,7 @@ const MoviesCounts: FC = () => {
           {moviesCount} 
           </div> 
           <div className={style.title}>
-            Всего фильмов
+            {contentConst.totalMovies}
           </div>
         </div>
     );
