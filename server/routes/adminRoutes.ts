@@ -4,8 +4,11 @@ import User from '../models/user/User';
 import Movie from '../models/media/movie';
 import Slider from '../models/media/slider';
 import fs from 'fs';
+import dotenv from 'dotenv';
 
 const router = express.Router();
+dotenv.config();
+
 const movieSlider = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, `${process.env.UPLOADS_SLIDER_PICS}`);

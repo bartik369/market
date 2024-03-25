@@ -6,8 +6,10 @@ import Password from '../models/user/Password';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import * as serverConst from '../utils/constants';
+import dotenv from 'dotenv';
 
 const router = express.Router();
+dotenv.config();
 
 router.post(`${process.env.API_AUTH}`, 
 async(req: Request, res:Response) => {

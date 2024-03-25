@@ -105,7 +105,14 @@
     color: #cbd6e9;
     margin-left: 20px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 22px;
+}
+
+.bars-active {
+    color: #cbd6e9;
+    margin-left: 17.5px;
+    cursor: pointer;
+    font-size: 22px;
 }
 
 .profile-btn {

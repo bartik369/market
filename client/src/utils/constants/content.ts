@@ -96,6 +96,7 @@ export const totalMovies = 'Всего фильмов';
 export const totalUsers = 'Всего пользователей';
 export const gratitudeRating = 'Спасибо за Вашу оценку!'
 export const financeHistory = 'Финансовая история';
+export const chatHelp = 'Написать нам в чате'
 
 // errors
 export const serverError = 'server error';

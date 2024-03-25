@@ -1,4 +1,4 @@
-import { faBolt, faHouse, faFilm, faTv, faNewspaper, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faBolt, faHouse, faFilm, faTv, faNewspaper, faStar, faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 
   export const menuItemsData = [
     {id: 1, title: 'Главная', url: '/', icon: faHouse},
@@ -10,9 +10,9 @@ import { faBolt, faHouse, faFilm, faTv, faNewspaper, faStar } from "@fortawesome
   ];
 
   export const profileMenuData = [
-    {id: 1, title: 'Профиль', url: '/profile'},
-    {id: 2, title: 'Избранное', url: ''},
-    {id: 3, title: 'Админка', url: '/admin'},
+    {id: 1, title: 'Профиль', url: '/profile', icon: faUser},
+    {id: 2, title: 'Избранное', url: '', icon: faStar},
+    {id: 3, title: 'Админ-панель', url: '/admin', icon: faLock},
   ];
   export const ratingRangeData = [
     {id: 1, title: 'меньше 7', value: '6'},

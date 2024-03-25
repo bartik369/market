@@ -1,9 +1,11 @@
 import express, { Request, Response } from 'express';
 import Movie from '../models/media/movie';
 import Favorite from '../models/media/favotite';
+import dotenv from 'dotenv';
 import multer from 'multer';
 
 const router = express.Router();
+dotenv.config();
 
 const moviePoster = multer.diskStorage({
   destination: function (req, res, cb) {

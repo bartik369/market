@@ -8,7 +8,8 @@ import { useAppSelector } from '../../hooks/reduxHook';
 import ProfileMenu from '../navigation/ProfileMenu';
 import Breadcrumbs from '../breadcrumbs/Breadcrumbs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import * as contentConst from '../../utils/constants/content'
+import { faSearch, faUser, faBars, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 import Glasses from '../../assets/pics/cinema.svg';
 import style from './Header.module.css';
 
@@ -72,7 +73,10 @@ const Header: FC = () => {
             {user && token ? (
               <button className={style['profile-btn']} ref={myRef} 
               onClick={() => setProfileMenu(!profileMenu)}>
-                <FontAwesomeIcon className={style.bars} icon={faBars} />
+                {profileMenu
+                  ?  <FontAwesomeIcon className={style['bars-active']} icon={faBarsStaggered} />
+                  :  <FontAwesomeIcon className={style.bars} icon={faBars} />
+                }
               </button>
             ) : (
               <div
@@ -80,7 +84,7 @@ const Header: FC = () => {
                 className={style.auth}
               >
                 <FontAwesomeIcon className={style['auth-icon']} icon={faUser} />
-                <span>Войти</span>
+                <span>{contentConst.enterBtn}</span>
               </div>
             )}
              {profileMenu && 

@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express';
 import ActorModel from '../models/media/actor';
 import multer from 'multer';
+import dotenv from 'dotenv';
 
 const router = express.Router();
+dotenv.config();
+
 const actorPortrait = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, `${process.env.UPLOADS_ACTORS_PICS}`);

@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { profileMenuData } from '../../utils/data/data';
 import { useAppSelector } from '../../hooks/reduxHook';
 import { useLogoutUserMutation } from '../../store/authApi';
-import * as contentConst from '../../utils/constants/content'
+import * as contentConst from '../../utils/constants/content';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logoutIcon from '../../assets/pics/logout.svg'
 import style from './ProfileMenu.module.css';
 
@@ -39,6 +40,7 @@ const ProfileMenu: FC<IProfileMenuProps> = ({setProfileMenu, profileMenu}) => {
                  <NavLink className={({ isActive }) => (isActive 
                   ? style.active 
                   : style[''])} to={item.url} key={item.id}>
+                    <FontAwesomeIcon className={style.icon} icon={item.icon}/>
                     {item.title}
                   </NavLink>
               </li>
