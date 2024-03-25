@@ -7,11 +7,9 @@ import DropRating from '../dropdown/DropRating';
 import {getProperties} from '../../store/movieSlice';
 import style from './MovieFilter.module.css';
 
-
-
 const MovieFilter: FC = () => {
-  
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getProperties())
   }, [])
