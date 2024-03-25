@@ -86,10 +86,9 @@ const Movie: FC = () => {
         <div className={style.movie}>
           <div className={style['video-layer']}>
             {movie.trailer ? (
-              <video
-                className={style.video} autoPlay muted loop
+              <video className={style.video} autoPlay muted loop
                 src={`${ENV.API_URL_UPLOADS_MOVIES}${movie.trailer}`}
-              ></video>
+              />
             ) : (
               <img className={style.cinema} src={cinema} />
             )}

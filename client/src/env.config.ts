@@ -31,7 +31,7 @@ const ENV = {
     API_DELETE_SLIDE: 'api/delete-slide',
     API_UPDATE_SLIDE: 'api/update-slide',
     CLIENT_URL: 'http://localhost:3000',
-    MOVIES_URL: 'http://localhost:3000/movies',
+    MOVIES_URL: 'http://localhost:3000/movies/',
     MOVIES: '/movies/',
     EDIT_SLIDER: '/admin/edit-slider/',
     ADD_MOVIE: '/admin/add-movie/',

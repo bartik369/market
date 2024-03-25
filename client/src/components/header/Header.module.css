@@ -85,12 +85,11 @@
     width: fit-content;
     align-items: center;
     margin-left: 30px;
+    cursor: pointer;
 }
 
-.auth-icon {
-    color: #cbd6e9;
-    margin-right: 6px;
-    cursor: pointer;
+.auth img {
+    width: 33px;
 }
 
 .auth span {
@@ -98,7 +97,6 @@
     font-family: inherit;
     font-weight: 300;
     font-size: 12px;
-    cursor: pointer;
 }
 
 .bars {

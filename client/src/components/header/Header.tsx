@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as contentConst from '../../utils/constants/content'
 import { faSearch, faUser, faBars, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 import Glasses from '../../assets/pics/cinema.svg';
+import Login from '../../assets/pics/login.svg';
 import style from './Header.module.css';
 
 const Header: FC = () => {
@@ -79,11 +80,8 @@ const Header: FC = () => {
                 }
               </button>
             ) : (
-              <div
-                onClick={() => setVisibleSignin(true)}
-                className={style.auth}
-              >
-                <FontAwesomeIcon className={style['auth-icon']} icon={faUser} />
+              <div className={style.auth} onClick={() => setVisibleSignin(true)}> 
+                <img src={Login} alt="" />
                 <span>{contentConst.enterBtn}</span>
               </div>
             )}

@@ -13,11 +13,11 @@
 .main .container .title {
     display: flex;
     align-items: center;
+    margin: 15px 0;
 }
 
 .main .container .title span {
     font-size: 22px;
-    margin: 10px;
     font-family: inherit;
     color: rgb(199, 210, 232);
 }
@@ -26,4 +26,5 @@
     font-size: 23px;
     font-family: inherit;
     color: #fd8841;
+    margin-right: 6px;
 }
