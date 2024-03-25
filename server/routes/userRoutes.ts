@@ -5,26 +5,26 @@ import Token from '../models/user/Token';
 import Password from '../models/user/Password';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import * as serverConst from '../utils/constants';
 
 const router = express.Router();
 
-router.post('/auth/', async(req: Request, res:Response) => {
+router.post(`${process.env.API_AUTH}`, 
+async(req: Request, res:Response) => {
     try {
         const {email, password} = req.body;
-        console.log('auth')
         const user = await User.findOne({email: email});
 
         if (!user) {
-            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные Вами данные.'})
+            return res.status(400).json({message: serverConst.checkAuthData})
         }
         const candidat = await Password.findOne({userId: user._id});
         const comparePassword = await bcrypt.compare(password, candidat.password);
 
         if (!comparePassword) {
-            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные Вами данные.'})
+            return res.status(400).json({message: serverConst.checkAuthData})
         }
-        const accessToken = jwt.sign(
-            {
+        const accessToken = jwt.sign({
                 _id: user._id,
                 email: user.email,
                 roles: user.roles,
@@ -33,8 +33,7 @@ router.post('/auth/', async(req: Request, res:Response) => {
             process.env.JWT_ACCESS_SECRET,
             {expiresIn: '30m'}
         );
-        const refreshToken = jwt.sign(
-            {
+        const refreshToken = jwt.sign({
                 _id: user._id,
                 email: user.email,
                 roles: user.roles,
@@ -46,40 +45,36 @@ router.post('/auth/', async(req: Request, res:Response) => {
         const token = await Token.findOne({user: user._id});
 
         if (token) {
-            token.refreshToken = refreshToken
+            token.refreshToken = refreshToken;
         }
         const tokenData = await Token.create({
             user: user._id,
             refreshToken: refreshToken,
         });
-        await tokenData.save()
+        await tokenData.save();
         
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true, 
             sameSite: 'none',
             secure: true, 
-            // maxAge: 18 * 24 * 60 * 60 * 1000 
         });
         res.cookie('accessToken', accessToken, {
-            // maxAge: 1* 15 * 1000,
             httpOnly: true,
             secure: true,
             sameSite: 'none',
         });
-        return res.json({token: accessToken, user: user})
-    } catch (error) {
-        
-    }
+        return res.json({token: accessToken, user: user});
+    } catch (error) { console.log(error) }
 });
 
-router.post('/create-user/', async(req: Request, res:Response) => {
+router.post(`${process.env.API_CREATE_USER}`, 
+async(req: Request, res:Response) => {
     try {
-        console.log('reg')
         const {email, password} = req.body;
         const dublicate = await User.findOne({email: email});
 
         if (dublicate) {
-            return res.status(400).json({message: 'Проверьте, пожалуйста, указанные Вами данные.'})
+            return res.status(400).json({message: serverConst.checkAuthData});
         }
         const hashPassword = await bcrypt.hash(password, 7); 
         const user = new User({
@@ -87,55 +82,54 @@ router.post('/create-user/', async(req: Request, res:Response) => {
             roles: ['USER'],
             member: ['START'],
         })
-        await user.save()
+        await user.save();
 
         if (user) {
             await Password.create({
                 userId: user._id,
                 password: hashPassword,
             });
-            return res.status(201).json({message: 'User created'})
+            return res.status(201).json({message: serverConst.userCreated});
         } else {
-            return res.status(400).json({message: 'Invalid user data received'})
+            return res.status(400).json({message: serverConst.invalidUserData});
         }
-    } catch (error) {
-    }
+    } catch (error) { console.log(error) }
 });
 
-router.get('/verify-token/', async(req: Request, res: Response) => {
+router.get(`${process.env.API_VERIFY_TOKEN}`, 
+async(req: Request, res: Response) => {
     try {
         const accessToken = req.cookies.accessToken;
         jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET, (err: any, decoded: IUserDecoded) => {
             
             if (err) {
-                return res.status(403).json({message: 'В доступе отказано'})
+                return res.status(403).json({message: serverConst.accessDenied});
             } else {
-                return res.json({token: accessToken, user: decoded})
+                return res.json({token: accessToken, user: decoded});
             }
         });
 
-    } catch (error) {
-        
-    }
+    } catch (error) { console.log(error) }
 })
 
-router.get('/refresh-token/', async(req: Request, res:Response) => {
+router.get(`${process.env.API_REFRESH_TOKEN}`, 
+async(req: Request, res:Response) => {
     try {
         const token = req.cookies.refreshToken;
-        const decocedInfo = {}
+        const decocedInfo = {};
 
-        if (!token) return res.status(401).json({message: 'net avtorizacii'});
+        if (!token) return res.status(401).json({message: serverConst.notAuthorized});
         jwt.verify(token, process.env.JWT_REFRESH_SECRET, (err: any, decoded: IUserDecoded) => {
             
             if (err) {
-                return res.status(401).json({message: 'net avtorizacii'})
+                return res.status(401).json({message: serverConst.notAuthorized});
             } else {
                 Object.assign(decocedInfo, decoded)
             }
         });
         const user = await User.findById(decocedInfo['_id']);
 
-        if (!user) return res.status(401).json({message: 'net avtorizacii'});
+        if (!user) return res.status(401).json({message: serverConst.notAuthorized});
         const accessToken = jwt.sign(
             {
                 _id: user._id,
@@ -156,12 +150,11 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
             process.env.JWT_REFRESH_SECRET,
             {expiresIn: '18d'}
         );
-    
         const existToken = await Token.findOne({user: user._id});
 
         if (existToken) {
             const updateTokenData = await Token.findOneAndUpdate({_id: existToken._id}, {
-                refreshToken: refreshToken
+                refreshToken: refreshToken,
             })
             await updateTokenData.save()
         } else {
@@ -176,33 +169,26 @@ router.get('/refresh-token/', async(req: Request, res:Response) => {
             httpOnly: true, 
             sameSite: 'none',
             secure: true, 
-            // maxAge: 18 * 24 * 60 * 60 * 1000 
         });
         res.cookie('accessToken', accessToken, {
-            // maxAge: 1 * 60 * 1000,
             httpOnly: true,
             secure: true,
             sameSite: 'none',
         });
         return res.json({token: accessToken, user: user})
-    } catch (error) {
-        
-    }
+    } catch (error) { console.log(error) }
 });
 
-
-router.post('/logout/', async(req: Request, res: Response) => {
+router.post(`${process.env.API_LOGOUT}`, 
+async(req: Request, res: Response) => {
     try {
         const {cookie} = req.headers;
         const refreshToken = cookie.split("refreshToken=")[1].split(";")[0];
-        const tokenData = await Token.deleteOne({refreshToken: refreshToken })
+        await Token.deleteOne({refreshToken: refreshToken });
         res.clearCookie('accessToken');
         res.clearCookie('refreshToken');
-        return res.status(200).json({ message: "Logout success" })
-    } catch (error) {
-        
-    }
+        return res.status(200).json({ message: serverConst.logoutSuccess});
+    } catch (error) { console.log(error) }
 })
-
 
 export default router;

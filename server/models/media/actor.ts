@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const ActorSchema = new mongoose.Schema({
     nameEn: {
@@ -30,6 +30,5 @@ const ActorSchema = new mongoose.Schema({
     }
 });
 
-const Actor = mongoose.model("Actor", ActorSchema);
-
+const Actor = mongoose.model('Actor', ActorSchema);
 export default Actor;

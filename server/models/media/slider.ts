@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const SliderSchema = new mongoose.Schema({
     movieId: {
@@ -18,6 +18,6 @@ const SliderSchema = new mongoose.Schema({
     }
 });
 
-const Slider = mongoose.model("Slider", SliderSchema);
+const Slider = mongoose.model('Slider', SliderSchema);
 
 export default Slider;

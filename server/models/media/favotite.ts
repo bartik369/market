@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const FavoriteSchema = new mongoose.Schema({
     userId: {
@@ -9,6 +9,5 @@ const FavoriteSchema = new mongoose.Schema({
     }
 });
 
-const Favorite = mongoose.model("Favorite", FavoriteSchema);
-
+const Favorite = mongoose.model('Favorite', FavoriteSchema);
 export default Favorite;
