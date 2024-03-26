@@ -17,6 +17,7 @@ import style from './App.module.css';
 
 const App: FC = () => {
   const validateAccessToken = useValidateAccessToken();
+  
 
   useEffect(() => {
     const verifyAccessToken = async () => {

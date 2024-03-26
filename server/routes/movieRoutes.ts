@@ -54,7 +54,6 @@ router.get(`${process.env.API_TOP_MOVIES}`, async (req: Request, res: Response) 
     const moviesData = await Movie.find({
       rating: { $gt: 7 },
     });
-    console.log(moviesData);
     return res.json(moviesData);
   } catch (error) {
     return error;

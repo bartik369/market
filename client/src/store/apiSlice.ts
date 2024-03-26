@@ -57,7 +57,7 @@ export const useValidateAccessToken = () => {
           }
       } catch (error: any) {
           if (error.response.status === 403) {
-            console.log('a vot i 403 podkatila')
+            // console.log('a vot i 403 podkatila')
               const response = await axios.get(`${ENV.API_URL}api/refresh-token`, {
                   withCredentials: true,
               });

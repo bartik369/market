@@ -6,6 +6,18 @@
     justify-content: center;
 }
 
+.loader-wrap .inner {
+    flex-direction: column;
+    text-align: center;
+}
+
+.load-text {
+    color: #7d84ae;
+    font-family: inherit;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
 .lds-ring {
     display: inline-block;
     position: relative;
@@ -20,7 +32,7 @@
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid #cef;
+    border: 6px solid #cef;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #474e74 transparent transparent transparent;

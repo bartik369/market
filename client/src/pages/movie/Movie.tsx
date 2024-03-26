@@ -14,6 +14,7 @@ import nonePoster from '../../assets/pics/blank_movie.jpg';
 import vignette from '../../assets/pics/vignette.png';
 import cinema from '../../assets/pics/cinema.jpg';
 import style from './Movies.module.css';
+import Loader from '../../components/loader/Loader';
 
 const Movie: FC = () => {
   const params = useParams();
@@ -173,7 +174,7 @@ const Movie: FC = () => {
           </div>
         </div>
       ) : (
-        <span className={style.loading}>{contentConst.loading}</span>
+         <Loader />
       )}
     </>
   );

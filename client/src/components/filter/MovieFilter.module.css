@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     margin-bottom: 25px;
+    padding-left: 10px;
 }
 
 .item {

@@ -142,7 +142,7 @@
 
 .carousel__inner-slide .watch {
     padding: 12px 20px;
-    background-color: #4b50d4;
+    background-color: #3e29bf;
     border-radius: 4px;
     color: #fff;
     font-family: inherit;
@@ -153,6 +153,11 @@
     right: 40px;
     bottom: 40px;
     z-index: 9;
+    transition: all .5s ease-in-out;
+}
+
+.carousel__inner-slide .watch:hover {
+    background-color: #27bda8;
 }
 
 .carousel__inner-slide::after {
