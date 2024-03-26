@@ -25,14 +25,7 @@ app.use(
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-  '/api',
-  actorRoutes,
-  movieRoutes,
-  userRoutes,
-  profileRoutes,
-  adminRoutes
-);
+app.use('/api', actorRoutes, movieRoutes, userRoutes, profileRoutes, adminRoutes);
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 server.listen(PORT, () => {

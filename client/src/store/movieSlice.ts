@@ -143,6 +143,7 @@ export const addFavorite = createAsyncThunk<unknown, IMovieAddFavorite,{ rejectV
   if (!res) { return rejectWithValue(contentConst.serverError); }
   return res.data;
 });
+
 export const getFavorites = createAsyncThunk<IMovieFavorites, IExistFavorite,{ rejectValue: String }>(
   'movie/getFavorites', async function (id, { rejectWithValue }) {
   const res = await axios.post(`${ENV.API_URL}${ENV.API_MOVIES_FAVORITES}`, id, {
