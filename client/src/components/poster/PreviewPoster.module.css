@@ -12,10 +12,10 @@
 
 .info {
     box-sizing: border-box;
-    word-wrap: break-word;
     width: 48%;
     padding: 20px;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
     background-color: #12131c;
     border: 1px solid #161823;
@@ -78,26 +78,17 @@ span.nf {
     color: #ededed;
     font-family: inherit;
     font-weight: 500;
-    font-size: 16px;
-    display: flex;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin: 0 5px 5px 0;
 }
 
-.list-item:not(:first-child)::before {
+.list-item:not(:last-child)::after {
     content: '|';
     color: #ededed;
     font-family: inherit;
     font-weight: 300;
-    margin-right: 4px;
+    margin-left: 4px;
 }
-
-
-/* .result:nth-child(n+2):before {
-    content: '|';
-    color: rgb(54, 63, 246);
-    position: absolute;
-} */
 
 .cast {
     color: #ededed;
@@ -112,6 +103,7 @@ span.nf {
 .genre-column {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .genre-column div {

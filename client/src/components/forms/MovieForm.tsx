@@ -37,6 +37,8 @@ const MovieForm: FC<IMovieProps> = ({
   const dispatch = useAppDispatch();
   const actors = useAppSelector(state => state.actors.list);
 
+  console.log(actors)
+
   useEffect(() => {
     dispatch(getActors());
   }, []);

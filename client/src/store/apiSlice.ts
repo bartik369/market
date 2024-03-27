@@ -51,9 +51,7 @@ export const useValidateAccessToken = () => {
           if (response.data) {
               try {
                 dispatch(setCredentials(response.data));
-              } catch (error) {
-
-              }
+              } catch (error) { }
           }
       } catch (error: any) {
           if (error.response.status === 403) {
@@ -62,10 +60,9 @@ export const useValidateAccessToken = () => {
               });
 
               if (response.data) {
+                localStorage.setItem('accessToken', response.data.token)
                 dispatch(setCredentials(response.data));
-              } else {
-
-              }
+              } else {}
           }
       }
 

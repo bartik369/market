@@ -36,13 +36,11 @@ const MainSlider: FC = () => {
         <ButtonNext className={style.btn_next}>
           <FontAwesomeIcon className={style.chevron} icon={faChevronRight} />
         </ButtonNext>
-
         <Slider className={style.carousel__slider}>
           {slides &&
             slides.map((slide) => (
-              <Link to={`${ENV.MOVIES_URL}${slide.movieLink}`}>
+              <Link  key={slide._id} to={`${ENV.MOVIES_URL}${slide.movieLink}`}>
                 <Slide
-                  key={slide._id}
                   className={style['carousel__inner-slide']}
                   index={0}
                 >

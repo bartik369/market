@@ -17,6 +17,7 @@ const actorPortrait = multer.diskStorage({
 
 router.get(`${process.env.API_ACTORS}`, async (req: Request, res: Response) => {
   try {
+    console.log('actors')
     const actorData = await ActorModel.find({});
 
     if (actorData) {

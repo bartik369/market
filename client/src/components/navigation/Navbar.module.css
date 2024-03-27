@@ -1,8 +1,3 @@
-/* .menu-wrapper {
-    background-color: midnightblue;
-    margin-left: 15px;
-} */
-
 .header-nav {
     position: absolute;
     right: 25%;
@@ -44,14 +39,6 @@
 .menu-item .icon img {
     width: 100%;
 }
-
-
-/* .menu-item .title {
-    text-decoration: none;
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 12px;
-} */
 
 @media (max-width: 800px) {
     .menu-items {
