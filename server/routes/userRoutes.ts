@@ -1,5 +1,5 @@
 import { IUserDecoded } from './../types/types';
-import express, {Request, Response} from 'express';
+import express, {Request, Response, NextFunction} from 'express';
 import User from '../models/user/User';
 import Token from '../models/user/Token';
 import Password from '../models/user/Password';
@@ -60,11 +60,11 @@ async(req: Request, res:Response) => {
             sameSite: 'none',
             secure: true, 
         });
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'none',
-        });
+        // res.cookie('accessToken', accessToken, {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: 'none',
+        // });
         return res.json({token: accessToken, user: user});
     } catch (error) { console.log(error) }
 });
@@ -98,10 +98,14 @@ async(req: Request, res:Response) => {
     } catch (error) { console.log(error) }
 });
 
-router.get(`${process.env.API_VERIFY_TOKEN}`, 
-async(req: Request, res: Response) => {
+router.get(`${process.env.API_VERIFY_TOKEN}`,
+async(req: Request, res: Response, next: NextFunction) => {
+
+    if (req.method === 'OPTIONS') {
+        return next();
+    }
     try {
-        const accessToken = req.cookies.accessToken;
+        const accessToken = req.headers.authorization.split(' ')[1];
         jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET, (err: any, decoded: IUserDecoded) => {
             
             if (err) {
@@ -172,11 +176,11 @@ async(req: Request, res:Response) => {
             sameSite: 'none',
             secure: true, 
         });
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'none',
-        });
+        // res.cookie('accessToken', accessToken, {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: 'none',
+        // });
         return res.json({token: accessToken, user: user})
     } catch (error) { console.log(error) }
 });

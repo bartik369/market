@@ -17,16 +17,19 @@ import style from './App.module.css';
 
 const App: FC = () => {
   const validateAccessToken = useValidateAccessToken();
-  
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    const verifyAccessToken = async () => {
-      try {
-        await validateAccessToken();
-      } catch (error) {}
-    };
-    verifyAccessToken();
-  }, []);
+    
+    if (token) {
+      const verifyAccessToken = async () => {
+        try {
+          await validateAccessToken(token);
+        } catch (error) {}
+      };
+      verifyAccessToken();
+    }
+  }, [token]);
 
   return (
     <div className={style.wrapper}>

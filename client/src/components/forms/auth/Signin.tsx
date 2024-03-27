@@ -44,6 +44,7 @@ const Signin: FC<ISigninProps> = ({ signupHandler, closeFormHandler }) => {
         .then((data) => {
             dispatch(setCredentials(data));
             closeFormHandler();
+            localStorage.setItem('accessToken', data.token)
         })
         .catch((error) => toast.error(error.data.message));
     }
