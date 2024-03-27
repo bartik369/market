@@ -60,11 +60,6 @@ async(req: Request, res:Response) => {
             sameSite: 'none',
             secure: true, 
         });
-        // res.cookie('accessToken', accessToken, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     sameSite: 'none',
-        // });
         return res.json({token: accessToken, user: user});
     } catch (error) { console.log(error) }
 });
@@ -106,14 +101,18 @@ async(req: Request, res: Response, next: NextFunction) => {
     }
     try {
         const accessToken = req.headers.authorization.split(' ')[1];
-        jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET, (err: any, decoded: IUserDecoded) => {
+        if (!accessToken) { 
+            return res.status(401).json({message: serverConst.notAuthorized})
+        } else {
+            jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET, (err: any, decoded: IUserDecoded) => {
             
-            if (err) {
-                return res.status(403).json({message: serverConst.accessDenied});
-            } else {
-                return res.json({token: accessToken, user: decoded});
-            }
-        });
+                if (err) {
+                    return res.status(403).json({message: serverConst.accessDenied});
+                } else {
+                    return res.json({token: accessToken, user: decoded});
+                }
+            });
+        }
 
     } catch (error) { console.log(error) }
 })
@@ -170,17 +169,11 @@ async(req: Request, res:Response) => {
             });
             await tokenData.save()
         }
-
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true, 
             sameSite: 'none',
             secure: true, 
         });
-        // res.cookie('accessToken', accessToken, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     sameSite: 'none',
-        // });
         return res.json({token: accessToken, user: user})
     } catch (error) { console.log(error) }
 });
