@@ -17,9 +17,20 @@ const Movies = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getMovies(filter));
+    dispatch(getMovies(filter)); 
     user && dispatch(getFavorites({ id: user._id }));
   }, [dispatch, filter, user]);
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
+    return function() {
+      document.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
+
+  const scrollHandler = () => {
+    console.log('scrooool')
+  }
 
   return (
     <div className={style.container}>
